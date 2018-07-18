@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">Ua21SummerDanceCamp</string>
+    <string name="title_activity_tab">TabActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_3">Tab 3</string>
+    <string name="tab_text_4">Tab 4</string>
+    <string name="tab_text_5">Tab 5</string>
+    <string name="tab_text_6">Tab 6</string>
+    <string name="tab_text_7">Tab 7</string>
+    <string name="tab_text_8">Tab 8</string>
+    <string name="action_settings">Settings</string>
+
+    <string-array name="numbersOfDaysArray">
+        <item>27/8</item>
+        <item>28/8</item>
+        <item>29/8</item>
+        <item>30/8</item>
+        <item>31/8</item>
+        <item>01/9</item>
+        <item>02/9</item>
+        <item>03/9</item>
+    </string-array>
+
+    <string-array name="namesOfDaysArray">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+        <item>Monday</item>
+    </string-array>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_workshop">Workshop</string>
+    <string name="title_notes">Notes</string>
+    <string name="title_links">Links</string>
+</resources>
