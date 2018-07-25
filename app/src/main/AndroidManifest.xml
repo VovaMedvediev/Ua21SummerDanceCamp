@@ -20,12 +20,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".UI.bottomnavigation.events.EventsActivity"
-            android:label="@string/title_activity_tab"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".UI.bottomnavigation.MainActivity"
+        <activity android:name=".UI.bottomnavigation.MainActivity" />
+        android:name=".UI.bottomnavigation.MainActivity"
             android:label="@string/title_activity_main" />
     </application>
 

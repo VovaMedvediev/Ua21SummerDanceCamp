@@ -5,6 +5,8 @@ import com.example.vmedvediev.ua21summerdancecamp.model.RealmEvent
 
 class EventsMapper : Mapper<RealmEvent, Event> {
 
-    override fun map(initialObject: RealmEvent) = Event(initialObject.id, initialObject.name, initialObject.date)
+    override fun to(initialObject: Event) = RealmEvent(initialObject.id, initialObject.name, initialObject.date, initialObject.getType())
+
+    override fun from(initialObject: RealmEvent) = Event("", initialObject.name)
 
 }

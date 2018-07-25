@@ -10,26 +10,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/idTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Test id"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Widget.PopupMenu.Large"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/nameTextView"
+        <ImageView
+            android:id="@+id/eventImageVIew"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_launcher_background" />
 
         <TextView
             android:id="@+id/nameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:text="Test name"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Widget.PopupMenu.Large"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/idTextView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/eventImageVIew"
             app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>

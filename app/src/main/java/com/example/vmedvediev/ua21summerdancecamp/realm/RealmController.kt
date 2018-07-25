@@ -16,7 +16,7 @@ object RealmController {
         Realm.getDefaultInstance().commitTransaction()
     }
 
-    fun getEventsForDay(date: String) : RealmResults<RealmEvent> {
+    fun getEventsByDate(date: String) : RealmResults<RealmEvent> {
         return Realm.getDefaultInstance().where(RealmEvent::class.java).equalTo("date", date).findAll()
     }
 
