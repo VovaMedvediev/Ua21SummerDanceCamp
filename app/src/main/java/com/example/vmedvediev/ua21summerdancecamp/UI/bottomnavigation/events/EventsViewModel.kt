@@ -19,7 +19,9 @@ class EventsViewModel(private val repository: Repository) : ViewModel() {
                 {eventsList: ArrayList<ListItem> -> onDataNotLoaded(eventsList)})
     }
 
-    fun getEventsList() : MutableLiveData<ArrayList<ListItem>> = events
+    fun getEventsLiveData() : MutableLiveData<ArrayList<ListItem>> = events
+
+    fun getEventsList() : ArrayList<ListItem> = events.value!!
 
     private fun onDataLoaded(eventsList: ArrayList<ListItem>) {
         events.value = eventsList

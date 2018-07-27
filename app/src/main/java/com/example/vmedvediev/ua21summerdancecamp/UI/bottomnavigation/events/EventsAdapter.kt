@@ -1,22 +1,23 @@
 package com.example.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.events
 
 import android.content.Context
-import android.content.Intent
+import android.support.design.widget.TabLayout
 import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import com.example.vmedvediev.ua21summerdancecamp.R
-import com.example.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.notes.NotesFragment
 import com.example.vmedvediev.ua21summerdancecamp.inflate
 import com.example.vmedvediev.ua21summerdancecamp.model.Date
 import com.example.vmedvediev.ua21summerdancecamp.model.Event
 import com.example.vmedvediev.ua21summerdancecamp.model.ListItem
 import kotlinx.android.synthetic.main.day_item.view.*
 import kotlinx.android.synthetic.main.event_item.view.*
+import timber.log.Timber
 
-class EventsAdapter(private val context: Context, private val eventsList: MutableList<ListItem>) :  RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class EventsAdapter(private val context: Context, private val eventsList: ArrayList<ListItem>) :
+        RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
@@ -34,8 +35,7 @@ class EventsAdapter(private val context: Context, private val eventsList: Mutabl
                 val eventHolder = holder as EventViewHolder
                 eventHolder.name.text = event.name
                 eventHolder.card.setOnClickListener {
-                    val intent = Intent(context, NotesFragment::class.java)
-                    context.startActivity(intent)
+
                 }
             }
             1 -> {
@@ -50,20 +50,26 @@ class EventsAdapter(private val context: Context, private val eventsList: Mutabl
 
     override fun getItemViewType(position: Int) = eventsList[position].getType()
 
-    fun clearAndAddAll(updatedList: MutableList<ListItem>) {
+    fun clearAndAddAll(updatedList: ArrayList<ListItem>) {
         eventsList.apply {
             clear()
             addAll(updatedList)
         }
     }
 
-    fun addAll(updatedList: MutableList<ListItem>) {
+    fun addAll(updatedList: ArrayList<ListItem>) {
         if (!eventsList.containsAll(updatedList)) {
             eventsList.addAll(updatedList)
         }
     }
 
-    fun getDate(position: Int) = eventsList[position] as Date
+    fun getItem(position: Int) : ListItem {
+        return try {
+            eventsList[position]
+        } catch (e: IndexOutOfBoundsException) {
+            Event()
+        }
+    }
 
     inner class EventViewHolder(parent: ViewGroup?) : RecyclerView.ViewHolder(parent?.inflate(R.layout.event_item)) {
 
