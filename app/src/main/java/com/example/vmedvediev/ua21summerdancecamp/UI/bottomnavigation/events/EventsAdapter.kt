@@ -1,13 +1,17 @@
 package com.example.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.events
 
 import android.content.Context
+import android.content.Intent
 import android.support.design.widget.TabLayout
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import com.example.vmedvediev.ua21summerdancecamp.R
+import com.example.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.notes.NoteActivity
+import com.example.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.notes.NotesFragment
 import com.example.vmedvediev.ua21summerdancecamp.inflate
 import com.example.vmedvediev.ua21summerdancecamp.model.Date
 import com.example.vmedvediev.ua21summerdancecamp.model.Event
@@ -18,6 +22,10 @@ import timber.log.Timber
 
 class EventsAdapter(private val context: Context, private val eventsList: ArrayList<ListItem>) :
         RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    companion object {
+        const val KEY_EVENT_TO_NOTE_ACTIVITY = "KEY_EVENT_TO_NOTE_ACTIVITY"
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
@@ -35,7 +43,9 @@ class EventsAdapter(private val context: Context, private val eventsList: ArrayL
                 val eventHolder = holder as EventViewHolder
                 eventHolder.name.text = event.name
                 eventHolder.card.setOnClickListener {
-
+                    val intent = Intent(context, NoteActivity::class.java)
+                    intent.putExtra(KEY_EVENT_TO_NOTE_ACTIVITY, event)
+                    context.startActivity(intent)
                 }
             }
             1 -> {

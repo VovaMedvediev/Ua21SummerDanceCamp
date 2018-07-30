@@ -1,8 +1,11 @@
 package com.example.vmedvediev.ua21summerdancecamp.model
 
+import android.annotation.SuppressLint
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 
 open class RealmEvent(
         @PrimaryKey var id: String = "",
@@ -18,12 +21,13 @@ open class RealmEvent(
     constructor() : this("", "", "",0)
 
 }
-
+@SuppressLint("ParcelCreator")
+@Parcelize
 data class Event(
         @SerializedName("id") var id: String = "",
         @SerializedName("name") var name: String = "",
         @SerializedName("date") var date: String = "",
-        val eventType: Int = 0) : ListItem {
+        val eventType: Int = 0) : ListItem, Parcelable {
 
     override fun getDateOfEvent() = date
 

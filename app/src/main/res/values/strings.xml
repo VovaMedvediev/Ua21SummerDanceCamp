@@ -36,4 +36,10 @@
     <string name="title_workshop">Workshop</string>
     <string name="title_notes">Notes</string>
     <string name="title_links">Links</string>
+    <string name="hint_note">Input your note here</string>
+    <string name="label_number_of_day">28/8</string>
+    <string name="label_name_of_day">mon</string>
+    <string name="label_fullname_of_day">MONDAY</string>
+    <string name="label_name_of_event">Workshop by Darina Maltseva</string>
+    <string name="label_confirm_note">Confirm note</string>
 </resources>

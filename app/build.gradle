@@ -27,6 +27,10 @@ android {
     }
 }
 
+androidExtensions {
+    experimental = true
+}
+
 realm {
     syncEnabled = true
 }
