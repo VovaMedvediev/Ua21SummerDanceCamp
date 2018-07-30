@@ -10,7 +10,7 @@ class Repository(private val eventsMapper: EventsMapper, private val realmDateMa
                  private val listItemDateMapper: ListItemDateMapper) {
 
     fun getEventsList(date: String, onDataLoaded: (ArrayList<ListItem>) -> Unit) {
-        if (LocalStorage.eventsList.isNotEmpty()) {
+        if (EventsCache.eventsList.isNotEmpty()) {
             onDataLoaded(getDataFromLocalStorage(date))
         } else {
             val realmEventsList = EventsRepository.getEventsByDate(date)
@@ -24,7 +24,7 @@ class Repository(private val eventsMapper: EventsMapper, private val realmDateMa
 
     private fun getDataFromLocalStorage(dateOfDay: String): ArrayList<ListItem> {
         val eventsList = ArrayList<ListItem>()
-        LocalStorage.getEventsByDate(dateOfDay).forEach {
+        EventsCache.getEventsByDate(dateOfDay).forEach {
             val date = listItemDateMapper.from(it)
             if (!eventsList.contains(date)) {
                 eventsList.add(date)

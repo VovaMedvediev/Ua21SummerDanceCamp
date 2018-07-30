@@ -21,7 +21,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         when {
-            LocalStorage.eventsList.isNotEmpty() -> {
+            EventsCache.eventsList.isNotEmpty() -> {
                 startActivity(Router.prepareMainActivityIntent(this))
                 finish()
             }
@@ -56,7 +56,7 @@ class SplashActivity : AppCompatActivity() {
         val eventsMapper = EventsMapper()
         val realmEventsList = EventsRepository.getAllEvents()
         realmEventsList.forEach {
-            LocalStorage.eventsList.add(eventsMapper.from(it))
+            EventsCache.eventsList.add(eventsMapper.from(it))
         }
     }
 

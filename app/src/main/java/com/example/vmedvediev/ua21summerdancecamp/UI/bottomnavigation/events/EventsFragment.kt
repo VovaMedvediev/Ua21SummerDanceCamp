@@ -17,7 +17,7 @@ import com.example.vmedvediev.ua21summerdancecamp.R
 import com.example.vmedvediev.ua21summerdancecamp.mappers.RealmDateMapper
 import com.example.vmedvediev.ua21summerdancecamp.mappers.EventsMapper
 import com.example.vmedvediev.ua21summerdancecamp.mappers.ListItemDateMapper
-import com.example.vmedvediev.ua21summerdancecamp.model.LocalStorage
+import com.example.vmedvediev.ua21summerdancecamp.model.EventsCache
 import com.example.vmedvediev.ua21summerdancecamp.repository.Repository
 import kotlinx.android.synthetic.main.fragment_events.*
 
@@ -155,7 +155,7 @@ class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
         var tempLastPosition = -1
         for (i in IntRange(INDEX_OF_FIRST_TAB, INDEX_OF_LAST_TAB)) {
             val lastPosition =
-                    LocalStorage.getAmountOfEventsByDate("${numberOfDaysArray[i]} ${namesOfDaysArray[i]}") + tempLastPosition
+                    EventsCache.getAmountOfEventsByDate("${numberOfDaysArray[i]} ${namesOfDaysArray[i]}") + tempLastPosition
             tempLastPosition = lastPosition
             listOfLastItemPositions.add(lastPosition)
         }
