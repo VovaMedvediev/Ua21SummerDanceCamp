@@ -1,6 +1,8 @@
 package com.example.vmedvediev.ua21summerdancecamp.model
 
-object LocalStorage {
+import java.util.*
+
+object EventsCache {
 
     val eventsList = ArrayList<ListItem>()
 
@@ -16,12 +18,12 @@ object LocalStorage {
     }
 
     fun getEventsByDate(date: String) : ArrayList<ListItem> {
-        val sortedByDateList = ArrayList<ListItem>()
+        val selectedByDateList = ArrayList<ListItem>()
         eventsList.forEach {
             if (it.getDateOfEvent() == date) {
-                sortedByDateList.add(it)
+                selectedByDateList.add(it)
             }
         }
-        return sortedByDateList
+        return selectedByDateList
     }
 }

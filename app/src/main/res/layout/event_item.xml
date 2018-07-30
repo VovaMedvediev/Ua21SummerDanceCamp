@@ -23,7 +23,7 @@
             app:srcCompat="@drawable/ic_launcher_background" />
 
         <TextView
-            android:id="@+id/nameTextView"
+            android:id="@+id/eventNameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"

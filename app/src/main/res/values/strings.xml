@@ -42,4 +42,5 @@
     <string name="label_fullname_of_day">MONDAY</string>
     <string name="label_name_of_event">Workshop by Darina Maltseva</string>
     <string name="label_confirm_note">Confirm note</string>
+    <string name="list_of_events_json">ListOfEvents.json</string>
 </resources>

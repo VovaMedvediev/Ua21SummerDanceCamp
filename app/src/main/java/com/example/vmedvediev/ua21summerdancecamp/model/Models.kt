@@ -17,17 +17,15 @@ open class RealmEvent(
     override fun getType() = dateType
 
     override fun getDateOfEvent() = date
-
-    constructor() : this("", "", "",0)
-
 }
 @SuppressLint("ParcelCreator")
 @Parcelize
 data class Event(
         @SerializedName("id") var id: String = "",
         @SerializedName("name") var name: String = "",
-        @SerializedName("date") var date: String = "",
-        val eventType: Int = 0) : ListItem, Parcelable {
+        @SerializedName("date") var date: String = "") : ListItem, Parcelable {
+
+    private val eventType: Int = 0
 
     override fun getDateOfEvent() = date
 
@@ -35,9 +33,10 @@ data class Event(
 }
 
 data class Date(
-        var name: String = "",
-        val dateType: Int = 1
+        var name: String = ""
 ) : ListItem {
+
+    private val dateType: Int = 1
 
     override fun getDateOfEvent() = name
 
@@ -45,6 +44,11 @@ data class Date(
 }
 
 interface ListItem {
+
+    companion object {
+        const val EVENT_TYPE = 0
+        const val DATE_TYPE = 1
+    }
 
     fun getType(): Int
 

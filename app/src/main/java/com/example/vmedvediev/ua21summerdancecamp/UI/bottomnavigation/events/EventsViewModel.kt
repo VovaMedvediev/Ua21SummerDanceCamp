@@ -15,19 +15,18 @@ class EventsViewModel(private val repository: Repository) : ViewModel() {
     private val events: MutableLiveData<ArrayList<ListItem>> = MutableLiveData()
 
     fun getDataBydDate(date: String) {
-        repository.getEventsList(date, {eventsList: ArrayList<ListItem> -> onDataLoaded(eventsList)},
-                {eventsList: ArrayList<ListItem> -> onDataNotLoaded(eventsList)})
+        repository.getEventsList(date) { eventsList: ArrayList<ListItem> -> onDataLoaded(eventsList)}
     }
 
-    fun getEventsLiveData() : MutableLiveData<ArrayList<ListItem>> = events
+    fun getEvents() : MutableLiveData<ArrayList<ListItem>> = events
 
     fun getEventsList() : ArrayList<ListItem> = events.value!!
 
     private fun onDataLoaded(eventsList: ArrayList<ListItem>) {
-        events.value = eventsList
-    }
-
-    private fun onDataNotLoaded(emptyEventsList: ArrayList<ListItem>) {
-        events.value = emptyEventsList
+        if (eventsList.isNotEmpty()) {
+            events.value = eventsList
+        } else {
+            ArrayList<ListItem>()
+        }
     }
 }

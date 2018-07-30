@@ -1,18 +1,15 @@
 package com.example.vmedvediev.ua21summerdancecamp.UI
 
-import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.example.vmedvediev.ua21summerdancecamp.MyApplication
 import com.example.vmedvediev.ua21summerdancecamp.R
-import com.example.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.MainActivity
 import com.example.vmedvediev.ua21summerdancecamp.mappers.EventsMapper
 import com.example.vmedvediev.ua21summerdancecamp.model.*
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import io.realm.Realm
-import timber.log.Timber
 import java.io.IOException
 import java.lang.ref.WeakReference
 import java.nio.charset.Charset
@@ -24,13 +21,13 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         when {
-            LocalStorage.eventsList.isNotEmpty() -> {
-                startActivity(Intent(this, MainActivity::class.java))
+            EventsCache.eventsList.isNotEmpty() -> {
+                startActivity(Router.prepareMainActivityIntent(this))
                 finish()
             }
-            RealmController.getAllEvents().isNotEmpty() -> {
+            EventsRepository.getAllEvents().isNotEmpty() -> {
                 setupLocalStorage()
-                startActivity(Intent(this, MainActivity::class.java))
+                startActivity(Router.prepareMainActivityIntent(this))
                 finish()
             }
             else -> JsonParserAsyncTask(WeakReference(this)).execute()
@@ -57,11 +54,9 @@ class SplashActivity : AppCompatActivity() {
 
     private fun setupLocalStorage() {
         val eventsMapper = EventsMapper()
-        val realmEventsList = RealmController.getAllEvents()
-        if (realmEventsList.isNotEmpty()) {
-            realmEventsList.forEach {
-                LocalStorage.eventsList.add(eventsMapper.from(it))
-            }
+        val realmEventsList = EventsRepository.getAllEvents()
+        realmEventsList.forEach {
+            EventsCache.eventsList.add(eventsMapper.from(it))
         }
     }
 
@@ -70,26 +65,25 @@ class SplashActivity : AppCompatActivity() {
 
             override fun doInBackground(vararg params: Void?): ArrayList<Event> {
                 Thread.sleep(2000)
-                lateinit var eventsList: ArrayList<Event>
-                try {
-                    val inputStream = MyApplication.instance.applicationContext.assets.open("ListOfEvents.json")
+                 return try {
+                    val inputStream = MyApplication.instance.applicationContext.assets.open(MyApplication.instance.getString(R.string.list_of_events_json))
                     val size = inputStream.available()
                     val buffer = ByteArray(size)
                     inputStream.read(buffer)
                     inputStream.close()
                     val json = String(buffer, Charset.defaultCharset())
-                    eventsList = Gson().fromJson(json, object : TypeToken<ArrayList<Event>>(){}.type)
+                    Gson().fromJson(json, object : TypeToken<ArrayList<Event>>(){}.type)
                 } catch (e: IOException) {
                     e.printStackTrace()
+                    ArrayList()
                 }
-                return eventsList
             }
 
             override fun onPostExecute(result: ArrayList<Event>?) {
                 super.onPostExecute(result)
                 splashActivity.get()?.apply {
                     result?.let { prepareRealmData(it) }
-                    startActivity(Intent(this, MainActivity::class.java))
+                    startActivity(Router.prepareMainActivityIntent(this))
                     finish()
                 }
             }

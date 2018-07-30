@@ -9,23 +9,22 @@ import io.realm.RealmResults
 class Repository(private val eventsMapper: EventsMapper, private val realmDateMapper: RealmDateMapper,
                  private val listItemDateMapper: ListItemDateMapper) {
 
-    fun getEventsList(date: String, onDataLoaded: (ArrayList<ListItem>) -> Unit,
-                      onDataNotLoaded: (ArrayList<ListItem>) -> Unit) {
-        if (LocalStorage.eventsList.isNotEmpty()) {
+    fun getEventsList(date: String, onDataLoaded: (ArrayList<ListItem>) -> Unit) {
+        if (EventsCache.eventsList.isNotEmpty()) {
             onDataLoaded(getDataFromLocalStorage(date))
         } else {
-            val realmEventsList = RealmController.getEventsByDate(date)
+            val realmEventsList = EventsRepository.getEventsByDate(date)
             if (realmEventsList.isNotEmpty()) {
                 onDataLoaded(prepareDataFromDatabase(realmEventsList))
             } else {
-                onDataNotLoaded(ArrayList())
+                onDataLoaded(ArrayList())
             }
         }
     }
 
     private fun getDataFromLocalStorage(dateOfDay: String): ArrayList<ListItem> {
         val eventsList = ArrayList<ListItem>()
-        LocalStorage.getEventsByDate(dateOfDay).forEach {
+        EventsCache.getEventsByDate(dateOfDay).forEach {
             val date = listItemDateMapper.from(it)
             if (!eventsList.contains(date)) {
                 eventsList.add(date)

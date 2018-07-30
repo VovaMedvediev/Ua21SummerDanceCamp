@@ -20,11 +20,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".UI.bottomnavigation.MainActivity" />
         <activity android:name=".UI.bottomnavigation.notes.NoteActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        android:name=".UI.bottomnavigation.MainActivity"
-            android:label="@string/title_activity_main" />
+        <activity android:name=".UI.bottomnavigation.MainActivity"
+                  android:screenOrientation="portrait"/>
     </application>
-
 </manifest>
