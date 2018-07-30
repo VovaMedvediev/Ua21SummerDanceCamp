@@ -42,6 +42,11 @@ data class Date(
 
 interface ListItem {
 
+    companion object {
+        const val EVENT_TYPE = 0
+        const val DATE_TYPE = 1
+    }
+
     fun getType(): Int
 
     fun getDateOfEvent(): String

@@ -10,16 +10,13 @@ import com.example.vmedvediev.ua21summerdancecamp.inflate
 import com.example.vmedvediev.ua21summerdancecamp.model.Date
 import com.example.vmedvediev.ua21summerdancecamp.model.Event
 import com.example.vmedvediev.ua21summerdancecamp.model.ListItem
+import com.example.vmedvediev.ua21summerdancecamp.model.ListItem.Companion.DATE_TYPE
+import com.example.vmedvediev.ua21summerdancecamp.model.ListItem.Companion.EVENT_TYPE
 import kotlinx.android.synthetic.main.day_item.view.*
 import kotlinx.android.synthetic.main.event_item.view.*
 
 class EventsAdapter(private val context: Context, private val eventsList: ArrayList<ListItem>) :
         RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
-    companion object {
-        const val EVENT_TYPE = 0
-        const val DATE_TYPE = 1
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
@@ -30,7 +27,6 @@ class EventsAdapter(private val context: Context, private val eventsList: ArrayL
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        holder.itemView
         when (holder.itemViewType) {
             EVENT_TYPE -> prepareEventCard(holder, position)
             DATE_TYPE -> prepareDateCard(holder, position)
