@@ -25,7 +25,7 @@ class SplashActivity : AppCompatActivity() {
                 startActivity(Router.prepareMainActivityIntent(this))
                 finish()
             }
-            RealmController.getAllEvents().isNotEmpty() -> {
+            EventsRepository.getAllEvents().isNotEmpty() -> {
                 setupLocalStorage()
                 startActivity(Router.prepareMainActivityIntent(this))
                 finish()
@@ -54,7 +54,7 @@ class SplashActivity : AppCompatActivity() {
 
     private fun setupLocalStorage() {
         val eventsMapper = EventsMapper()
-        val realmEventsList = RealmController.getAllEvents()
+        val realmEventsList = EventsRepository.getAllEvents()
         realmEventsList.forEach {
             LocalStorage.eventsList.add(eventsMapper.from(it))
         }

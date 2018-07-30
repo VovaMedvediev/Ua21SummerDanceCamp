@@ -13,7 +13,7 @@ class Repository(private val eventsMapper: EventsMapper, private val realmDateMa
         if (LocalStorage.eventsList.isNotEmpty()) {
             onDataLoaded(getDataFromLocalStorage(date))
         } else {
-            val realmEventsList = RealmController.getEventsByDate(date)
+            val realmEventsList = EventsRepository.getEventsByDate(date)
             if (realmEventsList.isNotEmpty()) {
                 onDataLoaded(prepareDataFromDatabase(realmEventsList))
             } else {
