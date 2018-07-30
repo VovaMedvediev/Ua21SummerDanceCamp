@@ -22,12 +22,12 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
         when {
             LocalStorage.eventsList.isNotEmpty() -> {
-                startActivity(Router.startMainActivity(this))
+                startActivity(Router.prepareMainActivityIntent(this))
                 finish()
             }
             RealmController.getAllEvents().isNotEmpty() -> {
                 setupLocalStorage()
-                startActivity(Router.startMainActivity(this))
+                startActivity(Router.prepareMainActivityIntent(this))
                 finish()
             }
             else -> JsonParserAsyncTask(WeakReference(this)).execute()
@@ -83,7 +83,7 @@ class SplashActivity : AppCompatActivity() {
                 super.onPostExecute(result)
                 splashActivity.get()?.apply {
                     result?.let { prepareRealmData(it) }
-                    startActivity(Router.startMainActivity(this))
+                    startActivity(Router.prepareMainActivityIntent(this))
                     finish()
                 }
             }

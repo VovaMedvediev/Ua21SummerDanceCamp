@@ -6,6 +6,6 @@ import com.example.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.MainActivi
 
 object Router {
 
-    fun startMainActivity(context: Context) = Intent(context, MainActivity::class.java)
+    fun prepareMainActivityIntent(context: Context) = Intent(context, MainActivity::class.java)
 
 }
