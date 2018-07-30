@@ -2,7 +2,7 @@ package com.example.vmedvediev.ua21summerdancecamp.model
 
 import java.util.*
 
-object LocalStorage {
+object EventsCache {
 
     val eventsList = ArrayList<ListItem>()
 
