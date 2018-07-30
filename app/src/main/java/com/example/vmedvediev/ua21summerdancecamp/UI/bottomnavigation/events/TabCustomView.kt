@@ -23,7 +23,5 @@ class TabCustomView constructor(context: Context,
         numbersOfTheDayTextView?.text = number
     }
 
-    fun getNameOfTheDay() = name
-
-    fun getNumberOfTheDay() = number
+    fun getDate() = "$number $name"
 }

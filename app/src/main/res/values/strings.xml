@@ -36,4 +36,5 @@
     <string name="title_workshop">Workshop</string>
     <string name="title_notes">Notes</string>
     <string name="title_links">Links</string>
+    <string name="list_of_events_json">ListOfEvents.json</string>
 </resources>
