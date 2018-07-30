@@ -14,16 +14,15 @@ open class RealmEvent(
     override fun getType() = dateType
 
     override fun getDateOfEvent() = date
-
-    constructor() : this("", "", "",0)
-
 }
 
 data class Event(
         @SerializedName("id") var id: String = "",
         @SerializedName("name") var name: String = "",
-        @SerializedName("date") var date: String = "",
-        val eventType: Int = 0) : ListItem {
+        @SerializedName("date") var date: String = ""
+        ) : ListItem {
+
+    private val eventType: Int = 0
 
     override fun getDateOfEvent() = date
 
@@ -31,9 +30,10 @@ data class Event(
 }
 
 data class Date(
-        var name: String = "",
-        val dateType: Int = 1
+        var name: String = ""
 ) : ListItem {
+
+    private val dateType: Int = 1
 
     override fun getDateOfEvent() = name
 

@@ -9,8 +9,7 @@ import io.realm.RealmResults
 class Repository(private val eventsMapper: EventsMapper, private val realmDateMapper: RealmDateMapper,
                  private val listItemDateMapper: ListItemDateMapper) {
 
-    fun getEventsList(date: String, onDataLoaded: (ArrayList<ListItem>) -> Unit,
-                      onDataNotLoaded: (ArrayList<ListItem>) -> Unit) {
+    fun getEventsList(date: String, onDataLoaded: (ArrayList<ListItem>) -> Unit) {
         if (LocalStorage.eventsList.isNotEmpty()) {
             onDataLoaded(getDataFromLocalStorage(date))
         } else {
@@ -18,7 +17,7 @@ class Repository(private val eventsMapper: EventsMapper, private val realmDateMa
             if (realmEventsList.isNotEmpty()) {
                 onDataLoaded(prepareDataFromDatabase(realmEventsList))
             } else {
-                onDataNotLoaded(ArrayList())
+                onDataLoaded(ArrayList())
             }
         }
     }
