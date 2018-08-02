@@ -18,8 +18,9 @@ import com.example.vmedvediev.ua21summerdancecamp.mappers.RealmDateMapper
 import com.example.vmedvediev.ua21summerdancecamp.mappers.EventsMapper
 import com.example.vmedvediev.ua21summerdancecamp.mappers.ListItemDateMapper
 import com.example.vmedvediev.ua21summerdancecamp.model.EventsCache
-import com.example.vmedvediev.ua21summerdancecamp.repository.Repository
+import com.example.vmedvediev.ua21summerdancecamp.repository.EventsRepository
 import kotlinx.android.synthetic.main.fragment_events.*
+import java.util.*
 
 class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
     companion object {
@@ -37,8 +38,8 @@ class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
     private var shouldTabBeSelected = true
     private var tempDate: String = ""
     private val linearLayoutManager = LinearLayoutManager(activity)
-    private val viewModel by lazy {
-        ViewModelProviders.of(this, EventsViewModelFactory(Repository(EventsMapper(),
+    private val eventsViewModel by lazy {
+        ViewModelProviders.of(this, EventsViewModelFactory(EventsRepository(EventsMapper(),
                 RealmDateMapper(), ListItemDateMapper()))).get(EventsViewModel::class.java)
     }
     private val eventsAdapter by lazy {
@@ -96,7 +97,7 @@ class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
         eventsTabLayout.addOnTabSelectedListener(this)
         setupRecycler()
 
-        viewModel.getEvents().observe(this, Observer {
+        eventsViewModel.getEvents().observe(this, Observer {
             eventsAdapter.notifyDataSetChanged()
         })
     }
@@ -120,16 +121,16 @@ class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
     private fun getEventsByClickingOnTab(tab: TabLayout.Tab?) {
         listOfLastItemPositions = setupListOfLastItemPositions()
         tab?.let {
-            viewModel.getDataBydDate((it.customView as TabCustomView).getDate())
+            eventsViewModel.getDataByDate((it.customView as TabCustomView).getDate())
         }
         eventsRecyclerView.scrollToPosition(0)
-        eventsAdapter.clearAndAddAll(viewModel.getEventsList())
+        eventsAdapter.clearAndAddAll(eventsViewModel.getEventsList())
     }
 
     private fun getEventsByScrollingThroughList(tab: TabLayout.Tab?) {
         tab?.let {
-            viewModel.getDataBydDate((it.customView as TabCustomView).getDate())
-            eventsAdapter.addAll(viewModel.getEventsList())
+            eventsViewModel.getDataByDate((it.customView as TabCustomView).getDate())
+            eventsAdapter.addAll(eventsViewModel.getEventsList())
         }
     }
 

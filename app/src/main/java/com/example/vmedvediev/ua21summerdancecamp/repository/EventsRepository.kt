@@ -6,23 +6,23 @@ import com.example.vmedvediev.ua21summerdancecamp.mappers.ListItemDateMapper
 import com.example.vmedvediev.ua21summerdancecamp.model.*
 import io.realm.RealmResults
 
-class Repository(private val eventsMapper: EventsMapper, private val realmDateMapper: RealmDateMapper,
-                 private val listItemDateMapper: ListItemDateMapper) {
+class EventsRepository(private val eventsMapper: EventsMapper, private val realmDateMapper: RealmDateMapper,
+                       private val listItemDateMapper: ListItemDateMapper) {
 
     fun getEventsList(date: String, onDataLoaded: (ArrayList<ListItem>) -> Unit) {
         if (EventsCache.eventsList.isNotEmpty()) {
-            onDataLoaded(getDataFromLocalStorage(date))
+            onDataLoaded(getEventsFromLocalStorage(date))
         } else {
-            val realmEventsList = EventsRepository.getEventsByDate(date)
+            val realmEventsList = EventsDatabaseHelper.getEventsByDate(date)
             if (realmEventsList.isNotEmpty()) {
-                onDataLoaded(prepareDataFromDatabase(realmEventsList))
+                onDataLoaded(prepareEventsFromDatabase(realmEventsList))
             } else {
                 onDataLoaded(ArrayList())
             }
         }
     }
 
-    private fun getDataFromLocalStorage(dateOfDay: String): ArrayList<ListItem> {
+    private fun getEventsFromLocalStorage(dateOfDay: String): ArrayList<ListItem> {
         val eventsList = ArrayList<ListItem>()
         EventsCache.getEventsByDate(dateOfDay).forEach {
             val date = listItemDateMapper.from(it)
@@ -34,7 +34,7 @@ class Repository(private val eventsMapper: EventsMapper, private val realmDateMa
         return eventsList
     }
 
-    private fun prepareDataFromDatabase(realmEventsList: RealmResults<RealmEvent>): ArrayList<ListItem> {
+    private fun prepareEventsFromDatabase(realmEventsList: RealmResults<RealmEvent>): ArrayList<ListItem> {
         val eventsList = ArrayList<ListItem>()
         realmEventsList.forEach {
             val date = realmDateMapper.from(it)
