@@ -12,8 +12,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".UI.SplashActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Launcher">
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".UI.bottomnavigation.notes.NoteActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:screenOrientation="portrait" />
         <activity android:name=".UI.bottomnavigation.MainActivity"
                   android:screenOrientation="portrait"/>
     </application>

@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.example.vmedvediev.ua21summerdancecamp.MyApplication
 import com.example.vmedvediev.ua21summerdancecamp.R
-import com.example.vmedvediev.ua21summerdancecamp.mappers.EventsMapper
+import com.example.vmedvediev.ua21summerdancecamp.mappers.MapperImpl
 import com.example.vmedvediev.ua21summerdancecamp.model.*
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -17,7 +17,6 @@ import java.nio.charset.Charset
 class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         when {
@@ -25,7 +24,7 @@ class SplashActivity : AppCompatActivity() {
                 startActivity(Router.prepareMainActivityIntent(this))
                 finish()
             }
-            EventsDatabaseHelper.getEvents().isNotEmpty() -> {
+            DatabaseHelper.getEvents().isNotEmpty() -> {
                 setupLocalStorage()
                 startActivity(Router.prepareMainActivityIntent(this))
                 finish()
@@ -35,10 +34,10 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun prepareRealmData(eventsList: ArrayList<Event>) {
-        val eventsMapper = EventsMapper()
+        val eventsMapper = MapperImpl()
         val realmEventsList = ArrayList<RealmEvent>()
         eventsList.forEach {
-            realmEventsList.add(eventsMapper.to(it))
+            realmEventsList.add(eventsMapper.to(it) as RealmEvent)
         }
         setRealmData(realmEventsList)
         setupLocalStorage()
@@ -53,10 +52,10 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun setupLocalStorage() {
-        val eventsMapper = EventsMapper()
-        val realmEventsList = EventsDatabaseHelper.getEvents()
+        val eventsMapper = MapperImpl()
+        val realmEventsList = DatabaseHelper.getEvents()
         realmEventsList.forEach {
-            EventsCache.eventsList.add(eventsMapper.from(it))
+            EventsCache.eventsList.add(eventsMapper.from(it, true))
         }
     }
 

@@ -13,7 +13,7 @@ object EventsCache {
                 amountOfEvents++
             }
         }
-        //We increment result in order to add date object.
+        //We increment result in order to add eventDate object.
         return ++amountOfEvents
     }
 

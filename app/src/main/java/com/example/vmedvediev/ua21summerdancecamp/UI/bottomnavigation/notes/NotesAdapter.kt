@@ -1,17 +1,17 @@
 package com.example.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.notes
 
-import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import android.widget.TextView
 import com.example.vmedvediev.ua21summerdancecamp.R
-import com.example.vmedvediev.ua21summerdancecamp.UI.Router
 import com.example.vmedvediev.ua21summerdancecamp.inflate
 import com.example.vmedvediev.ua21summerdancecamp.model.Event
 import kotlinx.android.synthetic.main.note_item.view.*
 
-class NotesAdapter(private val context: Context, private val eventsList: ArrayList<Event>) :
+class NotesAdapter(private val eventsList: ArrayList<Event>) :
         RecyclerView.Adapter<NotesAdapter.NotesViewHolder>() {
+
+    var onNoteClickListener: (String) -> Unit = {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotesViewHolder {
         return NotesViewHolder(parent)
@@ -25,9 +25,11 @@ class NotesAdapter(private val context: Context, private val eventsList: ArrayLi
 
     private fun prepareNoteCard(holder: NotesViewHolder, position: Int) {
         val event = eventsList[position]
-        holder.noteTitle.text = event.name
-        holder.noteConstraintLayout.setOnClickListener {
-            context.startActivity(Router.prepareNoteActivityIntentFromEvent(context, event.id))
+        holder.apply {
+            noteTitle.text = event.eventName
+            noteConstraintLayout.setOnClickListener {
+                onNoteClickListener(event.eventId)
+            }
         }
     }
 

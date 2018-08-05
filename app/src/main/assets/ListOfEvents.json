@@ -1,17 +1,17 @@
 [
   {
     "id": "1",
-    "name": "Workshop by Darina Maltseva",
+    "name": "Mark Kuklin",
     "date": "27/8 Monday"
   },
   {
     "id": "2",
-    "name": "Workshop by Jun Quemondo",
+    "name": "Vanya Petrushevskyi",
     "date": "27/8 Monday"
   },
   {
     "id": "3",
-    "name": "Workshop by Artur Karpinskyi",
+    "name": "Maxim Kovtun",
     "date": "27/8 Monday"
   },
   {
@@ -36,22 +36,22 @@
   },
   {
     "id": "5",
-    "name": "Workshop by Vanya Petrushevskyi",
+    "name": "Vanya Petrushevskyi",
     "date": "28/8 Tuesday"
   },
   {
     "id": "6",
-    "name": "Workshop by Maxim Kovtun",
+    "name": "John Carnel",
     "date": "28/8 Tuesday"
   },
   {
     "id": "7",
-    "name": "Workshop by Polina Ivanyuk",
+    "name": "Eugene Kulakovskiy",
     "date": "28/8 Tuesday"
   },
   {
     "id": "8",
-    "name": "Workshop by Carnel John ",
+    "name": "Artur Karpinskiy",
     "date": "28/8 Tuesday"
   },
   {
@@ -71,22 +71,22 @@
   },
   {
   "id": "9",
-  "name": "event9",
+  "name": "Eugene Kulakovskiy",
   "date": "29/8 Wednesday"
   },
   {
     "id": "10",
-    "name": "event10",
+    "name": "Polina Ivanyuk",
     "date": "29/8 Wednesday"
   },
   {
     "id": "11",
-    "name": "event11",
+    "name": "Igor Osmachko",
     "date": "29/8 Wednesday"
   },
   {
     "id": "12",
-    "name": "event12",
+    "name": "Mark Kuklin",
     "date": "29/8 Wednesday"
   },
   {
@@ -101,27 +101,27 @@
   },
   {
     "id": "12213",
-    "name": "event12213",
+    "name": "Jeka Ignatenko",
     "date": "29/8 Wednesday"
   },
   {
     "id": "13",
-    "name": "event13",
+    "name": "Lilya Agadzhanian",
     "date": "30/8 Thursday"
   },
   {
     "id": "14",
-    "name": "event14",
+    "name": "Jun Quemado",
     "date": "30/8 Thursday"
   },
   {
     "id": "15",
-    "name": "event15",
+    "name": "Tim Karpinskiy",
     "date": "30/8 Thursday"
   },
   {
     "id": "16",
-    "name": "event16",
+    "name": "Test test",
     "date": "30/8 Thursday"
   },
   {
@@ -141,22 +141,22 @@
   },
   {
     "id": "17",
-    "name": "event17",
+    "name": "Polina Ivanyuk",
     "date": "31/8 Friday"
   },
   {
     "id": "18",
-    "name": "event18",
+    "name": "Jun Quemado",
     "date": "31/8 Friday"
   },
   {
     "id": "19",
-    "name": "event19",
+    "name": "Artur Karpinskyi",
     "date": "31/8 Friday"
   },
   {
     "id": "20",
-    "name": "event20",
+    "name": "Darina Maltseva",
     "date": "31/8 Friday"
   },
   {
@@ -176,22 +176,22 @@
   },
   {
     "id": "21",
-    "name": "event21",
+    "name": "Igor Osmachko",
     "date": "01/9 Saturday"
   },
   {
     "id": "22",
-    "name": "event22",
+    "name": "Alberto Blanco",
     "date": "01/9 Saturday"
   },
   {
     "id": "23",
-    "name": "event23",
+    "name": "Tim Karpinskiy",
     "date": "01/9 Saturday"
   },
   {
     "id": "24",
-    "name": "event24",
+    "name": "John Carnel",
     "date": "01/9 Saturday"
   },
   {
@@ -211,22 +211,22 @@
   },
   {
     "id": "25",
-    "name": "event25",
+    "name": "Darina Maltseva",
     "date": "02/9 Sunday"
   },
   {
     "id": "26",
-    "name": "event26",
+    "name": "Jeka Ignatenko",
     "date": "02/9 Sunday"
   },
   {
     "id": "27",
-    "name": "event27",
+    "name": "Lilya Agadzhanian",
     "date": "02/9 Sunday"
   },
   {
     "id": "28",
-    "name": "event28",
+    "name": "Alberto Blanco",
     "date": "02/9 Sunday"
   },
   {

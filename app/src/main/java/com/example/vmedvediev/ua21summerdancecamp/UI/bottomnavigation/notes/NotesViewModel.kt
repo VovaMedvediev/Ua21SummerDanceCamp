@@ -2,54 +2,48 @@ package com.example.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.notes
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
+import android.arch.lifecycle.ViewModelProvider
 import com.example.vmedvediev.ua21summerdancecamp.model.Event
 import com.example.vmedvediev.ua21summerdancecamp.model.RealmEvent
-import com.example.vmedvediev.ua21summerdancecamp.repository.NotesRepository
+import com.example.vmedvediev.ua21summerdancecamp.repository.Repository
 
-class NotesViewModel(private val repository: NotesRepository) : ViewModel() {
+class NotesViewModel(private val repository: Repository) : ViewModel() {
 
-    private val events: MutableLiveData<ArrayList<Event>> = MutableLiveData()
-    private val event: MutableLiveData<Event> = MutableLiveData()
+    val events: MutableLiveData<ArrayList<Event>> = MutableLiveData()
+    val event: MutableLiveData<Event> = MutableLiveData()
 
-    fun getEventsFromRepository() {
+    fun getEvents() {
         repository.getNotes { notesList: ArrayList<Event> -> onEventsLoaded(notesList)}
     }
 
-    fun getEventFromRepository(eventId: String) {
+    fun getEvent(eventId: String) {
         repository.getEvent(eventId) { event: Event -> onEventLoaded(event)}
     }
-
-    fun getNotes() = events
-
-    fun getEvent() = event
-
-    fun getEventValue() = event.value!!
-
-    fun getEventsList() = events.value!!
 
     fun deleteNoteFromDatabase(event: Event) {
         repository.deleteNoteFromDatabase(event)
     }
 
-    fun saveNoteToDatabase(realmEvent: RealmEvent) {
-        repository.saveNoteToDatabase(realmEvent)
+    fun saveNoteToDatabase(event: Event) {
+        repository.saveNoteToDatabase(event)
     }
-
-
 
     private fun onEventsLoaded(notesList: ArrayList<Event>) {
         if (notesList.isNotEmpty()) {
             events.value = notesList
-        } else {
-            ArrayList<Event>()
         }
     }
 
     private fun onEventLoaded(loadedEvent: Event?) {
         if (loadedEvent != null) {
             event.value = loadedEvent
-        } else {
-            Event()
+        }
+    }
+
+    inner class NotesViewModelFactory : ViewModelProvider.NewInstanceFactory() {
+
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            return NotesViewModel(repository) as T
         }
     }
 }

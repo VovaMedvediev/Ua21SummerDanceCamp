@@ -6,10 +6,11 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import com.example.vmedvediev.ua21summerdancecamp.R
-import com.example.vmedvediev.ua21summerdancecamp.mappers.EventsMapper
-import com.example.vmedvediev.ua21summerdancecamp.repository.NotesRepository
+import com.example.vmedvediev.ua21summerdancecamp.repository.Repository
 import kotlinx.android.synthetic.main.activity_note.*
 import android.arch.lifecycle.Observer
+import com.example.vmedvediev.ua21summerdancecamp.mappers.MapperImpl
+import com.example.vmedvediev.ua21summerdancecamp.model.Event
 import com.example.vmedvediev.ua21summerdancecamp.model.RealmEvent
 import java.text.SimpleDateFormat
 import java.util.*
@@ -31,26 +32,30 @@ class NoteActivity : AppCompatActivity() {
         return@lazy eventId
     }
     private val notesViewModel by lazy {
-        ViewModelProviders.of(this, NotesViewModelFactory(NotesRepository(EventsMapper()))).get(NotesViewModel::class.java)
+        ViewModelProviders.of(this, NotesViewModel(Repository(MapperImpl())).NotesViewModelFactory()).get(NotesViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_note)
         setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
 
         setupEvent()
 
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)
-            val event = notesViewModel.getEventValue()
-            if (event.noteDateChanged.isNotEmpty()) {
-                title = event.name
-                subtitle = event.noteDateChanged
-            } else {
-                title = event.name
-                subtitle = event.date
+            val event = notesViewModel.event.value
+            event?.let {
+                val eventName = it.eventName
+                if (it.eventNoteDate.isNotEmpty()) {
+                    title = eventName
+                    subtitle = it.eventNoteDate
+                } else {
+                    title = eventName
+                    subtitle = it.eventDate
+                }
             }
         }
     }
@@ -73,9 +78,11 @@ class NoteActivity : AppCompatActivity() {
                 return true
             }
             R.id.confirmNoteMenuItem -> {
-                saveNoteToDatabase(RealmEvent(eventId, notesViewModel.getEventValue().name,
-                        notesViewModel.getEventValue().date, getNoteText(), prepareNoteDate()))
-                finish()
+                notesViewModel.event.value?.let {
+                    saveNoteToDatabase(Event(eventId, it.eventName,
+                            it.eventDate, getNoteText(), prepareNoteDate()))
+                    finish()
+                }
             }
         }
         return super.onOptionsItemSelected(item)
@@ -83,17 +90,17 @@ class NoteActivity : AppCompatActivity() {
 
     private fun setupEvent() {
         notesViewModel.apply {
-            getEventFromRepository(eventId)
-            getEvent().observe(this@NoteActivity, Observer {
+            getEvent(eventId)
+            event.observe(this@NoteActivity, Observer {
                 if (it != null) {
-                    noteEditText.setText(it.noteText)
+                    noteEditText.setText(it.eventNoteText)
                 }
             })
         }
     }
 
-    private fun saveNoteToDatabase(realmEvent: RealmEvent) {
-        notesViewModel.saveNoteToDatabase(realmEvent)
+    private fun saveNoteToDatabase(event: Event) {
+        notesViewModel.saveNoteToDatabase(event)
     }
 
     private fun getNoteText() = noteEditText?.text.toString()

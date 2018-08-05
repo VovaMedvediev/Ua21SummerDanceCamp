@@ -1,12 +1,10 @@
 package com.example.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.events
 
-import android.content.Context
 import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import android.widget.TextView
 import com.example.vmedvediev.ua21summerdancecamp.R
-import com.example.vmedvediev.ua21summerdancecamp.UI.Router
 import com.example.vmedvediev.ua21summerdancecamp.inflate
 import com.example.vmedvediev.ua21summerdancecamp.model.Date
 import com.example.vmedvediev.ua21summerdancecamp.model.Event
@@ -16,8 +14,10 @@ import com.example.vmedvediev.ua21summerdancecamp.model.ListItem.Companion.EVENT
 import kotlinx.android.synthetic.main.day_item.view.*
 import kotlinx.android.synthetic.main.event_item.view.*
 
-class EventsAdapter(private val context: Context, private val eventsList: ArrayList<ListItem>) :
+class EventsAdapter(private val eventsList: ArrayList<ListItem>) :
         RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    var onEventClickListener: (String) -> Unit = {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
@@ -37,9 +37,9 @@ class EventsAdapter(private val context: Context, private val eventsList: ArrayL
     private fun prepareEventCard(holder: RecyclerView.ViewHolder, position: Int) {
         val event = eventsList[position] as Event
         val eventHolder = holder as EventViewHolder
-        eventHolder.name.text = event.name
+        eventHolder.name.text = event.eventName
         eventHolder.card.setOnClickListener {
-            context.startActivity(Router.prepareNoteActivityIntentFromEvent(context, event.id))
+            onEventClickListener(event.eventId)
         }
     }
 
