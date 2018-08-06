@@ -2,281 +2,463 @@
   {
     "id": "1",
     "name": "Mark Kuklin",
-    "date": "27/8 Monday"
+    "date": "27/8 Monday",
+    "time": "11.30",
+    "canHaveNote": true
   },
   {
     "id": "2",
-    "name": "Vanya Petrushevskyi",
-    "date": "27/8 Monday"
+    "name": "Обед",
+    "date": "27/8 Monday",
+    "time": "13.15",
+    "canHaveNote": false
   },
   {
     "id": "3",
-    "name": "Maxim Kovtun",
-    "date": "27/8 Monday"
+    "name": "Vanya Petrushevskyi",
+    "date": "27/8 Monday",
+    "time": "16.15",
+    "canHaveNote": true
   },
   {
     "id": "4",
-    "name": "Workshop by Mark Kuklin",
-    "date": "27/8 Monday"
-  },
-  {
-    "id": "44",
-    "name": "Workshop by Igor Osmachko",
-    "date": "27/8 Monday"
-  },
-  {
-    "id": "444",
-    "name": "Workshop by Timur Karpinskyi",
-    "date": "27/8 Monday"
-  },
-  {
-    "id": "4444",
-    "name": "Workshop by Lilya Agadjanyan",
-    "date": "27/8 Monday"
+    "name": "Maxim Kovtun",
+    "date": "27/8 Monday",
+    "time": "17.45",
+    "canHaveNote": true
   },
   {
     "id": "5",
-    "name": "Vanya Petrushevskyi",
-    "date": "28/8 Tuesday"
+    "name": "Ужин",
+    "date": "27/8 Monday",
+    "time": "19.30",
+    "canHaveNote": false
   },
   {
     "id": "6",
-    "name": "John Carnel",
-    "date": "28/8 Tuesday"
+    "name": "Открытие лагеря UA21 SDC 2018/Showcases/Dance Party",
+    "date": "27/8 Monday",
+    "time": "22.00",
+    "canHaveNote": false
   },
   {
     "id": "7",
-    "name": "Eugene Kulakovskiy",
-    "date": "28/8 Tuesday"
+    "name": "Утренняя медитация",
+    "date": "28/8 Tuesday",
+    "time": "7.15",
+    "canHaveNote": false
   },
   {
     "id": "8",
-    "name": "Artur Karpinskiy",
-    "date": "28/8 Tuesday"
+    "name": "Завтрак",
+    "date": "28/8 Tuesday",
+    "time": "8.15",
+    "canHaveNote": false
   },
   {
-    "id": "88",
-    "name": "Workshop by Test Test ",
-    "date": "28/8 Tuesday"
-  },
-  {
-    "id": "888",
-    "name": "Workshop by Testt testt ",
-    "date": "28/8 Tuesday"
-  },
-  {
-    "id": "8888",
-    "name": "Workshop by ttest Ttest ",
-    "date": "28/8 Tuesday"
-  },
-  {
-  "id": "9",
-  "name": "Eugene Kulakovskiy",
-  "date": "29/8 Wednesday"
+    "id": "9",
+    "name": "Vanya Petrushevskyi",
+    "date": "28/8 Tuesday",
+    "time": "9.30",
+    "canHaveNote": true
   },
   {
     "id": "10",
-    "name": "Polina Ivanyuk",
-    "date": "29/8 Wednesday"
+    "name": "John Carnel",
+    "date": "28/8 Tuesday",
+    "time": "11.00",
+    "canHaveNote": true
   },
   {
     "id": "11",
-    "name": "Igor Osmachko",
-    "date": "29/8 Wednesday"
+    "name": "Обед",
+    "date": "28/8 Tuesday",
+    "time": "13.15",
+    "canHaveNote": false
   },
   {
     "id": "12",
-    "name": "Mark Kuklin",
-    "date": "29/8 Wednesday"
-  },
-  {
-    "id": "10123",
-    "name": "event10123",
-    "date": "29/8 Wednesday"
-  },
-  {
-    "id": "11321",
-    "name": "event11321",
-    "date": "29/8 Wednesday"
-  },
-  {
-    "id": "12213",
-    "name": "Jeka Ignatenko",
-    "date": "29/8 Wednesday"
+    "name": "Тренинг «Танец - исскуство души»  K. Alekseenko",
+    "date": "28/8 Tuesday",
+    "time": "14.00",
+    "canHaveNote": true
   },
   {
     "id": "13",
-    "name": "Lilya Agadzhanian",
-    "date": "30/8 Thursday"
+    "name": "Eugene Kulakovskiy",
+    "date": "28/8 Tuesday",
+    "time": "16.15",
+    "canHaveNote": true
   },
   {
     "id": "14",
-    "name": "Jun Quemado",
-    "date": "30/8 Thursday"
+    "name": "Artur Karpinskiy",
+    "date": "28/8 Tuesday",
+    "time": "17.45",
+    "canHaveNote": true
   },
   {
     "id": "15",
-    "name": "Tim Karpinskiy",
-    "date": "30/8 Thursday"
+    "name": "Ужин",
+    "date": "28/8 Tuesday",
+    "time": "19.30",
+    "canHaveNote": false
   },
   {
     "id": "16",
-    "name": "Test test",
-    "date": "30/8 Thursday"
-  },
-  {
-    "id": "14123",
-    "name": "event14123",
-    "date": "30/8 Thursday"
-  },
-  {
-    "id": "15321",
-    "name": "event15321",
-    "date": "30/8 Thursday"
-  },
-  {
-    "id": "16213",
-    "name": "event16213",
-    "date": "30/8 Thursday"
+    "name": "Тематическая вечеринка «Old School Party»",
+    "date": "28/8 Tuesday",
+    "time": "22.00",
+    "canHaveNote": false
   },
   {
     "id": "17",
-    "name": "Polina Ivanyuk",
-    "date": "31/8 Friday"
+    "name": "Утренняя медитация",
+    "date": "29/8 Tuesday",
+    "time": "7.15",
+    "canHaveNote": false
   },
   {
     "id": "18",
-    "name": "Jun Quemado",
-    "date": "31/8 Friday"
+    "name": "Завтрак",
+    "date": "29/8 Tuesday",
+    "time": "8.15",
+    "canHaveNote": false
   },
   {
-    "id": "19",
-    "name": "Artur Karpinskyi",
-    "date": "31/8 Friday"
+   "id": "19",
+   "name": "Eugene Kulakovskiy",
+   "date": "29/8 Wednesday",
+    "time": "9.30",
+    "canHaveNote": true
   },
   {
     "id": "20",
-    "name": "Darina Maltseva",
-    "date": "31/8 Friday"
-  },
-  {
-    "id": "18123",
-    "name": "event18123",
-    "date": "31/8 Friday"
-  },
-  {
-    "id": "19321",
-    "name": "event19321",
-    "date": "31/8 Friday"
-  },
-  {
-    "id": "20213",
-    "name": "event20213",
-    "date": "31/8 Friday"
+    "name": "Polina Ivanyuk",
+    "date": "29/8 Wednesday",
+    "time": "11.00",
+    "canHaveNote": true
   },
   {
     "id": "21",
-    "name": "Igor Osmachko",
-    "date": "01/9 Saturday"
+    "name": "Обед",
+    "date": "29/8 Wednesday",
+    "time": "13.15",
+    "canHaveNote": false
   },
   {
     "id": "22",
-    "name": "Alberto Blanco",
-    "date": "01/9 Saturday"
+    "name": "Ужин",
+    "date": "29/8 Wednesday",
+    "time": "19.00",
+    "canHaveNote": false
   },
   {
     "id": "23",
-    "name": "Tim Karpinskiy",
-    "date": "01/9 Saturday"
+    "name": "Igor Osmachko",
+    "date": "29/8 Wednesday",
+    "time": "20.15",
+    "canHaveNote": true
   },
   {
     "id": "24",
-    "name": "John Carnel",
-    "date": "01/9 Saturday"
-  },
-  {
-    "id": "22123",
-    "name": "event22123",
-    "date": "01/9 Saturday"
-  },
-  {
-    "id": "23321",
-    "name": "event23321",
-    "date": "01/9 Saturday"
-  },
-  {
-    "id": "24213",
-    "name": "event24213",
-    "date": "01/9 Saturday"
+    "name": "Mark Kuklin",
+    "date": "29/8 Wednesday",
+    "time": "21.45",
+    "canHaveNote": true
   },
   {
     "id": "25",
-    "name": "Darina Maltseva",
-    "date": "02/9 Sunday"
+    "name": "Утренняя медитация",
+    "date": "30/8 Thursday",
+    "time": "7.15",
+    "canHaveNote": false
   },
   {
     "id": "26",
-    "name": "Jeka Ignatenko",
-    "date": "02/9 Sunday"
+    "name": "Завтрак",
+    "date": "30/8 Thursday",
+    "time": "8.15",
+    "canHaveNote": false
   },
   {
     "id": "27",
-    "name": "Lilya Agadzhanian",
-    "date": "02/9 Sunday"
+    "name": "Jeka Ignatenko",
+    "date": "30/8 Thursday",
+    "time": "9.30",
+    "canHaveNote": true
   },
   {
     "id": "28",
-    "name": "Alberto Blanco",
-    "date": "02/9 Sunday"
-  },
-  {
-    "id": "26123",
-    "name": "event26123",
-    "date": "02/9 Sunday"
-  },
-  {
-    "id": "27321",
-    "name": "event27321",
-    "date": "02/9 Sunday"
-  },
-  {
-    "id": "28213",
-    "name": "event28213",
-    "date": "02/9 Sunday"
+    "name": "Lilya Agadzhanian",
+    "date": "30/8 Thursday",
+    "time": "11.00",
+    "canHaveNote": true
   },
   {
     "id": "29",
-    "name": "event29",
-    "date": "03/9 Monday"
+    "name": "Обед",
+    "date": "30/8 Thursday",
+    "time": "13.15",
+    "canHaveNote": false
   },
   {
     "id": "30",
-    "name": "event30",
-    "date": "03/9 Monday"
+    "name": "Tренинг « Танец – искусство души» K. Alekseenko",
+    "date": "30/8 Thursday",
+    "time": "14.00",
+    "canHaveNote": true
   },
   {
     "id": "31",
-    "name": "event31",
-    "date": "03/9 Monday"
+    "name": "Jun Quemado",
+    "date": "30/8 Thursday",
+    "time": "16.15",
+    "canHaveNote": true
   },
   {
     "id": "32",
-    "name": "event32",
-    "date": "03/9 Monday"
+    "name": "Tim Karpinskiy",
+    "date": "30/8 Thursday",
+    "time": "17.45",
+    "canHaveNote": true
   },
   {
-    "id": "30123",
-    "name": "event30123",
-    "date": "03/9 Monday"
+    "id": "33",
+    "name": "Ужин",
+    "date": "30/8 Thursday",
+    "time": "19.30",
+    "canHaveNote": false
   },
   {
-    "id": "31321",
-    "name": "event31321",
-    "date": "03/9 Monday"
+    "id": "34",
+    "name": "Talk session с хореографами/презентерами",
+    "date": "30/8 Friday",
+    "time": "21.30",
+    "canHaveNote": true
   },
   {
-    "id": "32213",
-    "name": "event32213",
-    "date": "03/9 Monday"
+    "id": "35",
+    "name": "Тематическая вечеринка «American grill party»",
+    "date": "30/8 Friday",
+    "time": "22.30",
+    "canHaveNote": false
+  },
+  {
+    "id": "36",
+    "name": "Утренняя медитация",
+    "date": "31/8 Friday",
+    "time": "7.15",
+    "canHaveNote": false
+  },
+  {
+    "id": "37",
+    "name": "Завтрак",
+    "date": "31/8 Friday",
+    "time": "8.15",
+    "canHaveNote": false
+  },
+  {
+    "id": "38",
+    "name": "Polina Ivanyuk",
+    "date": "31/8 Friday",
+    "time": "9.30",
+    "canHaveNote": true
+  },
+  {
+    "id": "39",
+    "name": "Jun Quemado",
+    "date": "31/8 Friday",
+    "time": "11.00",
+    "canHaveNote": true
+  },
+  {
+    "id": "40",
+    "name": "Обед",
+    "date": "31/8 Friday",
+    "time": "13.15",
+    "canHaveNote": false
+  },
+  {
+    "id": "41",
+    "name": "Artur Karpinskiy",
+    "date": "31/8 Friday",
+    "time": "17.45",
+    "canHaveNote": true
+  },
+  {
+    "id": "42",
+    "name": "Ужин",
+    "date": "31/8 Friday",
+    "time": "19.30",
+    "canHaveNote": false
+  },
+  {
+    "id": "43",
+    "name": "Darina Maltseva",
+    "date": "31/8 Friday",
+    "time": "21.00",
+    "canHaveNote": true
+  },
+  {
+    "id": "44",
+    "name": "Утренняя медитация",
+    "date": "01/9 Saturday",
+    "time": "7.15",
+    "canHaveNote": false
+  },
+  {
+    "id": "45",
+    "name": "Завтрак",
+    "date": "01/9 Saturday",
+    "time": "8.15",
+    "canHaveNote": false
+  },
+  {
+    "id": "46",
+    "name": "Igor Osmachko",
+    "date": "01/9 Saturday",
+    "time": "9.30",
+    "canHaveNote": true
+  },
+  {
+    "id": "47",
+    "name": "Alberto Blanco",
+    "date": "01/9 Saturday",
+    "time": "11.00",
+    "canHaveNote": true
+  },
+  {
+    "id": "48",
+    "name": "Обед",
+    "date": "01/9 Saturday",
+    "time": "13.15",
+    "canHaveNote": false
+  },
+  {
+    "id": "49",
+    "name": "Tренинг « Танец – искусство души» K. Alekseenko",
+    "date": "01/9 Saturday",
+    "time": "14.00",
+    "canHaveNote": true
+  },
+  {
+    "id": "50",
+    "name": "Tim Karpinskiy",
+    "date": "01/9 Saturday",
+    "time": "16.15",
+    "canHaveNote": true
+  },
+  {
+    "id": "51",
+    "name": "John Carnel",
+    "date": "01/9 Saturday",
+    "time": "17.45",
+    "canHaveNote": true
+  },
+  {
+    "id": "52",
+    "name": "Ужин",
+    "date": "01/9 Saturday",
+    "time": "19.30",
+    "canHaveNote": false
+  },
+  {
+    "id": "53",
+    "name": "«Show your choreo: home edition» (Choreo style 1x1, Best Choreo: solo,duo/trio)",
+    "date": "01/9 Saturday",
+    "time": "22.00",
+    "canHaveNote": false
+  },
+  {
+    "id": "54",
+    "name": "Утренняя медитация",
+    "date": "02/9 Sunday",
+    "time": "7.15",
+    "canHaveNote": false
+  },
+  {
+    "id": "55",
+    "name": "Завтрак",
+    "date": "02/9 Sunday",
+    "time": "8.15",
+    "canHaveNote": false
+  },
+  {
+    "id": "56",
+    "name": "Darina Maltseva",
+    "date": "02/9 Sunday",
+    "time": "9.30",
+    "canHaveNote": true
+  },
+  {
+    "id": "57",
+    "name": "Jeka Ignatenko",
+    "date": "02/9 Sunday",
+    "time": "11.00",
+    "canHaveNote": true
+  },
+  {
+    "id": "58",
+    "name": "Обед",
+    "date": "02/9 Sunday",
+    "time": "13.15",
+    "canHaveNote": false
+  },
+  {
+    "id": "59",
+    "name": "Tренинг « Танец – искусство души» K. Alekseenko",
+    "date": "02/9 Sunday",
+    "time": "14.00",
+    "canHaveNote": true
+  },
+  {
+    "id": "60",
+    "name": "Lilya Agadzhanian",
+    "date": "02/9 Sunday",
+    "time": "16.15",
+    "canHaveNote": true
+  },
+  {
+    "id": "61",
+    "name": "Alberto Blanco",
+    "date": "02/9 Sunday",
+    "time": "17.45",
+    "canHaveNote": true
+  },
+  {
+    "id": "62",
+    "name": "Ужин",
+    "date": "02/9 Sunday",
+    "time": "19.30",
+    "canHaveNote": false
+  },
+  {
+    "id": "63",
+    "name": "FINAL PARTY – тусовка на корабле",
+    "date": "02/9 Sunday",
+    "time": "22.00",
+    "canHaveNote": false
+  },
+  {
+    "id": "64",
+    "name": "Завтрак",
+    "date": "03/9 Monday",
+    "time": "8.15",
+    "canHaveNote": false
+  },
+  {
+    "id": "65",
+    "name": "Заключительный тренинг « Танец – искусство души»",
+    "date": "03/9 Monday",
+    "time": "9.00",
+    "canHaveNote": true
+  },
+  {
+    "id": "66",
+    "name": "Oбмен эмоциями и впечатлениями о лагере в дружном кругу на палубе",
+    "date": "03/9 Monday",
+    "time": "10.00",
+    "canHaveNote": false
   }
 ]

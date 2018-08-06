@@ -15,7 +15,7 @@ import android.view.ViewGroup
 import com.example.vmedvediev.ua21summerdancecamp.MyApplication
 import com.example.vmedvediev.ua21summerdancecamp.R
 import com.example.vmedvediev.ua21summerdancecamp.UI.Router
-import com.example.vmedvediev.ua21summerdancecamp.mappers.MapperImpl
+import com.example.vmedvediev.ua21summerdancecamp.mappers.RealmEventMapper
 import com.example.vmedvediev.ua21summerdancecamp.model.EventsCache
 import com.example.vmedvediev.ua21summerdancecamp.repository.Repository
 import kotlinx.android.synthetic.main.fragment_events.*
@@ -38,7 +38,7 @@ class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
     private var tempDate: String = ""
     private val linearLayoutManager = LinearLayoutManager(activity)
     private val eventsViewModel by lazy {
-        ViewModelProviders.of(this, EventsViewModel(Repository(MapperImpl())).EventsViewModelFactory()).get(EventsViewModel::class.java)
+        ViewModelProviders.of(this, EventsViewModel(Repository(RealmEventMapper())).EventsViewModelFactory()).get(EventsViewModel::class.java)
     }
     private val eventsAdapter by lazy {
         EventsAdapter(ArrayList())
@@ -127,13 +127,13 @@ class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
             eventsViewModel.getEventsListByDate((it.customView as TabCustomView).getDate())
         }
         eventsRecyclerView.scrollToPosition(0)
-        eventsViewModel.events.value?.let { eventsAdapter.clearAndAddAll(it) }
+        eventsAdapter.clearAndAddAll(eventsViewModel.getEvents())
     }
 
     private fun getEventsByScrollingThroughList(tab: TabLayout.Tab?) {
         tab?.let {
             eventsViewModel.getEventsListByDate((it.customView as TabCustomView).getDate())
-            eventsViewModel.events.value?.let { eventsAdapter.addAll(it) }
+            eventsAdapter.addAll(eventsViewModel.getEvents())
         }
     }
 

@@ -37,9 +37,14 @@ class EventsAdapter(private val eventsList: ArrayList<ListItem>) :
     private fun prepareEventCard(holder: RecyclerView.ViewHolder, position: Int) {
         val event = eventsList[position] as Event
         val eventHolder = holder as EventViewHolder
-        eventHolder.name.text = event.eventName
-        eventHolder.card.setOnClickListener {
-            onEventClickListener(event.eventId)
+        eventHolder.apply {
+            name.text = event.eventName
+            time.text = event.eventTime
+            card.setOnClickListener {
+                if (event.canHaveNote) {
+                    onEventClickListener(event.eventId)
+                }
+            }
         }
     }
 
@@ -72,6 +77,7 @@ class EventsAdapter(private val eventsList: ArrayList<ListItem>) :
 
         val card: CardView = itemView.eventCardView
         val name: TextView = itemView.eventNameTextView
+        val time: TextView = itemView.eventTimeTextView
 
     }
 

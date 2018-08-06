@@ -24,14 +24,21 @@ object DatabaseHelper {
     }
 
     fun deleteNote(realmEvent: RealmEvent) {
+        Realm.getDefaultInstance().use {
+            it.executeTransaction {
+                val updatingEvent = it.where(RealmEvent::class.java).equalTo("id", realmEvent.id).findFirst()
+                updatingEvent?.let {
+                    it.noteText = ""
+                    it.noteDate = ""
+                }
+            }
+        }
+    }
+
+    fun saveEvents(realmEventsList: ArrayList<RealmEvent>) {
         Realm.getDefaultInstance().apply {
             beginTransaction()
-            val updatingEvent = this.where(RealmEvent::class.java).equalTo("id", realmEvent.id).findFirst()
-            updatingEvent?.let {
-                it.noteText = ""
-                it.noteDate = ""
-                insertOrUpdate(updatingEvent)
-            }
+            insert(realmEventsList)
             commitTransaction()
         }
     }

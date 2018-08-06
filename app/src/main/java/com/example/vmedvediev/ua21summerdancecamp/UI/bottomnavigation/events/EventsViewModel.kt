@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import com.example.vmedvediev.ua21summerdancecamp.model.ListItem
 import com.example.vmedvediev.ua21summerdancecamp.repository.Repository
+import timber.log.Timber
 
 class EventsViewModel(private val repository: Repository) : ViewModel() {
 
@@ -13,6 +14,8 @@ class EventsViewModel(private val repository: Repository) : ViewModel() {
     fun getEventsListByDate(date: String) {
         repository.getEventsList(date) { eventsList: ArrayList<ListItem> -> onDataLoaded(eventsList)}
     }
+
+    fun getEvents() = events.value!!
 
     private fun onDataLoaded(eventsList: ArrayList<ListItem>) {
         if (eventsList.isNotEmpty()) {

@@ -1,10 +1,10 @@
 package com.example.vmedvediev.ua21summerdancecamp.repository
 
-import com.example.vmedvediev.ua21summerdancecamp.mappers.MapperImpl
+import com.example.vmedvediev.ua21summerdancecamp.mappers.RealmEventMapper
 import com.example.vmedvediev.ua21summerdancecamp.model.*
 import io.realm.RealmResults
 
-class Repository(private val mapper: MapperImpl) {
+class Repository(private val mapper: RealmEventMapper) {
 
     fun getNotes(onEventsLoaded: (ArrayList<Event>) -> Unit) {
         val realmEventsList = DatabaseHelper.getEvents()
@@ -18,24 +18,24 @@ class Repository(private val mapper: MapperImpl) {
     fun getEvent(eventId: String, onEventLoaded: (Event) -> Unit) {
         val realmEvent = DatabaseHelper.getEventById(eventId)
         if (realmEvent != null) {
-            onEventLoaded(mapper.from(realmEvent, true) as Event)
+            onEventLoaded(mapper.from(realmEvent))
         } else {
             onEventLoaded(Event())
         }
     }
 
     fun deleteNoteFromDatabase(event: Event) {
-        DatabaseHelper.deleteNote(mapper.to(event) as RealmEvent)
+        DatabaseHelper.deleteNote(mapper.to(event))
     }
 
     fun saveNoteToDatabase(event: Event) {
-        DatabaseHelper.saveNote(mapper.to(event) as RealmEvent)
+        DatabaseHelper.saveNote(mapper.to(event))
     }
 
     private fun prepareNotesFromDatabase(realmEventsList: RealmResults<RealmEvent>): ArrayList<Event> {
         val eventsList = ArrayList<Event>()
         val filteredList = realmEventsList.filter { it.noteText.isNotEmpty() }
-        filteredList.forEach { eventsList.add(mapper.from(it, true) as Event) }
+        filteredList.forEach { eventsList.add(mapper.from(it)) }
         return eventsList
     }
 
@@ -52,10 +52,27 @@ class Repository(private val mapper: MapperImpl) {
         }
     }
 
+    fun getAllEvents() = DatabaseHelper.getEvents()
+
+    fun setupLocalStorage() {
+        val realmEventsList = DatabaseHelper.getEvents()
+        realmEventsList.forEach {
+            EventsCache.eventsList.add(mapper.from(it))
+        }
+    }
+
+    fun saveEvents(eventsList: ArrayList<Event>) {
+        val realmEventsList = ArrayList<RealmEvent>()
+        eventsList.forEach {
+            realmEventsList.add(mapper.to(it))
+        }
+        DatabaseHelper.saveEvents(realmEventsList)
+    }
+
     private fun getEventsFromLocalStorage(dateOfDay: String): ArrayList<ListItem> {
         val eventsList = ArrayList<ListItem>()
         EventsCache.getEventsByDate(dateOfDay).forEach {
-            val date = mapper.from(it, false)
+            val date = Date(it.getDateOfEvent())
             if (!eventsList.contains(date)) {
                 eventsList.add(date)
             }
@@ -67,11 +84,11 @@ class Repository(private val mapper: MapperImpl) {
     private fun prepareEventsFromDatabase(realmEventsList: RealmResults<RealmEvent>): ArrayList<ListItem> {
         val eventsList = ArrayList<ListItem>()
         realmEventsList.forEach {
-            val date = mapper.from(it, false)
+            val date = mapper.from(it)
             if (!eventsList.contains(date)) {
                 eventsList.add(date)
             }
-            eventsList.add(mapper.from(it, true))
+            eventsList.add(mapper.from(it))
         }
         return eventsList
     }
