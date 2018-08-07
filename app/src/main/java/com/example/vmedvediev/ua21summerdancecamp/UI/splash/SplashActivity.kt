@@ -41,8 +41,10 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun prepareEventsData(eventsList: ArrayList<Event>) {
-        splashViewModel.saveEvent(eventsList)
-        splashViewModel.setupLocalStorage()
+        splashViewModel.apply {
+            saveEvents(eventsList)
+            setupLocalStorage()
+        }
     }
 
     companion object {

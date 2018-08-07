@@ -9,7 +9,7 @@ class SplashViewModel(private val repository: Repository) : ViewModel() {
 
     fun setupLocalStorage() = repository.setupLocalStorage()
 
-    fun saveEvent(eventsList: ArrayList<Event>) = repository.saveEvents(eventsList)
+    fun saveEvents(eventsList: ArrayList<Event>) = repository.saveEvents(eventsList)
 
     fun getEvents() = repository.getAllEvents()
 
