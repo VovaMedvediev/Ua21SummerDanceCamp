@@ -10,22 +10,32 @@
     android:id="@+id/appbar"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
-    android:paddingTop="@dimen/appbar_padding_top"
-    android:theme="@style/AppTheme.AppBarOverlay"
+    android:fitsSystemWindows="true"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintBottom_toTopOf="@id/noteEditText">
+    app:layout_constraintTop_toTopOf="parent">
 
     <android.support.v7.widget.Toolbar
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
-    android:layout_height="?attr/actionBarSize"
-    android:layout_weight="1"
-    android:background="@drawable/ab_background"
-    app:layout_scrollFlags="scroll|enterAlways"
-    app:popupTheme="@style/AppTheme.PopupOverlay"
-    app:title="@string/app_name">
+    android:layout_height="wrap_content"
+    android:theme="@style/ToolbarStyle"
+    android:background="@drawable/ab_note_background"
+    android:minHeight="?attr/actionBarSize"
+    android:fitsSystemWindows="true"
+    app:contentInsetLeft="0dp"
+    app:contentInsetStart="0dp">
+
+        <TextView
+            android:id="@+id/toolbarTitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="28sp"
+            android:maxLines="1"
+            android:shadowColor="@color/colorBlack"
+            android:shadowRadius="16"
+            android:textColor="@color/colorWhite"/>
 
     </android.support.v7.widget.Toolbar>
 
@@ -37,6 +47,7 @@
         android:layout_height="0dp"
         android:hint="@string/hint_note"
         android:inputType="text"
+        android:background="@null"
         android:gravity="top|center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

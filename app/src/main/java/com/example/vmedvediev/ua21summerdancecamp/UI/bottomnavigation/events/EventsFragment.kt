@@ -41,7 +41,7 @@ class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
         ViewModelProviders.of(this, EventsViewModel(Repository(RealmEventMapper())).EventsViewModelFactory()).get(EventsViewModel::class.java)
     }
     private val eventsAdapter by lazy {
-        EventsAdapter(ArrayList())
+        EventsAdapter(activity as AppCompatActivity, ArrayList())
     }
     private val recyclerViewOnScrollListener by lazy {
         object : RecyclerView.OnScrollListener() {
@@ -90,14 +90,16 @@ class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        activity?.actionBar?.setBackgroundDrawable(resources.getDrawable(R.drawable.ab_background))
+        activity?.actionBar?.setBackgroundDrawable(resources.getDrawable(R.drawable.ab_main_background))
         setupTabs()
         Handler().postDelayed({ onTabSelected(eventsTabLayout.getTabAt(0)) }, 1)
         eventsTabLayout.addOnTabSelectedListener(this)
         setupRecycler()
 
         eventsViewModel.events.observe(this, Observer {
-            eventsAdapter.notifyDataSetChanged()
+            eventsRecyclerView.post {
+                eventsAdapter.notifyDataSetChanged()
+            }
         })
     }
 
@@ -127,13 +129,13 @@ class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
             eventsViewModel.getEventsListByDate((it.customView as TabCustomView).getDate())
         }
         eventsRecyclerView.scrollToPosition(0)
-        eventsAdapter.clearAndAddAll(eventsViewModel.getEvents())
+        eventsViewModel.getEvents()?.let { eventsAdapter.clearAndAddAll(it) }
     }
 
     private fun getEventsByScrollingThroughList(tab: TabLayout.Tab?) {
         tab?.let {
             eventsViewModel.getEventsListByDate((it.customView as TabCustomView).getDate())
-            eventsAdapter.addAll(eventsViewModel.getEvents())
+            eventsViewModel.getEvents()?.let { eventsAdapter.addAll(it) }
         }
     }
 

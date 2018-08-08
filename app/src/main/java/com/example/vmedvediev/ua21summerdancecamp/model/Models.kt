@@ -9,11 +9,12 @@ open class RealmEvent(
         @PrimaryKey var id: String = "",
         var name: String = "",
         var date: String = "",
-        var eventTime: String = "",
         var noteText: String = "",
         var noteDate: String = "",
         var dateType: Int = 0,
-        var canHaveNote: Boolean = false
+        var eventTime: String = "",
+        var canHaveNote: Boolean = false,
+        var image: String = ""
 ) : RealmObject()
 
 @SuppressLint("ParcelCreator")
@@ -21,9 +22,9 @@ data class Event(
         @SerializedName("id") var eventId: String = "",
         @SerializedName("name") var eventName: String = "",
         @SerializedName("date") var eventDate: String = "",
-        @SerializedName("time") var eventTime: String = "",
         var eventNoteText: String = "", var eventNoteDate: String = "", val eventType: Int = 0,
-        var canHaveNote: Boolean = false) : ListItem {
+        @SerializedName("time") var eventTime: String = "", var canHaveNote: Boolean = false,
+        @SerializedName("image") var eventImage: String = "") : ListItem {
 
     override fun getDateOfEvent() = eventDate
 

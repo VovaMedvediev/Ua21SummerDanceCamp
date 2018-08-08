@@ -27,9 +27,8 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/ab_background"
+            android:src="@drawable/ab_main_background"
             android:scaleType="fitXY"/>
-
 
     </android.support.v7.widget.Toolbar>
 
@@ -51,5 +50,11 @@
         app:itemIconTint="#FFFFFF"
         app:itemTextColor="#FFFFFF"
         app:menu="@menu/navigation" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/bottomNavigationViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 </android.support.design.widget.CoordinatorLayout>

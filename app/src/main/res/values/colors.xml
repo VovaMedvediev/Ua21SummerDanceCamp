@@ -6,4 +6,5 @@
     <color name="colorStartScreenProgress">#00f49d</color>
     <color name="colorBottomNavigation">#0f0f1b</color>
     <color name="colorBlack">#000000</color>
+    <color name="colorWhite">#FFFFFF</color>
 </resources>
