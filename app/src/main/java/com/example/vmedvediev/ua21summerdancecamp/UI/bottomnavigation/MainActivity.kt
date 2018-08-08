@@ -1,5 +1,8 @@
 package com.example.vmedvediev.ua21summerdancecamp.UI.bottomnavigation
 
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
@@ -7,15 +10,17 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
+import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import com.example.vmedvediev.ua21summerdancecamp.R
+import com.example.vmedvediev.ua21summerdancecamp.UI.Router
 import com.example.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.events.EventsFragment
 import com.example.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.notes.NotesFragment
+import com.example.vmedvediev.ua21summerdancecamp.model.Event
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,5 +84,22 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         fun addFragment(fragment: Fragment) {
             fragmentsList.add(fragment)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_app_navigation, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            R.id.navigation_instagram -> {
+                startActivity(Router.prepareInstagramProfileIntent(packageManager))
+            }
+            R.id.navigation_telegram -> {
+                startActivity(Router.prepareTelegramProfileIntent())
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

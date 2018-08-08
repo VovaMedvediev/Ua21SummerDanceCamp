@@ -46,4 +46,6 @@
     <string name="label_note">This is a note</string>
     <string name="label_list_of_notes_is_empty">List of notes is empty :(</string>
     <string name="label_event_time">10.00</string>
+    <string name="label_instagram">Instagram</string>
+    <string name="label_telegram">Telegram</string>
 </resources>
