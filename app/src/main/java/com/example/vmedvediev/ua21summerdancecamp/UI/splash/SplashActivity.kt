@@ -1,23 +1,29 @@
-package com.example.vmedvediev.ua21summerdancecamp.UI
+package com.example.vmedvediev.ua21summerdancecamp.UI.splash
 
+import android.arch.lifecycle.ViewModelProviders
 import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.example.vmedvediev.ua21summerdancecamp.MyApplication
 import com.example.vmedvediev.ua21summerdancecamp.R
-import com.example.vmedvediev.ua21summerdancecamp.mappers.EventsMapper
+import com.example.vmedvediev.ua21summerdancecamp.UI.Router
+import com.example.vmedvediev.ua21summerdancecamp.mappers.RealmEventMapper
 import com.example.vmedvediev.ua21summerdancecamp.model.*
+import com.example.vmedvediev.ua21summerdancecamp.repository.Repository
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import io.realm.Realm
 import java.io.IOException
 import java.lang.ref.WeakReference
 import java.nio.charset.Charset
 
 class SplashActivity : AppCompatActivity() {
 
+    private val splashViewModel by lazy {
+        ViewModelProviders.of(this, SplashViewModel(Repository(RealmEventMapper())).SplashViewModelFactory())
+                .get(SplashViewModel::class.java)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         when {
@@ -25,8 +31,8 @@ class SplashActivity : AppCompatActivity() {
                 startActivity(Router.prepareMainActivityIntent(this))
                 finish()
             }
-            EventsRepository.getAllEvents().isNotEmpty() -> {
-                setupLocalStorage()
+            splashViewModel.getEvents().isNotEmpty() -> {
+                splashViewModel.setupLocalStorage()
                 startActivity(Router.prepareMainActivityIntent(this))
                 finish()
             }
@@ -34,29 +40,10 @@ class SplashActivity : AppCompatActivity() {
         }
     }
 
-    private fun prepareRealmData(eventsList: ArrayList<Event>) {
-        val eventsMapper = EventsMapper()
-        val realmEventsList = ArrayList<RealmEvent>()
-        eventsList.forEach {
-            realmEventsList.add(eventsMapper.to(it))
-        }
-        setRealmData(realmEventsList)
-        setupLocalStorage()
-    }
-
-    private fun setRealmData(realmEventsList: ArrayList<RealmEvent>) {
-        Realm.getDefaultInstance().apply {
-            beginTransaction()
-            insert(realmEventsList)
-            commitTransaction()
-        }
-    }
-
-    private fun setupLocalStorage() {
-        val eventsMapper = EventsMapper()
-        val realmEventsList = EventsRepository.getAllEvents()
-        realmEventsList.forEach {
-            EventsCache.eventsList.add(eventsMapper.from(it))
+    private fun prepareEventsData(eventsList: ArrayList<Event>) {
+        splashViewModel.apply {
+            saveEvents(eventsList)
+            setupLocalStorage()
         }
     }
 
@@ -82,7 +69,7 @@ class SplashActivity : AppCompatActivity() {
             override fun onPostExecute(result: ArrayList<Event>?) {
                 super.onPostExecute(result)
                 splashActivity.get()?.apply {
-                    result?.let { prepareRealmData(it) }
+                    result?.let { prepareEventsData(it) }
                     startActivity(Router.prepareMainActivityIntent(this))
                     finish()
                 }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Ua21SummerDanceCamp</string>
+    <string name="app_name">UA21 Camp</string>
     <string name="title_activity_tab">TabActivity</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
@@ -36,5 +36,14 @@
     <string name="title_workshop">Workshop</string>
     <string name="title_notes">Notes</string>
     <string name="title_links">Links</string>
+    <string name="hint_note">Input your note here</string>
+    <string name="label_number_of_day">28/8</string>
+    <string name="label_name_of_day">mon</string>
+    <string name="label_fullname_of_day">MONDAY</string>
+    <string name="label_name_of_event">Workshop by Darina Maltseva</string>
+    <string name="label_confirm_note">Confirm note</string>
     <string name="list_of_events_json">ListOfEvents.json</string>
+    <string name="label_note">This is a note</string>
+    <string name="label_list_of_notes_is_empty">List of notes is empty :(</string>
+    <string name="label_event_time">10.00</string>
 </resources>

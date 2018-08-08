@@ -10,29 +10,47 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/eventImageVIew"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginStart="8dp"
+            <ImageView
+                android:id="@+id/eventImageVIew"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:srcCompat="@drawable/ic_launcher_background"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/eventTimeTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/label_event_time"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:textSize="36sp"
+            android:paddingStart="8dp"
+            android:background="@drawable/layout_bg"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_launcher_background" />
+            app:layout_constraintBottom_toTopOf="@id/eventNameTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/eventImageVIew"
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
             android:id="@+id/eventNameTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="Test name"
+            android:layout_marginStart="22dp"
+            android:text="@string/label_name_of_event"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Widget.PopupMenu.Large"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textColor="#5d5d5d"
+            android:gravity="start"
             app:layout_constraintStart_toEndOf="@id/eventImageVIew"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/eventTimeTextView"/>
 
     </android.support.constraint.ConstraintLayout>
 

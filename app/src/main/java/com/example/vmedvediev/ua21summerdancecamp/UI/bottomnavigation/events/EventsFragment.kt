@@ -14,12 +14,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.vmedvediev.ua21summerdancecamp.MyApplication
 import com.example.vmedvediev.ua21summerdancecamp.R
-import com.example.vmedvediev.ua21summerdancecamp.mappers.RealmDateMapper
-import com.example.vmedvediev.ua21summerdancecamp.mappers.EventsMapper
-import com.example.vmedvediev.ua21summerdancecamp.mappers.ListItemDateMapper
+import com.example.vmedvediev.ua21summerdancecamp.UI.Router
+import com.example.vmedvediev.ua21summerdancecamp.mappers.RealmEventMapper
 import com.example.vmedvediev.ua21summerdancecamp.model.EventsCache
 import com.example.vmedvediev.ua21summerdancecamp.repository.Repository
 import kotlinx.android.synthetic.main.fragment_events.*
+import java.util.*
 
 class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
     companion object {
@@ -37,12 +37,11 @@ class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
     private var shouldTabBeSelected = true
     private var tempDate: String = ""
     private val linearLayoutManager = LinearLayoutManager(activity)
-    private val viewModel by lazy {
-        ViewModelProviders.of(this, EventsViewModelFactory(Repository(EventsMapper(),
-                RealmDateMapper(), ListItemDateMapper()))).get(EventsViewModel::class.java)
+    private val eventsViewModel by lazy {
+        ViewModelProviders.of(this, EventsViewModel(Repository(RealmEventMapper())).EventsViewModelFactory()).get(EventsViewModel::class.java)
     }
     private val eventsAdapter by lazy {
-        EventsAdapter(activity as AppCompatActivity, ArrayList())
+        EventsAdapter(ArrayList())
     }
     private val recyclerViewOnScrollListener by lazy {
         object : RecyclerView.OnScrollListener() {
@@ -91,12 +90,13 @@ class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        activity?.actionBar?.setBackgroundDrawable(resources.getDrawable(R.drawable.ab_background))
         setupTabs()
         Handler().postDelayed({ onTabSelected(eventsTabLayout.getTabAt(0)) }, 1)
         eventsTabLayout.addOnTabSelectedListener(this)
         setupRecycler()
 
-        viewModel.getEvents().observe(this, Observer {
+        eventsViewModel.events.observe(this, Observer {
             eventsAdapter.notifyDataSetChanged()
         })
     }
@@ -117,25 +117,30 @@ class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
         }
     }
 
+    private fun onEventClicked(eventId: String) {
+        startActivity(Router.prepareNoteActivityIntent(activity as AppCompatActivity, eventId))
+    }
+
     private fun getEventsByClickingOnTab(tab: TabLayout.Tab?) {
         listOfLastItemPositions = setupListOfLastItemPositions()
         tab?.let {
-            viewModel.getDataBydDate((it.customView as TabCustomView).getDate())
+            eventsViewModel.getEventsListByDate((it.customView as TabCustomView).getDate())
         }
         eventsRecyclerView.scrollToPosition(0)
-        eventsAdapter.clearAndAddAll(viewModel.getEventsList())
+        eventsAdapter.clearAndAddAll(eventsViewModel.getEvents())
     }
 
     private fun getEventsByScrollingThroughList(tab: TabLayout.Tab?) {
         tab?.let {
-            viewModel.getDataBydDate((it.customView as TabCustomView).getDate())
-            eventsAdapter.addAll(viewModel.getEventsList())
+            eventsViewModel.getEventsListByDate((it.customView as TabCustomView).getDate())
+            eventsAdapter.addAll(eventsViewModel.getEvents())
         }
     }
 
     private fun setupRecycler() {
         eventsRecyclerView.apply {
             layoutManager = linearLayoutManager
+            eventsAdapter.onEventClickListener = ::onEventClicked
             adapter = eventsAdapter
             addOnScrollListener(recyclerViewOnScrollListener)
         }
