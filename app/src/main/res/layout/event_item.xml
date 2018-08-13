@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView
-    android:id="@+id/eventCardView"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -17,7 +16,8 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                app:srcCompat="@drawable/ic_launcher_background"
+                app:srcCompat="@drawable/ic_artur"
+                android:background="@drawable/rounded_corners_bg"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
@@ -31,7 +31,7 @@
             android:textColor="#000000"
             android:textSize="36sp"
             android:paddingStart="8dp"
-            android:background="@drawable/layout_bg"
+            android:background="@drawable/rounded_corners_bg"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             app:layout_constraintBottom_toTopOf="@id/eventNameTextView"
@@ -45,12 +45,24 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="22dp"
             android:text="@string/label_name_of_event"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Widget.PopupMenu.Large"
+            android:layout_marginEnd="8dp"
+            android:textSize="22sp"
             android:textColor="#5d5d5d"
             android:gravity="start"
             app:layout_constraintStart_toEndOf="@id/eventImageVIew"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/eventTimeTextView"/>
+
+        <ImageView
+            android:id="@+id/editNoteImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            app:srcCompat="@drawable/ic_edit_note"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
 

@@ -16,13 +16,7 @@ class EventsViewModel(private val repository: Repository) : ViewModel() {
         repository.getEventsList(date) { eventsList: ArrayList<ListItem> -> onDataLoaded(eventsList)}
     }
 
-    fun getEvents() : ArrayList<ListItem> {
-        return if (events.value != null) {
-            events.value!!
-        } else {
-            ArrayList()
-        }
-    }
+    fun getEvents() = events.value
 
     private fun onDataLoaded(eventsList: ArrayList<ListItem>) {
         if (eventsList.isNotEmpty()) {

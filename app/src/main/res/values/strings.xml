@@ -40,10 +40,12 @@
     <string name="label_number_of_day">28/8</string>
     <string name="label_name_of_day">mon</string>
     <string name="label_fullname_of_day">MONDAY</string>
-    <string name="label_name_of_event">Workshop by Darina Maltseva</string>
+    <string name="label_name_of_event">Darina Maltseva</string>
     <string name="label_confirm_note">Confirm note</string>
     <string name="list_of_events_json">ListOfEvents.json</string>
     <string name="label_note">This is a note</string>
     <string name="label_list_of_notes_is_empty">List of notes is empty :(</string>
     <string name="label_event_time">10.00</string>
+    <string name="label_instagram">Instagram</string>
+    <string name="label_telegram">Telegram</string>
 </resources>

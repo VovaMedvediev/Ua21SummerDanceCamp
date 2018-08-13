@@ -1,7 +1,10 @@
 package com.example.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.events
 
-import android.support.v7.widget.CardView
+import android.content.Context
+import android.os.Build
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory
 import android.support.v7.widget.RecyclerView
+import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.example.vmedvediev.ua21summerdancecamp.R
@@ -13,8 +16,9 @@ import com.example.vmedvediev.ua21summerdancecamp.model.ListItem.Companion.DATE_
 import com.example.vmedvediev.ua21summerdancecamp.model.ListItem.Companion.EVENT_TYPE
 import kotlinx.android.synthetic.main.day_item.view.*
 import kotlinx.android.synthetic.main.event_item.view.*
+import timber.log.Timber
 
-class EventsAdapter(private val eventsList: ArrayList<ListItem>) :
+class EventsAdapter(private val context: Context, private val eventsList: ArrayList<ListItem>) :
         RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var onEventClickListener: (String) -> Unit = {}
@@ -40,10 +44,19 @@ class EventsAdapter(private val eventsList: ArrayList<ListItem>) :
         eventHolder.apply {
             name.text = event.eventName
             time.text = event.eventTime
-            card.setOnClickListener {
-                if (event.canHaveNote) {
-                    onEventClickListener(event.eventId)
+            val imageId = context.resources
+                    .getIdentifier(event.eventImage, "drawable", context.packageName)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                eventImage.clipToOutline = true
+            }
+            eventImage.setImageResource(imageId)
+            if (event.canHaveNote) {
+                editNoteIcon.apply {
+                    visibility = View.VISIBLE
+                    setOnClickListener { onEventClickListener(event.eventId) }
                 }
+            } else {
+                editNoteIcon.visibility = View.GONE
             }
         }
     }
@@ -75,9 +88,10 @@ class EventsAdapter(private val eventsList: ArrayList<ListItem>) :
 
     inner class EventViewHolder(parent: ViewGroup?) : RecyclerView.ViewHolder(parent?.inflate(R.layout.event_item)) {
 
-        val card: CardView = itemView.eventCardView
         val name: TextView = itemView.eventNameTextView
         val time: TextView = itemView.eventTimeTextView
+        val editNoteIcon = itemView.editNoteImageView
+        val eventImage = itemView.eventImageVIew
 
     }
 

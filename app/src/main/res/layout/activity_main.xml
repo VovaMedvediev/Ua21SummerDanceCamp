@@ -21,15 +21,9 @@
         android:layout_height="wrap_content"
         android:minHeight="?attr/actionBarSize"
         android:fitsSystemWindows="true"
+        android:background="@drawable/ab_test"
         app:contentInsetLeft="0dp"
         app:contentInsetStart="0dp">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ab_background"
-            android:scaleType="fitXY"/>
-
 
     </android.support.v7.widget.Toolbar>
 
@@ -50,6 +44,13 @@
         android:background="@color/colorBottomNavigation"
         app:itemIconTint="#FFFFFF"
         app:itemTextColor="#FFFFFF"
-        app:menu="@menu/navigation" />
+        app:menu="@menu/menu_bottom_navigation" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/bottomNavigationViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="56dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 </android.support.design.widget.CoordinatorLayout>

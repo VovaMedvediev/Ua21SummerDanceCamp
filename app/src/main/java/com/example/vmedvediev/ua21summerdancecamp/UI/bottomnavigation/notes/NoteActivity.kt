@@ -34,33 +34,30 @@ class NoteActivity : AppCompatActivity() {
         ViewModelProviders.of(this, NotesViewModel(Repository(RealmEventMapper())).NotesViewModelFactory()).
                 get(NotesViewModel::class.java)
     }
+    private val event: Event? by lazy {
+        notesViewModel.event.value
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_note)
         setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayShowTitleEnabled(false)
 
         setupEvent()
 
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)
-            val event = notesViewModel.event.value
+            setDisplayShowTitleEnabled(false)
             event?.let {
                 val eventName = it.eventName
-                title = eventName
-                subtitle = if (it.eventNoteDate.isNotEmpty()) {
-                    it.eventNoteDate
-                } else {
-                    it.eventDate
-                }
+                toolbarTitleTextView.text = eventName
             }
         }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.note_menu, menu)
+        menuInflater.inflate(R.menu.menu_note, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -78,8 +75,9 @@ class NoteActivity : AppCompatActivity() {
             }
             R.id.confirmNoteMenuItem -> {
                 notesViewModel.event.value?.let {
-                    saveNoteToDatabase(Event(eventId, it.eventName,
-                            it.eventDate, getNoteText(), prepareNoteDate()))
+                    event?.let { saveNoteToDatabase(Event(eventId, it.eventName,
+                            it.eventDate, getNoteText(), prepareNoteDate(), it.eventType, it.eventTime,
+                            it.canHaveNote, it.eventImage)) }
                     finish()
                 }
             }
