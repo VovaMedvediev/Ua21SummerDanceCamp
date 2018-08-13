@@ -12,7 +12,10 @@ import com.example.vmedvediev.ua21summerdancecamp.model.*
 import com.example.vmedvediev.ua21summerdancecamp.repository.Repository
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import timber.log.Timber
+import java.io.FileInputStream
 import java.io.IOException
+import java.io.InputStream
 import java.lang.ref.WeakReference
 import java.nio.charset.Charset
 
@@ -53,11 +56,22 @@ class SplashActivity : AppCompatActivity() {
             override fun doInBackground(vararg params: Void?): ArrayList<Event> {
                 Thread.sleep(2000)
                  return try {
-                    val inputStream = MyApplication.instance.applicationContext.assets.open(MyApplication.instance.getString(R.string.list_of_events_json))
-                    val size = inputStream.available()
+                    val applicationInstance = MyApplication.instance
+                    val applicationContext = applicationInstance.applicationContext
+                    val localeLanguage = applicationContext.resources.configuration.locale.displayLanguage
+                    val applicationAssets = applicationContext.assets
+
+                    val inputStream = if (localeLanguage == MyApplication.instance.getString(R.string.label_english)) {
+                        applicationAssets.open(applicationInstance.getString(R.string.list_of_events_en_json))
+                     } else {
+                        applicationAssets.open(MyApplication.instance.getString(R.string.list_of_events_json))
+                     }
+                    val size: Int = inputStream.available()
                     val buffer = ByteArray(size)
-                    inputStream.read(buffer)
-                    inputStream.close()
+                    inputStream.apply {
+                        read(buffer)
+                        close()
+                    }
                     val json = String(buffer, Charset.defaultCharset())
                     Gson().fromJson(json, object : TypeToken<ArrayList<Event>>(){}.type)
                 } catch (e: IOException) {

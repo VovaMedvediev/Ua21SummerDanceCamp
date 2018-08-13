@@ -14,28 +14,28 @@
     </string-array>
 
     <string-array name="namesOfDaysArray">
-        <item>Понедельник</item>
-        <item>Вторник</item>
-        <item>Среда</item>
-        <item>Четверг</item>
-        <item>Пятница</item>
-        <item>Суббота</item>
-        <item>Воскресенье</item>
-        <item>Понедельник</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+        <item>Monday</item>
     </string-array>
     <string name="title_activity_main">MainActivity</string>
-    <string name="title_workshop">Мастер-классы</string>
-    <string name="title_notes">Заметки</string>
-    <string name="hint_note">Напиши сюда что-то интересное :)</string>
+    <string name="title_workshop">Workshop</string>
+    <string name="title_notes">Notes</string>
+    <string name="hint_note">Write something intresting :)</string>
     <string name="label_number_of_day">28/8</string>
-    <string name="label_name_of_day">пон</string>
-    <string name="label_fullname_of_day">ПОНЕДЕЛЬНИК</string>
+    <string name="label_name_of_day">mon</string>
+    <string name="label_fullname_of_day">MONDAY</string>
     <string name="label_name_of_event">Darina Maltseva</string>
     <string name="label_confirm_note">Confirm note</string>
     <string name="list_of_events_json">ListOfEvents.json</string>
     <string name="list_of_events_en_json">listOfEventsEn.json</string>
     <string name="label_note">This is a note</string>
-    <string name="label_list_of_notes_is_empty">У тебя еще нет ни одной заметки :(</string>
+    <string name="label_list_of_notes_is_empty">You do not have any notes yet :(</string>
     <string name="label_event_time">10.00</string>
     <string name="label_instagram">Instagram</string>
     <string name="label_telegram">Telegram</string>

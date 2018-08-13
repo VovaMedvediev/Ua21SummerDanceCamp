@@ -11,6 +11,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:tabMode="scrollable"
+            app:tabIndicatorHeight="5dp"
+            android:background="#e3e3e3"
             app:tabIndicatorColor="@color/colorStartScreenProgress"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
