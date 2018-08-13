@@ -12,6 +12,7 @@ object Router {
 
     const val INSTAGRAM_ACCOUNT_URL = "https://www.instagram.com/dancecampua21/"
     const val TELEGRAM_ACCOUNT_URL = "tg://resolve?domain=groupname"
+    const val INSTAGRAM_PACKAGE = "com.instagram.android"
 
     fun prepareMainActivityIntent(context: Context) = Intent(context, MainActivity::class.java)
 
@@ -23,23 +24,23 @@ object Router {
 
     fun prepareInstagramProfileIntent(packageManager: PackageManager) : Intent {
         val intent = Intent(Intent.ACTION_VIEW)
-        var urlOfAccount = INSTAGRAM_ACCOUNT_URL
+        var accountUrl = INSTAGRAM_ACCOUNT_URL
         try {
-            if (packageManager.getPackageArchiveInfo("com.instagram.android", 0) != null) {
-                if (urlOfAccount.endsWith("/")) {
-                    urlOfAccount = urlOfAccount.substring(0, INSTAGRAM_ACCOUNT_URL.length - 1)
+            if (packageManager.getPackageArchiveInfo(INSTAGRAM_PACKAGE, 0) != null) {
+                if (accountUrl.endsWith("/")) {
+                    accountUrl = accountUrl.substring(0, INSTAGRAM_ACCOUNT_URL.length - 1)
                 }
-                val username = urlOfAccount.substring(INSTAGRAM_ACCOUNT_URL.lastIndexOf(("/") + 1))
+                val username = accountUrl.substring(INSTAGRAM_ACCOUNT_URL.lastIndexOf(("/") + 1))
                 intent.data = Uri.parse("http://instagram.com/_u/$username")
-                intent.setPackage("com.instagram.android")
+                intent.setPackage(INSTAGRAM_PACKAGE)
                 return intent
             }
         } catch (e: PackageManager.NameNotFoundException) {
             e.printStackTrace()
         }
-        intent.data = Uri.parse(urlOfAccount)
+        intent.data = Uri.parse(accountUrl)
         return intent
     }
 
-    fun prepareTelegramProfileIntent() = Intent(Intent.ACTION_VIEW, Uri.parse(TELEGRAM_ACCOUNT_URL))
+    fun prepareTelegramProfileIntent() = Intent(Intent.ACTION_VIEW, Uri.parse(TELEGRAM_ACCOUNT_URL ))
 }

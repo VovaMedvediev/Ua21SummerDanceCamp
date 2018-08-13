@@ -1,8 +1,5 @@
 package com.example.vmedvediev.ua21summerdancecamp.UI.bottomnavigation
 
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
@@ -12,12 +9,10 @@ import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import com.example.vmedvediev.ua21summerdancecamp.R
 import com.example.vmedvediev.ua21summerdancecamp.UI.Router
 import com.example.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.events.EventsFragment
 import com.example.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.notes.NotesFragment
-import com.example.vmedvediev.ua21summerdancecamp.model.Event
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
@@ -29,8 +24,24 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
         navigation.setOnNavigationItemSelectedListener(this)
-        var prevMenuItem: MenuItem? = null
 
+        setupViewPager()
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.navigation_events -> {
+                bottomNavigationViewPager.currentItem = 0
+            }
+            R.id.navigation_notes -> {
+                bottomNavigationViewPager.currentItem = 1
+            }
+        }
+        return false
+    }
+
+    private fun setupViewPager() {
+        var prevMenuItem: MenuItem? = null
         bottomNavigationViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
 
@@ -50,25 +61,8 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                 prevMenuItem = navigation.menu.getItem(position)
             }
         })
-        setupViewPager()
-    }
-
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.navigation_events -> {
-                bottomNavigationViewPager.currentItem = 0
-            }
-            R.id.navigation_notes -> {
-                bottomNavigationViewPager.currentItem = 1
-            }
-        }
-        return false
-    }
-
-    private fun setupViewPager() {
         val adapter = MyFragmentPagerAdapter(supportFragmentManager)
-        adapter.addFragment(EventsFragment())
-        adapter.addFragment(NotesFragment())
+        adapter.addFragment(arrayOf(EventsFragment(), NotesFragment()))
         bottomNavigationViewPager.adapter = adapter
     }
 
@@ -81,8 +75,8 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
         override fun getCount() = fragmentsList.size
 
-        fun addFragment(fragment: Fragment) {
-            fragmentsList.add(fragment)
+        fun addFragment(fragment: Array<Fragment>) {
+            fragmentsList.addAll(fragment)
         }
     }
 

@@ -34,7 +34,7 @@ class NoteActivity : AppCompatActivity() {
         ViewModelProviders.of(this, NotesViewModel(Repository(RealmEventMapper())).NotesViewModelFactory()).
                 get(NotesViewModel::class.java)
     }
-    private val event by lazy {
+    private val event: Event? by lazy {
         notesViewModel.event.value
     }
 
