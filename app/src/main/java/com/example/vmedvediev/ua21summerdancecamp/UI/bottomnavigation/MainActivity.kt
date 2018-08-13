@@ -61,23 +61,17 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                 prevMenuItem = navigation.menu.getItem(position)
             }
         })
-        val adapter = MyFragmentPagerAdapter(supportFragmentManager)
-        adapter.addFragment(arrayOf(EventsFragment(), NotesFragment()))
+        val adapter = MyFragmentPagerAdapter(supportFragmentManager, arrayOf(EventsFragment(), NotesFragment()))
         bottomNavigationViewPager.adapter = adapter
     }
 
-    inner class MyFragmentPagerAdapter(fragmentManager: FragmentManager)
+    inner class MyFragmentPagerAdapter(fragmentManager: FragmentManager, private val fragments: Array<Fragment>)
         : FragmentPagerAdapter(fragmentManager) {
 
-        private val fragmentsList = ArrayList<Fragment>()
+        override fun getItem(position: Int) = fragments[position]
 
-        override fun getItem(position: Int) = fragmentsList[position]
+        override fun getCount() = fragments.size
 
-        override fun getCount() = fragmentsList.size
-
-        fun addFragment(fragment: Array<Fragment>) {
-            fragmentsList.addAll(fragment)
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
