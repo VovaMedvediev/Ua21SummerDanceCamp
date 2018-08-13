@@ -8,14 +8,15 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:orientation="vertical"
+        android:background="#e3e3e3"
         android:layout_gravity="center_horizontal">
 
         <TextView
             android:id="@+id/numbersOfTheDayTextView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="16dp"
             android:text="@string/label_number_of_day"
             android:textColor="#000000"
             android:layout_marginTop="8dp"
@@ -28,7 +29,7 @@
         <TextView
             android:id="@+id/nameOfTheDayTextView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="20dp"
             android:layout_marginEnd="2dp"
             android:maxLength="3"
             android:text="@string/label_name_of_day"
@@ -36,9 +37,19 @@
             android:textColor="#000000"
             android:textSize="18sp"
             android:textStyle="bold"
+            app:layout_constraintBaseline_toBaselineOf="@id/alligmentTextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/numbersOfTheDayTextView" />
+
+        <TextView
+            android:id="@+id/alligmentTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/numbersOfTheDayTextView"
+            android:layout_marginBottom="10dp"/>
 
     </android.support.constraint.ConstraintLayout>
 
