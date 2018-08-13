@@ -57,11 +57,14 @@ class SplashActivity : AppCompatActivity() {
                 Thread.sleep(2000)
                  return try {
                     val applicationInstance = MyApplication.instance
-                    val localeLanguage = applicationInstance.applicationContext.resources.configuration.locale.displayLanguage
+                    val applicationContext = applicationInstance.applicationContext
+                    val localeLanguage = applicationContext.resources.configuration.locale.displayLanguage
+                    val applicationAssets = applicationContext.assets
+
                     val inputStream = if (localeLanguage == MyApplication.instance.getString(R.string.label_english)) {
-                        applicationInstance.applicationContext.assets.open(applicationInstance.getString(R.string.list_of_events_en_json))
+                        applicationAssets.open(applicationInstance.getString(R.string.list_of_events_en_json))
                      } else {
-                        applicationInstance.applicationContext.assets.open(MyApplication.instance.getString(R.string.list_of_events_json))
+                        applicationAssets.open(MyApplication.instance.getString(R.string.list_of_events_json))
                      }
                     val size: Int = inputStream.available()
                     val buffer = ByteArray(size)
