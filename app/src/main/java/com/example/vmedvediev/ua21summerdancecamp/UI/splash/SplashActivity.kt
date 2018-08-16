@@ -12,10 +12,7 @@ import com.example.vmedvediev.ua21summerdancecamp.model.*
 import com.example.vmedvediev.ua21summerdancecamp.repository.Repository
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import timber.log.Timber
-import java.io.FileInputStream
 import java.io.IOException
-import java.io.InputStream
 import java.lang.ref.WeakReference
 import java.nio.charset.Charset
 

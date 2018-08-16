@@ -40,4 +40,5 @@
     <string name="label_instagram">Instagram</string>
     <string name="label_telegram">Telegram</string>
     <string name="label_english">English</string>
+    <string name="time_notification_label">In 30 minutes</string>
 </resources>

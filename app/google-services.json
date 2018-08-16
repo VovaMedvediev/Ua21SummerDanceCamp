@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "945645409953",
+    "firebase_url": "https://ua21summerdancecamp.firebaseio.com",
+    "project_id": "ua21summerdancecamp",
+    "storage_bucket": "ua21summerdancecamp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:945645409953:android:e80431a96f9ad315",
+        "android_client_info": {
+          "package_name": "com.example.vmedvediev.ua21summerdancecamp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "945645409953-4q9hmfnd8cs2qrjceqmr7j9p4hq7v1qt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.vmedvediev.ua21summerdancecamp",
+            "certificate_hash": "d32cfde57ffea4370219cbc77808e9c11e537a9a"
+          }
+        },
+        {
+          "client_id": "945645409953-su9be0j9fbo8n747ioake0dq3h20g505.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgfdaYUWGCf8Mya0F0SY7xa_Ewjff8TWA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "945645409953-su9be0j9fbo8n747ioake0dq3h20g505.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
