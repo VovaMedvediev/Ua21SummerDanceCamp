@@ -23,5 +23,10 @@
             android:screenOrientation="portrait" />
         <activity android:name=".UI.bottomnavigation.MainActivity"
                   android:screenOrientation="portrait"/>
+        <service android:name=".UI.splash.FirebaseNotificationsService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
     </application>
 </manifest>

@@ -40,4 +40,8 @@
     <string name="label_instagram">Instagram</string>
     <string name="label_telegram">Telegram</string>
     <string name="label_english">English</string>
+    <string name="time_notification_label">Через 30 минут</string>
+    <string name="label_notification_channel">Notifications channel</string>
+    <string name="label_description">Description</string>
+    <string name="label_cherez_30_minyt">Через 30 минут</string>
 </resources>
