@@ -19,7 +19,7 @@ class FirebaseNotificationsService : FirebaseMessagingService() {
     }
 
     override fun onMessageReceived(p0: RemoteMessage?) {
-        makeNotification(p0?.notification?.body)
+        makeNotification(p0?.let { it.notification?.let { it.body } })
     }
 
     private fun makeNotification(messageBody: String?) {
@@ -34,10 +34,9 @@ class FirebaseNotificationsService : FirebaseMessagingService() {
             channel.setSound(uri, null)
             notificationManager.createNotificationChannel(channel)
         }
-        val bitmap = BitmapFactory.decodeResource(applicationContext.resources, R.drawable.ic_alberto)
+
         val builder = NotificationCompat.Builder(applicationContext, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_launcher)
-                .setLargeIcon(bitmap)
                 .setContentTitle(getString(R.string.label_cherez_30_minyt))
                 .setContentText(messageBody)
                 .setSound(uri)
