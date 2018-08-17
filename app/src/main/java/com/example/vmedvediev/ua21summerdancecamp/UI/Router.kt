@@ -10,9 +10,11 @@ import com.example.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.notes.Note
 
 object Router {
 
-    const val INSTAGRAM_ACCOUNT_URL = "https://www.instagram.com/dancecampua21/"
-    const val TELEGRAM_ACCOUNT_URL = "tg://resolve?domain=groupname"
-    const val INSTAGRAM_PACKAGE = "com.instagram.android"
+    private const val INSTAGRAM_ACCOUNT_URL = "https://www.instagram.com/dancecampua21/"
+    private const val TELEGRAM_ACCOUNT_URL = "tg://resolve?domain=groupname"
+    private const val INSTAGRAM_PACKAGE = "com.instagram.android"
+    private const val TELEGRAM_X_PACKAGE = "com.thunderdog.challegram"
+    private const val TELEGRAM_PACKAGE = "org.telegram.messenger"
 
     fun prepareMainActivityIntent(context: Context) = Intent(context, MainActivity::class.java)
 
@@ -42,5 +44,10 @@ object Router {
         return intent
     }
 
-    fun prepareTelegramProfileIntent() = Intent(Intent.ACTION_VIEW, Uri.parse(TELEGRAM_ACCOUNT_URL ))
+    fun prepareTelegramProfileIntent(context: Context, packageManager: PackageManager) : Intent {
+        return if (packageManager.getPackageArchiveInfo(TELEGRAM_X_PACKAGE, 0) != null ||
+                packageManager.getPackageArchiveInfo(TELEGRAM_PACKAGE, 0) != null) {
+            Intent(Intent.ACTION_VIEW, Uri.parse(TELEGRAM_ACCOUNT_URL ))
+        } else Intent(context, MainActivity::class.java)
+    }
 }
