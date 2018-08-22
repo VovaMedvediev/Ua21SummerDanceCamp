@@ -19,7 +19,6 @@ import com.example.vmedvediev.ua21summerdancecamp.mappers.RealmEventMapper
 import com.example.vmedvediev.ua21summerdancecamp.model.EventsCache
 import com.example.vmedvediev.ua21summerdancecamp.repository.Repository
 import kotlinx.android.synthetic.main.fragment_events.*
-import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -79,7 +78,7 @@ class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
     }
 
     private fun switchTabWhileScrollingToTheStartOfList(currentTab: TabLayout.Tab?, previousTab: TabLayout.Tab?) {
-        listOfLastItemPositions = arrayListOf(7, 17, 26, 38, 48, 59, 69, 73)
+        listOfLastItemPositions = setupListOfLastItemPositions()
         tempDate = (eventsAdapter.getItem(linearLayoutManager.findFirstCompletelyVisibleItemPosition())).getDateOfEvent()
         if (tempDate != (currentTab?.customView as TabCustomView).getDate()) {
             previousTab?.select()
@@ -129,7 +128,6 @@ class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
         val currentDay = simpleDateFormat.format(calendar.time)
         for (i in INDEX_OF_FIRST_TAB..INDEX_OF_LAST_TAB) {
             val tabDate = (eventsTabLayout.getTabAt(i)?.customView as TabCustomView).getDate().substring(0, 2)
-            Timber.e("$currentDay+$tabDate +++ ${currentDay == tabDate}")
             if (currentDay == tabDate) {
                 Handler().postDelayed({ eventsTabLayout.getTabAt(i)?.let { it.select() } }, 1)
             }

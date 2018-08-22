@@ -78,13 +78,14 @@ class EventsAdapter(private val context: Context, private val eventsList: Mutabl
 
     fun addAll(updateList: MutableList<ListItem>) = eventsList.addAll(updateList)
 
-    fun getItem(position: Int) : ListItem {
-        return if (position != -1) {
-            eventsList[position]
-        } else {
-            eventsList[1]
-        }
-    }
+//    fun getItem(position: Int) : ListItem {
+//        return when {
+//            position != -1 -> eventsList[position]
+//            else -> eventsList[1]
+//        }
+//    }
+
+    fun getItem(position: Int) = eventsList[ if (position != -1) position else 1]
 
     inner class EventViewHolder(parent: ViewGroup?) : RecyclerView.ViewHolder(parent?.inflate(R.layout.event_item)) {
 

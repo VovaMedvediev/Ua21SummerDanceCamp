@@ -6,16 +6,13 @@ import com.example.vmedvediev.ua21summerdancecamp.model.Date
 import io.realm.RealmResults
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.collections.LinkedHashSet
 
 class Repository(private val mapper: RealmEventMapper) {
 
     fun getNotes(onEventsLoaded: (ArrayList<Event>) -> Unit) {
         val realmEventsList = DatabaseHelper.getEvents()
-        if (realmEventsList.isNotEmpty()) {
-            onEventsLoaded(prepareNotesFromDatabase(realmEventsList))
-        } else {
-            onEventsLoaded(ArrayList())
-        }
+        onEventsLoaded(if (realmEventsList.isNotEmpty()) prepareNotesFromDatabase(realmEventsList) else ArrayList())
     }
 
     fun getEvent(eventId: String, onEventLoaded: (Event) -> Unit) {
@@ -43,16 +40,8 @@ class Repository(private val mapper: RealmEventMapper) {
     }
 
     fun getEventsList(date: String, onDataLoaded: (LinkedHashSet<ListItem>) -> Unit) {
-        if (EventsCache.eventsList.isNotEmpty()) {
-            onDataLoaded(getEventsFromLocalStorage(date))
-        } else {
-            val realmEventsList = DatabaseHelper.getEventsByDate(date)
-            if (realmEventsList.isNotEmpty()) {
-                onDataLoaded(prepareEventsFromDatabase(realmEventsList))
-            } else {
-                onDataLoaded(LinkedHashSet())
-            }
-        }
+        val realmEventsList = DatabaseHelper.getEventsByDate(date)
+        onDataLoaded(if (EventsCache.eventsList.isNotEmpty()) getEventsFromLocalStorage(date) else if (realmEventsList.isNotEmpty()) prepareEventsFromDatabase(realmEventsList) else LinkedHashSet())
     }
 
     fun getAllEvents() = DatabaseHelper.getEvents()
