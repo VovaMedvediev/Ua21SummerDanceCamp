@@ -3,22 +3,21 @@ package com.example.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.events
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
-import com.example.vmedvediev.ua21summerdancecamp.model.Event
 import com.example.vmedvediev.ua21summerdancecamp.model.ListItem
 import com.example.vmedvediev.ua21summerdancecamp.repository.Repository
-import timber.log.Timber
+import java.util.*
 
 class EventsViewModel(private val repository: Repository) : ViewModel() {
 
-    val events: MutableLiveData<ArrayList<ListItem>> = MutableLiveData()
+    val events: MutableLiveData<LinkedHashSet<ListItem>> = MutableLiveData()
 
     fun getEventsListByDate(date: String) {
-        repository.getEventsList(date) { eventsList: ArrayList<ListItem> -> onDataLoaded(eventsList)}
+        repository.getEventsList(date) { eventsList: LinkedHashSet<ListItem> -> onDataLoaded(eventsList)}
     }
 
     fun getEvents() = events.value
 
-    private fun onDataLoaded(eventsList: ArrayList<ListItem>) {
+    private fun onDataLoaded(eventsList: LinkedHashSet<ListItem>) {
         if (eventsList.isNotEmpty()) {
             events.value = eventsList
         } else {
