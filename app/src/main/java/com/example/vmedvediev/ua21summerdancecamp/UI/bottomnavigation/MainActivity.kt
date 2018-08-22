@@ -89,7 +89,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                 startActivity(Router.prepareInstagramProfileIntent(packageManager))
             }
             R.id.navigation_telegram -> {
-                startActivity(Router.prepareTelegramProfileIntent())
+                startActivity(Router.prepareTelegramProfileIntent(this))
             }
         }
         return super.onOptionsItemSelected(item)

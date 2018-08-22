@@ -20,6 +20,7 @@ import com.example.vmedvediev.ua21summerdancecamp.mappers.RealmSettingsMapper
 import com.example.vmedvediev.ua21summerdancecamp.model.EventsCache
 import com.example.vmedvediev.ua21summerdancecamp.repository.Repository
 import kotlinx.android.synthetic.main.fragment_events.*
+import java.text.SimpleDateFormat
 import java.util.*
 
 class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
@@ -31,8 +32,6 @@ class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
         private const val INDEX_OF_FIRST_TAB = 0
         // We should decrement value because of indexing starts from 0
         private val INDEX_OF_LAST_TAB = numberOfDaysArray.size - 1
-        // The same logic
-        private val SIZE_OF_LIST_OF_LAST_POSITIONS = numberOfDaysArray.size - 1
     }
     private var listOfLastItemPositions: ArrayList<Int> = setupListOfLastItemPositions()
     private var shouldTabBeSelected = true
@@ -55,7 +54,7 @@ class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
                 val lastVisibleItemPosition = linearLayoutManager.findLastCompletelyVisibleItemPosition()
 
                 if (dy > 0) {
-                    switchTabsWhileScrollingToTheEndOfList(nextTab, lastVisibleItemPosition)
+                    switchTabsWhileScrollingToTheEndOfList(nextTab, currentTab, lastVisibleItemPosition)
                 } else {
                     switchTabWhileScrollingToTheStartOfList(currentTab, previousTab)
                 }
@@ -68,17 +67,19 @@ class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
         }
     }
 
-    private fun switchTabsWhileScrollingToTheEndOfList(nextTab: TabLayout.Tab?, lastVisibleItemPosition: Int) {
+    private fun switchTabsWhileScrollingToTheEndOfList(nextTab: TabLayout.Tab?, currentTab: TabLayout.Tab?, lastVisibleItemPosition: Int) {
         if (listOfLastItemPositions.contains(lastVisibleItemPosition)) {
             listOfLastItemPositions.remove(lastVisibleItemPosition)
+            nextTab?.select()
+        }
+        if (eventsAdapter.getItem(lastVisibleItemPosition).getDateOfEvent().substring(0, 1) ==
+                ((currentTab?.customView as TabCustomView).getDate().substring(0, 1).toInt() + 1).toString()) {
             nextTab?.select()
         }
     }
 
     private fun switchTabWhileScrollingToTheStartOfList(currentTab: TabLayout.Tab?, previousTab: TabLayout.Tab?) {
-        if (listOfLastItemPositions.size < SIZE_OF_LIST_OF_LAST_POSITIONS) {
-            listOfLastItemPositions = setupListOfLastItemPositions()
-        }
+        listOfLastItemPositions = setupListOfLastItemPositions()
         tempDate = (eventsAdapter.getItem(linearLayoutManager.findFirstCompletelyVisibleItemPosition())).getDateOfEvent()
         if (tempDate != (currentTab?.customView as TabCustomView).getDate()) {
             previousTab?.select()
@@ -96,6 +97,8 @@ class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
         setupLayoutManager()
         setupRecycler()
         Handler().postDelayed({ onTabSelected(eventsTabLayout.getTabAt(0)) }, 1)
+        setupCurrentDayTab()
+
         eventsTabLayout.addOnTabSelectedListener(this)
 
         eventsViewModel.events.observe(this, Observer {
@@ -125,6 +128,18 @@ class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
         linearLayoutManager = LinearLayoutManager(activity)
     }
 
+    private fun setupCurrentDayTab() {
+        val calendar = Calendar.getInstance()
+        val simpleDateFormat = SimpleDateFormat("dd")
+        val currentDay = simpleDateFormat.format(calendar.time)
+        for (i in INDEX_OF_FIRST_TAB..INDEX_OF_LAST_TAB) {
+            val tabDate = (eventsTabLayout.getTabAt(i)?.customView as TabCustomView).getDate().substring(0, 2)
+            if (currentDay == tabDate) {
+                Handler().postDelayed({ eventsTabLayout.getTabAt(i)?.let { it.select() } }, 1)
+            }
+        }
+    }
+
     private fun onEventClicked(eventId: String) {
         startActivity(Router.prepareNoteActivityIntent(activity as AppCompatActivity, eventId))
     }
@@ -135,13 +150,13 @@ class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
             eventsViewModel.getEventsListByDate((it.customView as TabCustomView).getDate())
         }
         eventsRecyclerView.scrollToPosition(0)
-        eventsViewModel.getEvents()?.let { eventsAdapter.clearAndAddAll(it) }
+        eventsViewModel.getEvents()?.let { eventsAdapter.clearAndAddAll(it.toMutableList()) }
     }
 
     private fun getEventsByScrollingThroughList(tab: TabLayout.Tab?) {
         tab?.let {
             eventsViewModel.getEventsListByDate((it.customView as TabCustomView).getDate())
-            eventsViewModel.getEvents()?.let { eventsAdapter.addAll(it) }
+            eventsViewModel.getEvents()?.let { eventsAdapter.addAll(it.toMutableList()) }
         }
     }
 

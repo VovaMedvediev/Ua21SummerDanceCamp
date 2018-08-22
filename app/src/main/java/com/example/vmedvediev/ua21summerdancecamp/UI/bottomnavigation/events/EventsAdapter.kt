@@ -2,7 +2,6 @@ package com.example.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.events
 
 import android.content.Context
 import android.os.Build
-import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
@@ -16,9 +15,8 @@ import com.example.vmedvediev.ua21summerdancecamp.model.ListItem.Companion.DATE_
 import com.example.vmedvediev.ua21summerdancecamp.model.ListItem.Companion.EVENT_TYPE
 import kotlinx.android.synthetic.main.day_item.view.*
 import kotlinx.android.synthetic.main.event_item.view.*
-import timber.log.Timber
 
-class EventsAdapter(private val context: Context, private val eventsList: ArrayList<ListItem>) :
+class EventsAdapter(private val context: Context, private val eventsList: MutableList<ListItem>) :
         RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var onEventClickListener: (String) -> Unit = {}
@@ -71,20 +69,23 @@ class EventsAdapter(private val context: Context, private val eventsList: ArrayL
 
     override fun getItemViewType(position: Int) = eventsList[position].getType()
 
-    fun clearAndAddAll(updateList: ArrayList<ListItem>) {
+    fun clearAndAddAll(updateList: MutableList<ListItem>) {
         eventsList.apply {
             clear()
             addAll(updateList)
         }
     }
 
-    fun addAll(updateList: ArrayList<ListItem>) {
-        if (!eventsList.containsAll(updateList)) {
-            eventsList.addAll(updateList)
-        }
-    }
+    fun addAll(updateList: MutableList<ListItem>) = eventsList.addAll(updateList)
 
-    fun getItem(position: Int) = eventsList[position]
+//    fun getItem(position: Int) : ListItem {
+//        return when {
+//            position != -1 -> eventsList[position]
+//            else -> eventsList[1]
+//        }
+//    }
+
+    fun getItem(position: Int) = eventsList[ if (position != -1) position else 1]
 
     inner class EventViewHolder(parent: ViewGroup?) : RecyclerView.ViewHolder(parent?.inflate(R.layout.event_item)) {
 
