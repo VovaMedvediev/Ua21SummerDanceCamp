@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/selectLanguageTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Язык интерфейса:"
+        android:textColor="@color/colorBlack"
+        android:textSize="22sp"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/settingsRadioGroup"/>
+
+    <RadioGroup
+        android:id="@+id/settingsRadioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/selectLanguageTextView">
+
+        <RadioButton
+            android:id="@+id/ukranianRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Українська мова"
+            android:textSize="22sp"/>
+
+        <RadioButton
+            android:id="@+id/russianRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Русский язык"
+            android:textSize="22sp"/>
+
+        <RadioButton
+            android:id="@+id/englishRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="English language"
+            android:textSize="22sp"/>
+
+    </RadioGroup>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/settingsRadioGroup"/>
+
+    <TextView
+        android:id="@+id/selectThemeTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Тема:"
+        android:textColor="@color/colorBlack"
+        android:textSize="22sp"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/settingsRadioGroup"/>
+
+    <RadioGroup
+        android:id="@+id/chooseThemeRadioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/selectThemeTextView">
+
+        <RadioButton
+            android:id="@+id/lightRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Светлая"
+            android:textSize="22sp"/>
+
+        <RadioButton
+            android:id="@+id/darkRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Темная"
+            android:textSize="22sp"/>
+
+    </RadioGroup>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/chooseThemeRadioGroup"/>
+
+    <TextView
+        android:id="@+id/notificationsSettingsTitleTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Напоминать о мастер-классах:"
+        android:textColor="@color/colorBlack"
+        android:textSize="22sp"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/chooseThemeRadioGroup" />
+
+    <Switch
+        android:id="@+id/notificationsSettingsSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:checked="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/notificationsSettingsTitleTextView"/>
+
+</android.support.constraint.ConstraintLayout>

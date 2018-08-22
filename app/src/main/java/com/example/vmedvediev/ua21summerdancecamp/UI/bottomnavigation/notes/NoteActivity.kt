@@ -10,6 +10,7 @@ import com.example.vmedvediev.ua21summerdancecamp.repository.Repository
 import kotlinx.android.synthetic.main.activity_note.*
 import android.arch.lifecycle.Observer
 import com.example.vmedvediev.ua21summerdancecamp.mappers.RealmEventMapper
+import com.example.vmedvediev.ua21summerdancecamp.mappers.RealmSettingsMapper
 import com.example.vmedvediev.ua21summerdancecamp.model.Event
 import java.text.SimpleDateFormat
 import java.util.*
@@ -31,7 +32,7 @@ class NoteActivity : AppCompatActivity() {
         return@lazy eventId
     }
     private val notesViewModel by lazy {
-        ViewModelProviders.of(this, NotesViewModel(Repository(RealmEventMapper())).NotesViewModelFactory()).
+        ViewModelProviders.of(this, NotesViewModel(Repository(RealmEventMapper(), RealmSettingsMapper())).NotesViewModelFactory()).
                 get(NotesViewModel::class.java)
     }
     private val event: Event? by lazy {

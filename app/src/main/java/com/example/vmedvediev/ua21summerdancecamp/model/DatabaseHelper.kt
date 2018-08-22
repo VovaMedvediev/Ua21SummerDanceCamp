@@ -23,6 +23,16 @@ object DatabaseHelper {
         }
     }
 
+    fun getApplicationSettings() = Realm.getDefaultInstance().where(RealmSettings::class.java).findFirst()
+
+    fun saveApplicationSettings(realmSettings: RealmSettings) {
+        Realm.getDefaultInstance().apply {
+            beginTransaction()
+            insertOrUpdate(realmSettings)
+            commitTransaction()
+        }
+    }
+
     fun deleteNote(realmEvent: RealmEvent) {
         Realm.getDefaultInstance().use {
             it.executeTransaction {

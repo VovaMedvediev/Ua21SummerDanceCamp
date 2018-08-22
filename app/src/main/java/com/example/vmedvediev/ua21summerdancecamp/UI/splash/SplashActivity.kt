@@ -8,6 +8,7 @@ import com.example.vmedvediev.ua21summerdancecamp.MyApplication
 import com.example.vmedvediev.ua21summerdancecamp.R
 import com.example.vmedvediev.ua21summerdancecamp.UI.Router
 import com.example.vmedvediev.ua21summerdancecamp.mappers.RealmEventMapper
+import com.example.vmedvediev.ua21summerdancecamp.mappers.RealmSettingsMapper
 import com.example.vmedvediev.ua21summerdancecamp.model.*
 import com.example.vmedvediev.ua21summerdancecamp.repository.Repository
 import com.google.gson.Gson
@@ -19,7 +20,7 @@ import java.nio.charset.Charset
 class SplashActivity : AppCompatActivity() {
 
     private val splashViewModel by lazy {
-        ViewModelProviders.of(this, SplashViewModel(Repository(RealmEventMapper())).SplashViewModelFactory())
+        ViewModelProviders.of(this, SplashViewModel(Repository(RealmEventMapper(), RealmSettingsMapper())).SplashViewModelFactory())
                 .get(SplashViewModel::class.java)
     }
 

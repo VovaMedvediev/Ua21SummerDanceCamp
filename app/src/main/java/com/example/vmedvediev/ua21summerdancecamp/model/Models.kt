@@ -17,6 +17,20 @@ open class RealmEvent(
         var image: String = ""
 ) : RealmObject()
 
+open class RealmSettings(
+        @PrimaryKey var id: String = "",
+        var isNotificationsEnabled: Boolean = true,
+        var isLightTheme: Boolean = true,
+        var interfaceLanguage: String = ""
+) : RealmObject()
+
+data class ApplicationSettings(
+        var id: String = "",
+        var isNotificationsEnabled: Boolean = true,
+        var isLightTheme: Boolean = true,
+        var interfaceLanguage: String = ""
+)
+
 @SuppressLint("ParcelCreator")
 data class Event(
         @SerializedName("id") var eventId: String = "",

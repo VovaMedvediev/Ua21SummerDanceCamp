@@ -16,6 +16,7 @@ import com.example.vmedvediev.ua21summerdancecamp.MyApplication
 import com.example.vmedvediev.ua21summerdancecamp.R
 import com.example.vmedvediev.ua21summerdancecamp.UI.Router
 import com.example.vmedvediev.ua21summerdancecamp.mappers.RealmEventMapper
+import com.example.vmedvediev.ua21summerdancecamp.mappers.RealmSettingsMapper
 import com.example.vmedvediev.ua21summerdancecamp.model.EventsCache
 import com.example.vmedvediev.ua21summerdancecamp.repository.Repository
 import kotlinx.android.synthetic.main.fragment_events.*
@@ -36,9 +37,9 @@ class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
     private var listOfLastItemPositions: ArrayList<Int> = setupListOfLastItemPositions()
     private var shouldTabBeSelected = true
     private var tempDate: String = ""
-    private val linearLayoutManager = LinearLayoutManager(activity)
+    private lateinit var linearLayoutManager: LinearLayoutManager
     private val eventsViewModel by lazy {
-        ViewModelProviders.of(this, EventsViewModel(Repository(RealmEventMapper())).EventsViewModelFactory()).get(EventsViewModel::class.java)
+        ViewModelProviders.of(this, EventsViewModel(Repository(RealmEventMapper(), RealmSettingsMapper())).EventsViewModelFactory()).get(EventsViewModel::class.java)
     }
     private val eventsAdapter by lazy {
         EventsAdapter(activity as AppCompatActivity, ArrayList())
@@ -92,9 +93,10 @@ class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
         super.onActivityCreated(savedInstanceState)
         activity?.actionBar?.setBackgroundDrawable(resources.getDrawable(R.drawable.ab_main_background))
         setupTabs()
+        setupLayoutManager()
+        setupRecycler()
         Handler().postDelayed({ onTabSelected(eventsTabLayout.getTabAt(0)) }, 1)
         eventsTabLayout.addOnTabSelectedListener(this)
-        setupRecycler()
 
         eventsViewModel.events.observe(this, Observer {
             eventsRecyclerView.post {
@@ -117,6 +119,10 @@ class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
         } else {
             getEventsByScrollingThroughList(tab)
         }
+    }
+
+    private fun setupLayoutManager() {
+        linearLayoutManager = LinearLayoutManager(activity)
     }
 
     private fun onEventClicked(eventId: String) {

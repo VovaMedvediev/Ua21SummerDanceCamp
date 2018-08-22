@@ -26,6 +26,7 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="title_workshop">Мастер-классы</string>
     <string name="title_notes">Заметки</string>
+    <string name="title_settings">Настройки</string>
     <string name="hint_note">Напиши сюда что-то интересное :)</string>
     <string name="label_number_of_day">28/8</string>
     <string name="label_name_of_day">пон</string>

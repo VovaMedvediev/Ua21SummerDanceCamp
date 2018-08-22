@@ -15,6 +15,7 @@ import android.view.ViewGroup
 import com.example.vmedvediev.ua21summerdancecamp.R
 import com.example.vmedvediev.ua21summerdancecamp.UI.Router
 import com.example.vmedvediev.ua21summerdancecamp.mappers.RealmEventMapper
+import com.example.vmedvediev.ua21summerdancecamp.mappers.RealmSettingsMapper
 import com.example.vmedvediev.ua21summerdancecamp.model.Event
 import com.example.vmedvediev.ua21summerdancecamp.repository.Repository
 import kotlinx.android.synthetic.main.fragment_notes.*
@@ -25,7 +26,7 @@ class NotesFragment : Fragment() {
         NotesAdapter(ArrayList())
     }
     private val notesViewModel by lazy {
-        ViewModelProviders.of(this, NotesViewModel(Repository(RealmEventMapper())).NotesViewModelFactory())
+        ViewModelProviders.of(this, NotesViewModel(Repository(RealmEventMapper(), RealmSettingsMapper())).NotesViewModelFactory())
                 .get(NotesViewModel::class.java)
     }
 

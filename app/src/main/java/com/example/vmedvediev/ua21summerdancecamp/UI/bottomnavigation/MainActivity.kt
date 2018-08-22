@@ -13,6 +13,7 @@ import com.example.vmedvediev.ua21summerdancecamp.R
 import com.example.vmedvediev.ua21summerdancecamp.UI.Router
 import com.example.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.events.EventsFragment
 import com.example.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.notes.NotesFragment
+import com.example.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.settings.SettingsFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
@@ -35,6 +36,9 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             }
             R.id.navigation_notes -> {
                 bottomNavigationViewPager.currentItem = 1
+            }
+            R.id.navigation_settings -> {
+                bottomNavigationViewPager.currentItem = 2
             }
         }
         return false
@@ -61,7 +65,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                 prevMenuItem = navigation.menu.getItem(position)
             }
         })
-        val adapter = MyFragmentPagerAdapter(supportFragmentManager, arrayOf(EventsFragment(), NotesFragment()))
+        val adapter = MyFragmentPagerAdapter(supportFragmentManager, arrayOf(EventsFragment(), NotesFragment(), SettingsFragment()))
         bottomNavigationViewPager.adapter = adapter
     }
 
