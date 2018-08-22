@@ -1,0 +1,530 @@
+[
+  {
+    "id": "1",
+    "name": "Mark Kuklin",
+    "date": "27/8 Monday",
+    "time": "11.30",
+    "canHaveNote": true,
+    "image": "ic_mark"
+  },
+  {
+    "id": "2",
+    "name": "Dinner",
+    "date": "27/8 Monday",
+    "time": "13.15",
+    "canHaveNote": false,
+    "image": "ic_obed"
+  },
+  {
+    "id": "101",
+    "name": "Relax time/Beach",
+    "date": "27/8 Monday",
+    "time": "",
+    "canHaveNote": false,
+    "image": "ic_plyaj"
+  },
+  {
+    "id": "3",
+    "name": "Vanya Petrushevskyi",
+    "date": "27/8 Monday",
+    "time": "16.15",
+    "canHaveNote": true,
+    "image": "ic_vanya"
+  },
+  {
+    "id": "4",
+    "name": "Maxim Kovtun",
+    "date": "27/8 Monday",
+    "time": "17.45",
+    "canHaveNote": true,
+    "image": "ic_kovtun"
+  },
+  {
+    "id": "5",
+    "name": "Supper",
+    "date": "27/8 Monday",
+    "time": "19.30",
+    "canHaveNote": false,
+    "image": "ic_ujin"
+  },
+  {
+    "id": "6",
+    "name": "Opening UA21 SDC 2018/Showcases/Dance Party",
+    "date": "27/8 Monday",
+    "time": "22.00",
+    "canHaveNote": false,
+    "image": "ic_otkritie"
+  },
+  {
+    "id": "8",
+    "name": "Breakfast",
+    "date": "28/8 Tuesday",
+    "time": "8.15",
+    "canHaveNote": false,
+    "image": "ic_zavtrak"
+  },
+  {
+    "id": "9",
+    "name": "Vanya Petrushevskyi",
+    "date": "28/8 Tuesday",
+    "time": "9.30",
+    "canHaveNote": true,
+    "image": "ic_vanya"
+  },
+  {
+    "id": "10",
+    "name": "John Carnel",
+    "date": "28/8 Tuesday",
+    "time": "11.00",
+    "canHaveNote": true,
+    "image": "ic_carnel"
+  },
+  {
+    "id": "11",
+    "name": "Dinner",
+    "date": "28/8 Tuesday",
+    "time": "13.15",
+    "canHaveNote": false,
+    "image": "ic_obed"
+  },
+  {
+    "id": "12",
+    "name": "Training «Dancing - the art of the soul»  K. Alekseenko",
+    "date": "28/8 Tuesday",
+    "time": "14.00",
+    "canHaveNote": true,
+    "image": "ic_kirill"
+  },
+  {
+    "id": "13",
+    "name": "Eugene Kulakovskiy",
+    "date": "28/8 Tuesday",
+    "time": "16.15",
+    "canHaveNote": true,
+    "image": "ic_kulak"
+  },
+  {
+    "id": "14",
+    "name": "Artur Karpinskiy",
+    "date": "28/8 Tuesday",
+    "time": "17.45",
+    "canHaveNote": true,
+    "image": "ic_artur"
+  },
+  {
+    "id": "15",
+    "name": "Supper",
+    "date": "28/8 Tuesday",
+    "time": "19.30",
+    "canHaveNote": false,
+    "image": "ic_ujin"
+  },
+  {
+    "id": "16",
+    "name": "Thematic party «Old School Party»",
+    "date": "28/8 Tuesday",
+    "time": "22.00",
+    "canHaveNote": false,
+    "image": "ic_old"
+  },
+  {
+    "id": "18",
+    "name": "Breakfast",
+    "date": "29/8 Wednesday",
+    "time": "8.15",
+    "canHaveNote": false,
+    "image": "ic_zavtrak"
+  },
+  {
+    "id": "19",
+    "name": "Eugene Kulakovskiy",
+    "date": "29/8 Wednesday",
+    "time": "9.30",
+    "canHaveNote": true,
+    "image": "ic_kulak"
+  },
+  {
+    "id": "20",
+    "name": "Polina Ivanyuk",
+    "date": "29/8 Wednesday",
+    "time": "11.00",
+    "canHaveNote": true,
+    "image": "ic_polina"
+  },
+  {
+    "id": "21",
+    "name": "Dinner",
+    "date": "29/8 Wednesday",
+    "time": "13.15",
+    "canHaveNote": false,
+    "image": "ic_obed"
+  },
+  {
+    "id": "102",
+    "name": "Beach Party and Relax Time (DJ Playa & MC Zozu)",
+    "date": "29/8 Wednesday",
+    "time": "",
+    "canHaveNote": false,
+    "image": "ic_plyaj"
+  },
+  {
+    "id": "22",
+    "name": "Supper",
+    "date": "29/8 Wednesday",
+    "time": "19.00",
+    "canHaveNote": false,
+    "image": "ic_ujin"
+  },
+  {
+    "id": "23",
+    "name": "Igor Osmachko",
+    "date": "29/8 Wednesday",
+    "time": "20.15",
+    "canHaveNote": true,
+    "image": "ic_igor"
+  },
+  {
+    "id": "24",
+    "name": "Mark Kuklin",
+    "date": "29/8 Wednesday",
+    "time": "21.45",
+    "canHaveNote": true,
+    "image": "ic_mark"
+  },
+  {
+    "id": "26",
+    "name": "Breakfast",
+    "date": "30/8 Thursday",
+    "time": "8.15",
+    "canHaveNote": false,
+    "image": "ic_zavtrak"
+  },
+  {
+    "id": "27",
+    "name": "Jeka Ignatenko",
+    "date": "30/8 Thursday",
+    "time": "9.30",
+    "canHaveNote": true,
+    "image": "ic_jeka"
+  },
+  {
+    "id": "28",
+    "name": "Lilya Agadzhanian",
+    "date": "30/8 Thursday",
+    "time": "11.00",
+    "canHaveNote": true,
+    "image": "ic_lilya"
+  },
+  {
+    "id": "29",
+    "name": "Dinner",
+    "date": "30/8 Thursday",
+    "time": "13.15",
+    "canHaveNote": false,
+    "image": "ic_obed"
+  },
+  {
+    "id": "30",
+    "name": "Training «Dancing – the art of the soul» K. Alekseenko",
+    "date": "30/8 Thursday",
+    "time": "14.00",
+    "canHaveNote": true,
+    "image": "ic_kirill"
+  },
+  {
+    "id": "31",
+    "name": "Jun Quemado",
+    "date": "30/8 Thursday",
+    "time": "16.15",
+    "canHaveNote": true,
+    "image": "ic_jun"
+  },
+  {
+    "id": "32",
+    "name": "Tim Karpinskiy",
+    "date": "30/8 Thursday",
+    "time": "17.45",
+    "canHaveNote": true,
+    "image": "ic_tim"
+  },
+  {
+    "id": "33",
+    "name": "Supper",
+    "date": "30/8 Thursday",
+    "time": "19.30",
+    "canHaveNote": false,
+    "image": "ic_ujin"
+  },
+  {
+    "id": "34",
+    "name": "Talk session with choreographers/presenters",
+    "date": "30/8 Thursday",
+    "time": "21.30",
+    "canHaveNote": true,
+    "image": "ic_talk"
+  },
+  {
+    "id": "35",
+    "name": "Thematic party «American grill party»",
+    "date": "30/8 Thursday",
+    "time": "22.30",
+    "canHaveNote": false,
+    "image": "ic_grill"
+  },
+  {
+    "id": "103",
+    "name": "Chill zone",
+    "date": "30/8 Thursday",
+    "time": "",
+    "canHaveNote": false,
+    "image": "ic_chill"
+  },
+  {
+    "id": "37",
+    "name": "Breakfast",
+    "date": "31/8 Friday",
+    "time": "8.15",
+    "canHaveNote": false,
+    "image": "ic_zavtrak"
+  },
+  {
+    "id": "38",
+    "name": "Polina Ivanyuk",
+    "date": "31/8 Friday",
+    "time": "9.30",
+    "canHaveNote": true,
+    "image": "ic_polina"
+  },
+  {
+    "id": "39",
+    "name": "Jun Quemado",
+    "date": "31/8 Friday",
+    "time": "11.00",
+    "canHaveNote": true,
+    "image": "ic_jun"
+  },
+  {
+    "id": "40",
+    "name": "Dinner",
+    "date": "31/8 Friday",
+    "time": "13.15",
+    "canHaveNote": false,
+    "image": "ic_obed"
+  },
+  {
+    "id": "104",
+    "name": "Pool party/Beach party & Relax time (DJ Playa & MC Zozu)",
+    "date": "31/8 Friday",
+    "time": "",
+    "canHaveNote": false,
+    "image": "ic_pool"
+  },
+  {
+    "id": "41",
+    "name": "Artur Karpinskiy",
+    "date": "31/8 Friday",
+    "time": "17.45",
+    "canHaveNote": true,
+    "image": "ic_artur"
+  },
+  {
+    "id": "42",
+    "name": "Supper",
+    "date": "31/8 Friday",
+    "time": "19.30",
+    "canHaveNote": false,
+    "image": "ic_ujin"
+  },
+  {
+    "id": "43",
+    "name": "Darina Maltseva",
+    "date": "31/8 Friday",
+    "time": "21.00",
+    "canHaveNote": true,
+    "image": "ic_dasha"
+  },
+  {
+    "id": "105",
+    "name": "Chill Zone",
+    "date": "31/8 Friday",
+    "time": "",
+    "canHaveNote": false,
+    "image": "ic_chill"
+  },
+  {
+    "id": "45",
+    "name": "Breakfast",
+    "date": "01/9 Saturday",
+    "time": "8.15",
+    "canHaveNote": false,
+    "image": "ic_zavtrak"
+  },
+  {
+    "id": "46",
+    "name": "Igor Osmachko",
+    "date": "01/9 Saturday",
+    "time": "9.30",
+    "canHaveNote": true,
+    "image": "ic_igor"
+  },
+  {
+    "id": "47",
+    "name": "Alberto Blanco",
+    "date": "01/9 Saturday",
+    "time": "11.00",
+    "canHaveNote": true,
+    "image": "ic_alberto"
+  },
+  {
+    "id": "48",
+    "name": "Dinner",
+    "date": "01/9 Saturday",
+    "time": "13.15",
+    "canHaveNote": false,
+    "image": "ic_obed"
+  },
+  {
+    "id": "49",
+    "name": "Training «Dancing – the art of the soul» K. Alekseenko",
+    "date": "01/9 Saturday",
+    "time": "14.00",
+    "canHaveNote": true,
+    "image": "ic_kirill"
+  },
+  {
+    "id": "50",
+    "name": "Tim Karpinskiy",
+    "date": "01/9 Saturday",
+    "time": "16.15",
+    "canHaveNote": true,
+    "image": "ic_tim"
+  },
+  {
+    "id": "51",
+    "name": "John Carnel",
+    "date": "01/9 Saturday",
+    "time": "17.45",
+    "canHaveNote": true,
+    "image": "ic_carnel"
+  },
+  {
+    "id": "52",
+    "name": "Supper",
+    "date": "01/9 Saturday",
+    "time": "19.30",
+    "canHaveNote": false,
+    "image": "ic_ujin"
+  },
+  {
+    "id": "53",
+    "name": "«Show your choreo: home edition» (Choreo style 1x1, Best Choreo: solo,duo/trio)",
+    "date": "01/9 Saturday",
+    "time": "22.00",
+    "canHaveNote": false,
+    "image": "ic_show"
+  },
+  {
+    "id": "106",
+    "name": "Chill Zone",
+    "date": "01/9 Saturday",
+    "time": "",
+    "canHaveNote": false,
+    "image": "ic_chill"
+  },
+  {
+    "id": "55",
+    "name": "Breakfast",
+    "date": "02/9 Sunday",
+    "time": "8.15",
+    "canHaveNote": false,
+    "image": "ic_zavtrak"
+  },
+  {
+    "id": "56",
+    "name": "Darina Maltseva",
+    "date": "02/9 Sunday",
+    "time": "9.30",
+    "canHaveNote": true,
+    "image": "ic_dasha"
+  },
+  {
+    "id": "57",
+    "name": "Jeka Ignatenko",
+    "date": "02/9 Sunday",
+    "time": "11.00",
+    "canHaveNote": true,
+    "image": "ic_jeka"
+  },
+  {
+    "id": "58",
+    "name": "Dinner",
+    "date": "02/9 Sunday",
+    "time": "13.15",
+    "canHaveNote": false,
+    "image": "ic_obed"
+  },
+  {
+    "id": "59",
+    "name": "Training «Dancing – the art of the soul» K. Alekseenko",
+    "date": "02/9 Sunday",
+    "time": "14.00",
+    "canHaveNote": true,
+    "image": "ic_kirill"
+  },
+  {
+    "id": "60",
+    "name": "Lilya Agadzhanian",
+    "date": "02/9 Sunday",
+    "time": "16.15",
+    "canHaveNote": true,
+    "image": "ic_lilya"
+  },
+  {
+    "id": "61",
+    "name": "Alberto Blanco",
+    "date": "02/9 Sunday",
+    "time": "17.45",
+    "canHaveNote": true,
+    "image": "ic_alberto"
+  },
+  {
+    "id": "62",
+    "name": "Supper",
+    "date": "02/9 Sunday",
+    "time": "19.30",
+    "canHaveNote": false,
+    "image": "ic_ujin"
+  },
+  {
+    "id": "63",
+    "name": "FINAL PARTY – party on a ship",
+    "date": "02/9 Sunday",
+    "time": "22.00",
+    "canHaveNote": false,
+    "image": "ic_korabl"
+  },
+  {
+    "id": "64",
+    "name": "Breakfast",
+    "date": "03/9 Monday",
+    "time": "8.15",
+    "canHaveNote": false,
+    "image": "ic_zavtrak"
+  },
+  {
+    "id": "65",
+    "name": "Final training «Dancing – the art of the soul»",
+    "date": "03/9 Monday",
+    "time": "9.00",
+    "canHaveNote": true,
+    "image": "ic_kirill"
+  },
+  {
+    "id": "66",
+    "name": "Exchange of emotions and impressions about the camp in a friendly circle on the deck",
+    "date": "03/9 Monday",
+    "time": "10.00",
+    "canHaveNote": false,
+    "image": "ic_obmen"
+  }
+]

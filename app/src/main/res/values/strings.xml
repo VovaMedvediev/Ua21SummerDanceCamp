@@ -1,16 +1,7 @@
 <resources>
-    <string name="app_name">Ua21SummerDanceCamp</string>
+    <string name="app_name">UA21 Camp</string>
     <string name="title_activity_tab">TabActivity</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
-    <string name="tab_text_3">Tab 3</string>
-    <string name="tab_text_4">Tab 4</string>
-    <string name="tab_text_5">Tab 5</string>
-    <string name="tab_text_6">Tab 6</string>
-    <string name="tab_text_7">Tab 7</string>
-    <string name="tab_text_8">Tab 8</string>
     <string name="action_settings">Settings</string>
-
     <string-array name="numbersOfDaysArray">
         <item>27/8</item>
         <item>28/8</item>
@@ -23,18 +14,34 @@
     </string-array>
 
     <string-array name="namesOfDaysArray">
-        <item>Monday</item>
-        <item>Tuesday</item>
-        <item>Wednesday</item>
-        <item>Thursday</item>
-        <item>Friday</item>
-        <item>Saturday</item>
-        <item>Sunday</item>
-        <item>Monday</item>
+        <item>Понедельник</item>
+        <item>Вторник</item>
+        <item>Среда</item>
+        <item>Четверг</item>
+        <item>Пятница</item>
+        <item>Суббота</item>
+        <item>Воскресенье</item>
+        <item>Понедельник</item>
     </string-array>
     <string name="title_activity_main">MainActivity</string>
-    <string name="title_workshop">Workshop</string>
-    <string name="title_notes">Notes</string>
-    <string name="title_links">Links</string>
+    <string name="title_workshop">Мастер-классы</string>
+    <string name="title_notes">Заметки</string>
+    <string name="hint_note">Напиши сюда что-то интересное :)</string>
+    <string name="label_number_of_day">28/8</string>
+    <string name="label_name_of_day">пон</string>
+    <string name="label_fullname_of_day">ПОНЕДЕЛЬНИК</string>
+    <string name="label_name_of_event">Darina Maltseva</string>
+    <string name="label_confirm_note">Confirm note</string>
     <string name="list_of_events_json">ListOfEvents.json</string>
+    <string name="list_of_events_en_json">listOfEventsEn.json</string>
+    <string name="label_note">This is a note</string>
+    <string name="label_list_of_notes_is_empty">У тебя еще нет ни одной заметки :(</string>
+    <string name="label_event_time">10.00</string>
+    <string name="label_instagram">Instagram</string>
+    <string name="label_telegram">Telegram</string>
+    <string name="label_english">English</string>
+    <string name="time_notification_label">Через 30 минут</string>
+    <string name="label_notification_channel">Notifications channel</string>
+    <string name="label_description">Description</string>
+    <string name="label_cherez_30_minyt">Через 30 минут</string>
 </resources>
