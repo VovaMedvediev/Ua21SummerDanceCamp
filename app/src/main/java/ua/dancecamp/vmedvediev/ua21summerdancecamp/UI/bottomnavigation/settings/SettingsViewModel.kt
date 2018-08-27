@@ -3,6 +3,7 @@ package ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.settings
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
+import timber.log.Timber
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.model.ApplicationSettings
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.repository.Repository
 

@@ -48,6 +48,7 @@ object DatabaseHelper {
     fun saveEvents(realmEventsList: ArrayList<RealmEvent>) {
         Realm.getDefaultInstance().apply {
             beginTransaction()
+            delete(RealmEvent::class.java)
             insert(realmEventsList)
             commitTransaction()
         }

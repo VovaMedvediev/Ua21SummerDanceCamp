@@ -55,6 +55,7 @@ class Repository(private val eventsMapper: RealmEventMapper, private val setting
     fun getAllEvents() = DatabaseHelper.getEvents()
 
     fun setupLocalStorage() {
+        EventsCache.eventsList.clear()
         val realmEventsList = DatabaseHelper.getEvents()
         realmEventsList.forEach {
             EventsCache.eventsList.add(eventsMapper.from(it))

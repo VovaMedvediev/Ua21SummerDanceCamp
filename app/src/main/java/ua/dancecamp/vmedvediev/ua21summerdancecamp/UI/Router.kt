@@ -4,9 +4,11 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.provider.Settings
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.MainActivity
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.notes.NoteActivity
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.notes.NoteActivity.Companion.KEY_EVENT_ID_TO_NOTE_ACTIVITY
+import ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.splash.SplashActivity
 
 object Router {
 
@@ -23,6 +25,8 @@ object Router {
         intent.putExtra(KEY_EVENT_ID_TO_NOTE_ACTIVITY, eventId)
         return intent
     }
+
+    fun prepareSplashScreenIntent(context: Context) = Intent(context, SplashActivity::class.java)
 
     fun prepareInstagramProfileIntent(packageManager: PackageManager) : Intent {
         val intent = Intent(Intent.ACTION_VIEW)
@@ -55,4 +59,7 @@ object Router {
             Intent(context, MainActivity::class.java)
         }
     }
+
+    fun prepareApplicationSettingsIntent(context: Context) =
+            Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:${context.packageName}"))
 }

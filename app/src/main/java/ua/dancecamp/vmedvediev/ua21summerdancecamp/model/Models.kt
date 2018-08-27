@@ -18,17 +18,15 @@ open class RealmEvent(
 ) : RealmObject()
 
 open class RealmSettings(
-        @PrimaryKey var id: String = "",
-        var isNotificationsEnabled: Boolean = true,
-        var isLightTheme: Boolean = true,
-        var interfaceLanguage: String = ""
+        @PrimaryKey var id: String = "1",
+        var interfaceLanguage: String = "",
+        var localeLanguage: String = ""
 ) : RealmObject()
 
 data class ApplicationSettings(
-        var id: String = "",
-        var isNotificationsEnabled: Boolean = true,
-        var isLightTheme: Boolean = true,
-        var interfaceLanguage: String = ""
+        var id: String = "1",
+        var interfaceLanguage: String = "",
+        var localeLanguage: String = ""
 )
 
 @SuppressLint("ParcelCreator")

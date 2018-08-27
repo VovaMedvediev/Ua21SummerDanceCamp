@@ -37,7 +37,6 @@ class NotesFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setupRecycler()
-
     }
 
     override fun onResume() {

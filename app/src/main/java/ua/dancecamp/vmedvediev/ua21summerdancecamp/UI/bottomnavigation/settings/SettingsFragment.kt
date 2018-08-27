@@ -4,33 +4,53 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmSettingsMapper
 import kotlinx.android.synthetic.main.fragment_settings.*
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.R
+import ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.Router
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmEventMapper
+import ua.dancecamp.vmedvediev.ua21summerdancecamp.model.ApplicationSettings
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.repository.Repository
 
 class SettingsFragment : Fragment() {
 
+    companion object {
+        const val UKRAINIAN_LANGUAGE_TAG = "ua"
+        const val RUSSIAN_LANGUAGE_TAG = "ru"
+        const val ENGLISH_LANGUAGE_TAG = "en"
+        const val APPLICATION_SETTINGS_ID = "1"
+    }
+
     private val settingsViewModel by lazy {
         ViewModelProviders.of(this, SettingsViewModel(Repository(RealmEventMapper(), RealmSettingsMapper())).SettingsViewModelFactory())
                 .get(SettingsViewModel::class.java)
+    }
+    private var interfaceLanguage = ""
+    private val localeLanguage = if (activity != null) {
+        (activity as AppCompatActivity).baseContext.resources.configuration.locale.language
+    } else {
+        ""
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_settings, container, false)
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onStart() {
+        super.onStart()
         settingsViewModel.apply {
             getApplicationSettings()
             applicationSettings.observe(this@SettingsFragment, Observer {
                 if (it != null) {
-                    notificationsSettingsSwitch.isChecked = it.isNotificationsEnabled
+                    when (it.interfaceLanguage) {
+                        UKRAINIAN_LANGUAGE_TAG -> chooseLanguageRadioGroup.check(R.id.ukranianRadioButton)
+                        RUSSIAN_LANGUAGE_TAG -> chooseLanguageRadioGroup.check(R.id.russianRadioButton)
+                        ENGLISH_LANGUAGE_TAG -> chooseLanguageRadioGroup.check(R.id.englishRadioButton)
+                    }
                 }
             })
         }
@@ -38,17 +58,28 @@ class SettingsFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-//        notificationsSettingsSwitch.setOnClickListener {
-//            val isNotificationsEnabled = if (notificationsSettingsSwitch.isChecked) {
-//                Toast.makeText(activity as AppCompatActivity, "Оповещения включены!", Toast.LENGTH_SHORT).show()
-//                true
-//            } else {
-//                Toast.makeText(activity as AppCompatActivity, "Оповещения выключены!", Toast.LENGTH_SHORT).show()
-//                val intent = Intent(context, FirebaseNotificationsService::class.java)
-//                activity!!.stopService(intent)
-//                false
-//            }
-//            settingsViewModel.saveApplicationSettings(ApplicationSettings("1", isNotificationsEnabled, true, ""))
-//        }
+        val context = context
+        notificationsSettingsButton.setOnClickListener {
+            if (context != null) {
+                startActivity(Router.prepareApplicationSettingsIntent(context))
+            }
+        }
+
+        chooseLanguageRadioGroup.setOnCheckedChangeListener { group, checkedId ->
+            when (checkedId) {
+                R.id.ukranianRadioButton -> interfaceLanguage = UKRAINIAN_LANGUAGE_TAG
+                R.id.russianRadioButton -> interfaceLanguage = RUSSIAN_LANGUAGE_TAG
+                R.id.englishRadioButton -> interfaceLanguage = ENGLISH_LANGUAGE_TAG
+            }
+        }
+
+        chooseLanguageButton.setOnClickListener {
+            if (localeLanguage != null) {
+                settingsViewModel.saveApplicationSettings(ApplicationSettings(APPLICATION_SETTINGS_ID, interfaceLanguage, localeLanguage))
+            }
+            if (context != null) {
+                startActivity(Router.prepareSplashScreenIntent(context))
+            }
+        }
     }
 }

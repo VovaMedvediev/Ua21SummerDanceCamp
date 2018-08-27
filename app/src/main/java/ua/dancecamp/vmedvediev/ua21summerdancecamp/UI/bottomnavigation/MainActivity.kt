@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.app.AppCompatDelegate
 import android.view.Menu
 import android.view.MenuItem
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.settings.SettingsFragment
@@ -23,7 +24,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
         navigation.setOnNavigationItemSelectedListener(this)
 
         setupViewPager()

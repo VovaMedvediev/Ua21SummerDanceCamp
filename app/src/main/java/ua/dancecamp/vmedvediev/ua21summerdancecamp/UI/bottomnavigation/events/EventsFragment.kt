@@ -22,12 +22,13 @@ import ua.dancecamp.vmedvediev.ua21summerdancecamp.model.EventsCache
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.repository.Repository
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
     companion object {
         private val numberOfDaysArray=
                 MyApplication.instance.resources.getStringArray(R.array.numbersOfDaysArray)
-        private val namesOfDaysArray =
+        private var namesOfDaysArray =
                 MyApplication.instance.resources.getStringArray(R.array.namesOfDaysArray)
         private const val INDEX_OF_FIRST_TAB = 0
         // We should decrement value because of indexing starts from 0
@@ -94,6 +95,7 @@ class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
         super.onActivityCreated(savedInstanceState)
         activity?.actionBar?.setBackgroundDrawable(resources.getDrawable(R.drawable.ab_main_background))
         setupTabs()
+        updateTabs()
         setupLayoutManager()
         setupRecycler()
         Handler().postDelayed({ onTabSelected(eventsTabLayout.getTabAt(0)) }, 1)
@@ -170,10 +172,21 @@ class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
     }
 
     private fun setupTabs() {
+        eventsTabLayout.removeAllTabs()
         for (i in INDEX_OF_FIRST_TAB..INDEX_OF_LAST_TAB) {
             eventsTabLayout.apply {
                 addTab(this.newTab())
                 getTabAt(i)?.customView = TabCustomView(activity as AppCompatActivity, namesOfDaysArray[i], numberOfDaysArray[i])
+            }
+        }
+    }
+
+    private fun updateTabs() {
+        namesOfDaysArray = emptyArray()
+        namesOfDaysArray = context?.resources?.getStringArray(R.array.namesOfDaysArray)
+        for (i in INDEX_OF_FIRST_TAB..INDEX_OF_LAST_TAB) {
+            eventsTabLayout.apply {
+                (getTabAt(i)?.customView as TabCustomView).updateValues(numberOfDaysArray[i], namesOfDaysArray[i])
             }
         }
     }

@@ -6,8 +6,8 @@ import ua.dancecamp.vmedvediev.ua21summerdancecamp.model.RealmSettings
 class RealmSettingsMapper : Mapper<RealmSettings, ApplicationSettings> {
 
     override fun from(initialObject: RealmSettings) = ApplicationSettings(initialObject.id,
-            initialObject.isNotificationsEnabled, initialObject.isLightTheme, initialObject.interfaceLanguage)
+            initialObject.interfaceLanguage, initialObject.localeLanguage)
 
     override fun to(initialObject: ApplicationSettings) = RealmSettings(initialObject.id,
-            initialObject.isNotificationsEnabled, initialObject.isLightTheme, initialObject.interfaceLanguage)
+            initialObject.interfaceLanguage, initialObject.localeLanguage)
 }

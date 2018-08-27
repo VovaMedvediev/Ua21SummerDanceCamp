@@ -9,18 +9,18 @@
         android:id="@+id/selectLanguageTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Язык интерфейса:"
-        android:textColor="@color/colorBlack"
+        android:text="@string/label_language"
         android:textSize="22sp"
         android:gravity="center_horizontal"
         android:layout_marginTop="8dp"
+        android:textColor="@color/colorBlack"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/settingsRadioGroup"/>
+        app:layout_constraintBottom_toTopOf="@id/chooseLanguageRadioGroup"/>
 
     <RadioGroup
-        android:id="@+id/settingsRadioGroup"
+        android:id="@+id/chooseLanguageRadioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -33,98 +33,65 @@
             android:id="@+id/ukranianRadioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Українська мова"
+            android:text="@string/label_ua"
+            android:theme="@style/RadioButtonsTheme"
             android:textSize="22sp"/>
 
         <RadioButton
             android:id="@+id/russianRadioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Русский язык"
+            android:text="@string/label_ru"
+            android:theme="@style/RadioButtonsTheme"
             android:textSize="22sp"/>
 
         <RadioButton
             android:id="@+id/englishRadioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="English language"
+            android:text="@string/label_en"
+            android:theme="@style/RadioButtonsTheme"
             android:textSize="22sp"/>
 
     </RadioGroup>
 
-    <View
-        android:layout_width="0dp"
-        android:layout_height="2dp"
-        android:background="#000000"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/settingsRadioGroup"/>
-
-    <TextView
-        android:id="@+id/selectThemeTextView"
+    <Button
+        android:id="@+id/chooseLanguageButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Тема:"
-        android:textColor="@color/colorBlack"
-        android:textSize="22sp"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/label_confirm_language"
+        android:textAllCaps="false"
+        android:background="@color/colorDarkGrey"
+        android:textColor="@color/colorWhite"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/settingsRadioGroup"/>
-
-    <RadioGroup
-        android:id="@+id/chooseThemeRadioGroup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/selectThemeTextView">
-
-        <RadioButton
-            android:id="@+id/lightRadioButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Светлая"
-            android:textSize="22sp"/>
-
-        <RadioButton
-            android:id="@+id/darkRadioButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Темная"
-            android:textSize="22sp"/>
-
-    </RadioGroup>
-
-    <View
-        android:layout_width="0dp"
-        android:layout_height="2dp"
-        android:background="#000000"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/chooseThemeRadioGroup"/>
+        app:layout_constraintTop_toBottomOf="@id/chooseLanguageRadioGroup" />
 
     <TextView
         android:id="@+id/notificationsSettingsTitleTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Напоминать о мастер-классах:"
-        android:textColor="@color/colorBlack"
+        android:text="@string/label_notifications_settings"
         android:textSize="22sp"
         android:gravity="center_horizontal"
         android:layout_marginTop="8dp"
+        android:textColor="@color/colorBlack"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/chooseThemeRadioGroup" />
+        app:layout_constraintTop_toBottomOf="@id/chooseLanguageButton" />
 
-    <Switch
-        android:id="@+id/notificationsSettingsSwitch"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/notificationsSettingsButton"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:checked="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/label_open_settings"
+        android:textAllCaps="false"
+        android:background="@color/colorDarkGrey"
+        android:textColor="@color/colorWhite"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/notificationsSettingsTitleTextView"/>

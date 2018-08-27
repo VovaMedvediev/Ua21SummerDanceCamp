@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="numbersOfDaysArray">
+        <item>28/8</item>
+        <item>29/8</item>
+        <item>30/8</item>
+        <item>31/8</item>
+        <item>01/9</item>
+        <item>02/9</item>
+        <item>03/9</item>
+        <item>04/9</item>
+    </string-array>
+
+    <string-array name="namesOfDaysArray">
+        <item>Вівторок</item>
+        <item>Середа</item>
+        <item>Четверг</item>
+        <item>Пятниця</item>
+        <item>Субота</item>
+        <item>Неділя</item>
+        <item>Понеділок</item>
+        <item>Вівторок</item>
+    </string-array>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_workshop">Майстер-класи</string>
+    <string name="title_notes">Нотатки</string>
+    <string name="title_settings">Налаштування</string>
+    <string name="hint_note">Напиші що-небудь цікаве :)</string>
+    <string name="label_number_of_day">28/8</string>
+    <string name="label_name_of_day">пон</string>
+    <string name="label_fullname_of_day">ПОНЕДІЛОК</string>
+    <string name="label_name_of_event">Darina Maltseva</string>
+    <string name="label_confirm_note">Confirm note</string>
+    <string name="list_of_events_json">ListOfEvents.json</string>
+    <string name="list_of_events_en_json">listOfEventsEn.json</string>
+    <string name="list_of_events_ua_json">ListOfEventsUa.json</string>
+    <string name="label_note">This is a note</string>
+    <string name="label_list_of_notes_is_empty">В тебе ще немає нотаток :(</string>
+    <string name="label_event_time">10.00</string>
+    <string name="label_instagram">Instagram</string>
+    <string name="label_telegram">Telegram</string>
+    <string name="label_english">en</string>
+    <string name="label_russian">ru</string>
+    <string name="label_ukranian">ua</string>
+    <string name="time_notification_label">Через 30 хвилин</string>
+    <string name="label_language">Мова інтерфейсу:</string>
+    <string name="label_ua">Українська мова</string>
+    <string name="label_ru">Російська мова</string>
+    <string name="label_en">Англійська мова</string>
+    <string name="label_theme">Тема:</string>
+    <string name="label_light">Свiтла</string>
+    <string name="label_dark">Темна</string>
+    <string name="label_confirm_theme">Змiнити тему</string>
+    <string name="label_confirm_language">Змiнити мову</string>
+    <string name="label_notifications_settings">Щоб не отримувати нагадування - відключіть оповіщення для додатка у налаштуваннях</string>
+    <string name="label_open_settings">Відкрити налаштуванняи</string>
+</resources>

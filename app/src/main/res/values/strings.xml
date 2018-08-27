@@ -3,7 +3,6 @@
     <string name="title_activity_tab">TabActivity</string>
     <string name="action_settings">Settings</string>
     <string-array name="numbersOfDaysArray">
-        <item>27/8</item>
         <item>28/8</item>
         <item>29/8</item>
         <item>30/8</item>
@@ -11,10 +10,10 @@
         <item>01/9</item>
         <item>02/9</item>
         <item>03/9</item>
+        <item>04/9</item>
     </string-array>
 
     <string-array name="namesOfDaysArray">
-        <item>Понедельник</item>
         <item>Вторник</item>
         <item>Среда</item>
         <item>Четверг</item>
@@ -22,6 +21,7 @@
         <item>Суббота</item>
         <item>Воскресенье</item>
         <item>Понедельник</item>
+        <item>Вторник</item>
     </string-array>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_workshop">Мастер-классы</string>
@@ -35,14 +35,28 @@
     <string name="label_confirm_note">Confirm note</string>
     <string name="list_of_events_json">ListOfEvents.json</string>
     <string name="list_of_events_en_json">listOfEventsEn.json</string>
+    <string name="list_of_events_ua_json">ListOfEventsUa.json</string>
     <string name="label_note">This is a note</string>
     <string name="label_list_of_notes_is_empty">У тебя еще нет ни одной заметки :(</string>
     <string name="label_event_time">10.00</string>
     <string name="label_instagram">Instagram</string>
     <string name="label_telegram">Telegram</string>
-    <string name="label_english">English</string>
+    <string name="label_english">en</string>
+    <string name="label_russian">ru</string>
+    <string name="label_ukranian">ua</string>
     <string name="time_notification_label">Через 30 минут</string>
     <string name="label_notification_channel">Notifications channel</string>
     <string name="label_description">Description</string>
     <string name="label_cherez_30_minyt">Через 30 минут</string>
+    <string name="label_language">Язык интерфейса:</string>
+    <string name="label_ua">Украинский язык</string>
+    <string name="label_ru">Русский язык</string>
+    <string name="label_en">Английский язык</string>
+    <string name="label_theme">Тема:</string>
+    <string name="label_light">Светлая</string>
+    <string name="label_dark">Темная</string>
+    <string name="label_confirm_theme">Поменять тему</string>
+    <string name="label_confirm_language">Поменять язык</string>
+    <string name="label_notifications_settings">Чтобы не получать напоминалки - отключите оповещения для приложения в настройках</string>
+    <string name="label_open_settings">Открыть настройки</string>
 </resources>
