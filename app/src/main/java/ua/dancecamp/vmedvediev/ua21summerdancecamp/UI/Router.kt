@@ -13,7 +13,7 @@ import ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.splash.SplashActivity
 object Router {
 
     private const val INSTAGRAM_ACCOUNT_URL = "https://www.instagram.com/dancecampua21/"
-    private const val TELEGRAM_ACCOUNT_URL = "tg://resolve?domain=groupname"
+    private const val TELEGRAM_ACCOUNT_URL = "tg://resolve?domain=ua21sdc"
     private const val INSTAGRAM_PACKAGE = "com.instagram.android"
     private const val TELEGRAM_X_PACKAGE = "org.thunderdog.challegram"
     private const val TELEGRAM_PACKAGE = "org.telegram.messenger"

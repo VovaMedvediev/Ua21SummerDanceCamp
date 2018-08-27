@@ -87,6 +87,11 @@ class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        Handler().postDelayed({ onTabSelected(eventsTabLayout.getTabAt(0)) }, 1)
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_events, container, false)
     }
@@ -98,7 +103,6 @@ class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
         updateTabs()
         setupLayoutManager()
         setupRecycler()
-        Handler().postDelayed({ onTabSelected(eventsTabLayout.getTabAt(0)) }, 1)
         setupCurrentDayTab()
 
         eventsTabLayout.addOnTabSelectedListener(this)
