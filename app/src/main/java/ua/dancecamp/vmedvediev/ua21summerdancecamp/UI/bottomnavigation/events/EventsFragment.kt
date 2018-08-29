@@ -13,6 +13,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_events.*
+import timber.log.Timber
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.MyApplication
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.R
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.Router
@@ -89,7 +90,7 @@ class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
 
     override fun onResume() {
         super.onResume()
-        Handler().postDelayed({ onTabSelected(eventsTabLayout.getTabAt(0)) }, 1)
+        setupCurrentDayTab()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -103,7 +104,6 @@ class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
         updateTabsLanguage()
         linearLayoutManager = LinearLayoutManager(activity)
         setupRecycler()
-        setupCurrentDayTab()
 
         eventsTabLayout.addOnTabSelectedListener(this)
 
@@ -136,6 +136,7 @@ class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
         val currentDay = simpleDateFormat.format(calendar.time)
         for (i in INDEX_OF_FIRST_TAB..INDEX_OF_LAST_TAB) {
             val tabDate = (eventsTabLayout.getTabAt(i)?.customView as TabCustomView).getDate().substring(0, 2)
+            Timber.e("===============$currentDay CURENT +++ $tabDate TAB")
             if (currentDay == tabDate) {
                 Handler().postDelayed({ eventsTabLayout.getTabAt(i)?.let { it.select() } }, 1)
             }

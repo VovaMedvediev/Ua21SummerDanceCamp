@@ -1,6 +1,7 @@
 package ua.dancecamp.vmedvediev.ua21summerdancecamp.repository
 
 import io.realm.RealmResults
+import timber.log.Timber
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmEventMapper
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmSettingsMapper
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.model.*
@@ -50,7 +51,7 @@ class Repository(private val eventsMapper: RealmEventMapper, private val setting
 
     fun getEventsList(date: String, onDataLoaded: (LinkedHashSet<ListItem>) -> Unit) {
         val realmEventsList = DatabaseHelper.getEventsByDate(date)
-        onDataLoaded(if (EventsCache.eventsList.isNotEmpty()) getEventsFromLocalStorage(date) else if (realmEventsList.isNotEmpty()) prepareEventsFromDatabase(realmEventsList) else LinkedHashSet())
+        onDataLoaded(if (EventsCache.eventsList.isNotEmpty()) prepareEventsFromDatabase(realmEventsList) else if (realmEventsList.isNotEmpty()) prepareEventsFromDatabase(realmEventsList) else LinkedHashSet())
     }
 
     fun getAllEvents() = DatabaseHelper.getEvents()
@@ -87,7 +88,7 @@ class Repository(private val eventsMapper: RealmEventMapper, private val setting
     private fun prepareEventsFromDatabase(realmEventsList: RealmResults<RealmEvent>): LinkedHashSet<ListItem> {
         val eventsList = LinkedHashSet<ListItem>()
         realmEventsList.forEach {
-            val date = eventsMapper.from(it)
+            val date = Date(eventsMapper.from(it).eventDate)
             eventsList.apply {
                 add(date)
                 add(eventsMapper.from(it))
