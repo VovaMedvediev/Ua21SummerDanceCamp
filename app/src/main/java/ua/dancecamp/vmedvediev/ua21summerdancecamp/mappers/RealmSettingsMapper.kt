@@ -1,7 +1,7 @@
 package ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers
 
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.model.ApplicationSettings
-import ua.dancecamp.vmedvediev.ua21summerdancecamp.model.RealmSettings
+import ua.dancecamp.vmedvediev.ua21summerdancecamp.model.entity.RealmSettings
 
 class RealmSettingsMapper : Mapper<RealmSettings, ApplicationSettings> {
 

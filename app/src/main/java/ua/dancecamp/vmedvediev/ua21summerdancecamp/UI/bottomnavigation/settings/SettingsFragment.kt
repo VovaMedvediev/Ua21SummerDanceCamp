@@ -19,10 +19,10 @@ import ua.dancecamp.vmedvediev.ua21summerdancecamp.repository.Repository
 class SettingsFragment : Fragment() {
 
     companion object {
-        const val UKRAINIAN_LANGUAGE_TAG = "ua"
-        const val RUSSIAN_LANGUAGE_TAG = "ru"
-        const val ENGLISH_LANGUAGE_TAG = "en"
-        const val APPLICATION_SETTINGS_ID = "1"
+        private const val UKRAINIAN_LANGUAGE_TAG = "ua"
+        private const val RUSSIAN_LANGUAGE_TAG = "ru"
+        private const val ENGLISH_LANGUAGE_TAG = "en"
+        private const val APPLICATION_SETTINGS_ID = "1"
     }
 
     private val settingsViewModel by lazy {

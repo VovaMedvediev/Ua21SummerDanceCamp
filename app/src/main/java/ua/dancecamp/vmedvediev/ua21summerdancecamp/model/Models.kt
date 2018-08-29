@@ -5,24 +5,6 @@ import com.google.gson.annotations.SerializedName
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 
-open class RealmEvent(
-        @PrimaryKey var id: String = "",
-        var name: String = "",
-        var date: String = "",
-        var noteText: String = "",
-        var noteDate: String = "",
-        var dateType: Int = 0,
-        var eventTime: String = "",
-        var canHaveNote: Boolean = false,
-        var image: String = ""
-) : RealmObject()
-
-open class RealmSettings(
-        @PrimaryKey var id: String = "1",
-        var interfaceLanguage: String = "",
-        var localeLanguage: String = ""
-) : RealmObject()
-
 data class ApplicationSettings(
         var id: String = "1",
         var interfaceLanguage: String = "",

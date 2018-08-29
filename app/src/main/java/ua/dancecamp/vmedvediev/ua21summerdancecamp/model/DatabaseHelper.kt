@@ -2,6 +2,8 @@ package ua.dancecamp.vmedvediev.ua21summerdancecamp.model
 
 import io.realm.Realm
 import io.realm.RealmResults
+import ua.dancecamp.vmedvediev.ua21summerdancecamp.model.entity.RealmEvent
+import ua.dancecamp.vmedvediev.ua21summerdancecamp.model.entity.RealmSettings
 
 object DatabaseHelper {
 
@@ -26,10 +28,10 @@ object DatabaseHelper {
     fun getApplicationSettings() = Realm.getDefaultInstance().where(RealmSettings::class.java).findFirst()
 
     fun saveApplicationSettings(realmSettings: RealmSettings) {
-        Realm.getDefaultInstance().apply {
-            beginTransaction()
-            insertOrUpdate(realmSettings)
-            commitTransaction()
+        Realm.getDefaultInstance().use {
+            it.executeTransaction {
+                it.insertOrUpdate(realmSettings)
+            }
         }
     }
 
@@ -48,9 +50,11 @@ object DatabaseHelper {
     fun saveEvents(realmEventsList: ArrayList<RealmEvent>) {
         Realm.getDefaultInstance().apply {
             beginTransaction()
-            delete(RealmEvent::class.java)
+            clearInitialRealmEvents(this)
             insert(realmEventsList)
             commitTransaction()
         }
     }
+
+    private fun clearInitialRealmEvents(realm: Realm) = realm.delete(RealmEvent::class.java)
 }

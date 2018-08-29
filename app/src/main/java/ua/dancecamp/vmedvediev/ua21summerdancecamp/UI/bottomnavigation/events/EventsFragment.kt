@@ -100,8 +100,8 @@ class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
         super.onActivityCreated(savedInstanceState)
         activity?.actionBar?.setBackgroundDrawable(resources.getDrawable(R.drawable.ab_main_background))
         setupTabs()
-        updateTabs()
-        setupLayoutManager()
+        updateTabsLanguage()
+        linearLayoutManager = LinearLayoutManager(activity)
         setupRecycler()
         setupCurrentDayTab()
 
@@ -128,10 +128,6 @@ class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
         } else {
             getEventsByScrollingThroughList(tab)
         }
-    }
-
-    private fun setupLayoutManager() {
-        linearLayoutManager = LinearLayoutManager(activity)
     }
 
     private fun setupCurrentDayTab() {
@@ -185,7 +181,7 @@ class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
         }
     }
 
-    private fun updateTabs() {
+    private fun updateTabsLanguage() {
         namesOfDaysArray = emptyArray()
         namesOfDaysArray = context?.resources?.getStringArray(R.array.namesOfDaysArray)
         for (i in INDEX_OF_FIRST_TAB..INDEX_OF_LAST_TAB) {

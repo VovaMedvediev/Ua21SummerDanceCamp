@@ -15,10 +15,7 @@ class TabCustomView constructor(context: Context,
 
     init {
         LayoutInflater.from(context).inflate(R.layout.custom_tab, this, true)
-        tabName = nameOfTheDay
-        tabNumber = numberOfTheDay
-        nameOfTheDayTextView?.text = tabName
-        numbersOfTheDayTextView?.text = tabNumber
+        updateValues(numberOfTheDay, nameOfTheDay)
     }
 
     fun getDate() = "$tabNumber $tabName"

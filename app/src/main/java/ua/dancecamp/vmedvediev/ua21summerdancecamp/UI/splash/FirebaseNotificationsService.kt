@@ -18,7 +18,11 @@ class FirebaseNotificationsService : FirebaseMessagingService() {
     }
 
     override fun onMessageReceived(p0: RemoteMessage?) {
-        makeNotification(p0?.let { it.notification?.let { it.body } })
+        val remoteMessage = p0
+        val remoteMessageNotification = remoteMessage?.notification
+        if (remoteMessage != null && remoteMessageNotification != null) {
+            makeNotification(remoteMessageNotification.body)
+        }
     }
 
     private fun makeNotification(messageBody: String?) {

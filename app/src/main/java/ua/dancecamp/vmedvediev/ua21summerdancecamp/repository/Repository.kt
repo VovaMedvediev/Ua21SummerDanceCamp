@@ -4,6 +4,7 @@ import io.realm.RealmResults
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmEventMapper
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmSettingsMapper
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.model.*
+import ua.dancecamp.vmedvediev.ua21summerdancecamp.model.entity.RealmEvent
 import kotlin.collections.ArrayList
 import kotlin.collections.LinkedHashSet
 
@@ -43,7 +44,7 @@ class Repository(private val eventsMapper: RealmEventMapper, private val setting
     private fun prepareNotesFromDatabase(realmEventsList: RealmResults<RealmEvent>): ArrayList<Event> {
         val eventsList = ArrayList<Event>()
         val filteredList = realmEventsList.filter { it.noteText.isNotEmpty() }
-        filteredList.forEach { eventsList.add(eventsMapper.from(it)) }
+        filteredList.mapTo(eventsList) { it -> eventsMapper.from(it) }
         return eventsList
     }
 
@@ -57,9 +58,7 @@ class Repository(private val eventsMapper: RealmEventMapper, private val setting
     fun setupLocalStorage() {
         EventsCache.eventsList.clear()
         val realmEventsList = DatabaseHelper.getEvents()
-        realmEventsList.forEach {
-            EventsCache.eventsList.add(eventsMapper.from(it))
-        }
+        realmEventsList.mapTo(EventsCache.eventsList) {it -> eventsMapper.from(it) }
     }
 
     fun saveEvents(eventsList: ArrayList<Event>) {

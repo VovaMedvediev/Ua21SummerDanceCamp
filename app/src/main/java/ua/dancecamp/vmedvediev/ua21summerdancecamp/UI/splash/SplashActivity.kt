@@ -31,37 +31,53 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+
         splashViewModel.apply {
             getApplicationSettings()
             applicationSettings.observe(this@SplashActivity, Observer {
                 if (it != null) {
-                    val localeLanguage = baseContext.resources.configuration.locale.language
-                    val applicationLanguage = if (it.interfaceLanguage.isEmpty()) {
-                        localeLanguage
-                    } else {
-                        it.interfaceLanguage
-                    }
-                    val previousLocaleLanguage = if (it.localeLanguage.isEmpty()) {
-                        localeLanguage
-                    } else {
-                        it.localeLanguage
-                    }
-                    when {
-                        EventsCache.eventsList.isNotEmpty() && (previousLocaleLanguage == applicationLanguage) -> {
-                            startActivity(Router.prepareMainActivityIntent(this@SplashActivity))
-                            finish()
-                        }
-                        splashViewModel.getEvents().isNotEmpty() && (previousLocaleLanguage == applicationLanguage) -> {
-                            splashViewModel.setupLocalStorage()
-                            startActivity(Router.prepareMainActivityIntent(this@SplashActivity))
-                            finish()
-                        }
-                        else -> JsonParserAsyncTask(WeakReference(this@SplashActivity)).execute(applicationLanguage)
-                    }
+                    val applicationLanguage  = checkApplicationLanguage(it)
+                    val previousLocaleLanguage = checkPreviousLocaleLanguage(it)
+
+                    startMainActivity(previousLocaleLanguage, applicationLanguage)
+
                     updateLocale(applicationLanguage)
                     splashViewModel.saveApplicationSettigns(ApplicationSettings(it.id, applicationLanguage, applicationLanguage))
                 }
             })
+        }
+    }
+
+    private fun startMainActivity(previousLocaleLanguage: String, applicationLanguage: String) {
+        when {
+            EventsCache.eventsList.isNotEmpty() && (previousLocaleLanguage == applicationLanguage) -> {
+                startActivity(Router.prepareMainActivityIntent(this@SplashActivity))
+                finish()
+            }
+            splashViewModel.getEvents().isNotEmpty() && (previousLocaleLanguage == applicationLanguage) -> {
+                splashViewModel.setupLocalStorage()
+                startActivity(Router.prepareMainActivityIntent(this@SplashActivity))
+                finish()
+            }
+            else -> JsonParserAsyncTask(WeakReference(this@SplashActivity)).execute(applicationLanguage)
+        }
+    }
+
+    private fun checkApplicationLanguage(applicationSettings: ApplicationSettings) : String {
+        val localeLanguage = baseContext.resources.configuration.locale.language
+        return if (applicationSettings.interfaceLanguage.isEmpty()) {
+            localeLanguage
+        } else {
+            applicationSettings.interfaceLanguage
+        }
+    }
+
+    private fun checkPreviousLocaleLanguage(applicationSettings: ApplicationSettings) : String {
+        val localeLanguage = baseContext.resources.configuration.locale.language
+        return if (applicationSettings.localeLanguage.isEmpty()) {
+            localeLanguage
+        } else {
+            applicationSettings.localeLanguage
         }
     }
 
@@ -92,8 +108,8 @@ class SplashActivity : AppCompatActivity() {
                     val applicationAssets = applicationContext.assets
 
                     val inputStream = when (applicationLanguage) {
-                        MyApplication.instance.getString(R.string.label_english) -> applicationAssets.open(applicationInstance.getString(R.string.list_of_events_en_json))
-                        MyApplication.instance.getString(R.string.label_ukranian) -> applicationAssets.open(MyApplication.instance.getString(R.string.list_of_events_ua_json))
+                        applicationInstance.getString(R.string.label_english) -> applicationAssets.open(applicationInstance.getString(R.string.list_of_events_en_json))
+                        applicationInstance.getString(R.string.label_ukranian) -> applicationAssets.open(MyApplication.instance.getString(R.string.list_of_events_ua_json))
                         else -> applicationAssets.open(MyApplication.instance.getString(R.string.list_of_events_json))
                     }
                     val size: Int = inputStream.available()

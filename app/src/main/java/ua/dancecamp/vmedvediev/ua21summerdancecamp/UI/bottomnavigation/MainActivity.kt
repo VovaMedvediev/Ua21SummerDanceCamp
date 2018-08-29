@@ -32,13 +32,13 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.navigation_events -> {
+            R.id.navigationEventsMenuItem -> {
                 bottomNavigationViewPager.currentItem = 0
             }
-            R.id.navigation_notes -> {
+            R.id.navigationNotesMenuItem -> {
                 bottomNavigationViewPager.currentItem = 1
             }
-            R.id.navigation_settings -> {
+            R.id.navigationSettingsMenuItem -> {
                 bottomNavigationViewPager.currentItem = 2
             }
         }
