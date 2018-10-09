@@ -7,4 +7,5 @@
     <color name="colorBottomNavigation">#0f0f1b</color>
     <color name="colorBlack">#000000</color>
     <color name="colorWhite">#FFFFFF</color>
+    <color name="colorDarkGrey">#1b1b1b</color>
 </resources>
