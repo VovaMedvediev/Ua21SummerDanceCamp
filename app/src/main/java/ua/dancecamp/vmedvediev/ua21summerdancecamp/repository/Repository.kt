@@ -1,6 +1,9 @@
 package ua.dancecamp.vmedvediev.ua21summerdancecamp.repository
 
 import io.realm.RealmResults
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import timber.log.Timber
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmEventMapper
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmSettingsMapper
@@ -32,6 +35,24 @@ class Repository(private val eventsMapper: RealmEventMapper, private val setting
         } else {
             onApplicationSettingsLoaded(ApplicationSettings())
         }
+    }
+
+    fun getWeatherResponse(onWeatherResponseLoaded: (WeatherResponse) -> Unit) {
+        val weatherApi = NetworkManager.initRetrofit()
+        val weatherResponse = weatherApi.getCurrentWeather()
+        weatherResponse.enqueue(object : Callback<WeatherResponse> {
+            override fun onFailure(call: Call<WeatherResponse>, t: Throwable) {
+                onWeatherResponseLoaded(WeatherResponse())
+            }
+
+            override fun onResponse(call: Call<WeatherResponse>, response: Response<WeatherResponse>) {
+                val body = response.body()
+                if (body != null) {
+                    onWeatherResponseLoaded(body)
+                }
+            }
+
+        })
     }
 
     fun deleteNoteFromDatabase(event: Event) {

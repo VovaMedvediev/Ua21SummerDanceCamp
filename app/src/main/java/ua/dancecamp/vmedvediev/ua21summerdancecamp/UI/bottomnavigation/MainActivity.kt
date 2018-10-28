@@ -92,6 +92,9 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             R.id.navigation_telegram -> {
                 startActivity(Router.prepareTelegramProfileIntent(this))
             }
+            R.id.navigation_weather -> {
+                startActivity(Router.prepareWeatherActivityIntent(this))
+            }
         }
         return super.onOptionsItemSelected(item)
     }

@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.provider.Settings
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.MainActivity
+import ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.weather.WeatherActivity
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.notes.NoteActivity
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.notes.NoteActivity.Companion.KEY_EVENT_ID_TO_NOTE_ACTIVITY
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.splash.SplashActivity
@@ -62,4 +63,6 @@ object Router {
 
     fun prepareApplicationSettingsIntent(context: Context) =
             Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:${context.packageName}"))
+
+    fun prepareWeatherActivityIntent(context: Context) = Intent(context, WeatherActivity::class.java)
 }

@@ -54,4 +54,9 @@
     <string name="label_confirm_language">Змiнити мову</string>
     <string name="label_notifications_settings">Щоб не отримувати нагадування - відключіть оповіщення для додатка у налаштуваннях</string>
     <string name="label_open_settings">Відкрити налаштування</string>
+    <string name="label_current_weather">Поточна погода</string>
+    <string name="label_max_temp">Макс. Температура:</string>
+    <string name="label_min_temp">Miн. Температура:</string>
+    <string name="label_m_s">м/с</string>
+    <string name="label_wind">Вiтер</string>
 </resources>

@@ -27,6 +27,9 @@
             android:screenOrientation="portrait" />
         <activity android:name="ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.MainActivity"
                   android:screenOrientation="portrait"/>
+        <activity android:name=".UI.weather.WeatherActivity"
+                  android:screenOrientation="portrait"/>
+
         <service android:name="ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.splash.FirebaseNotificationsService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>

@@ -59,4 +59,12 @@
     <string name="label_confirm_language">Поменять язык</string>
     <string name="label_notifications_settings">Чтобы не получать напоминалки - отключите оповещения для приложения в настройках</string>
     <string name="label_open_settings">Открыть настройки</string>
+    <string name="label_current_weather">Текущая погода</string>
+    <string name="label_max_temp">Макс. Температура:</string>
+    <string name="label_10_c" translatable="false">10 ℃</string>
+    <string name="label_degrees_celsius" translatable="false">℃</string>
+    <string name="label_min_temp">Мин. Температура:</string>
+    <string name="label_wind">Ветер</string>
+    <string name="label_4_6" translatable="false">4.6 m/s</string>
+    <string name="label_m_s">м/с</string>
 </resources>
