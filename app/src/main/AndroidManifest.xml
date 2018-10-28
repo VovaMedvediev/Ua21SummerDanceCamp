@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ua.dancecamp.vmedvediev.ua21summerdancecamp"
-    android:versionName="1.0"
-    android:versionCode="1">
+    android:versionName="3.0"
+    android:versionCode="3">
 
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY"/>
+    <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
 
     <application
         android:name="ua.dancecamp.vmedvediev.ua21summerdancecamp.MyApplication"
@@ -27,7 +28,10 @@
             android:screenOrientation="portrait" />
         <activity android:name="ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.MainActivity"
                   android:screenOrientation="portrait"/>
-        <service android:name="ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.splash.FirebaseNotificationsService">
+        <activity android:name=".UI.login.LoginActivity"
+            android:screenOrientation="portrait"/>
+
+        <service android:name="ua.dancecamp.vmedvediev.ua21summerdancecamp.services.FirebaseNotificationsService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>

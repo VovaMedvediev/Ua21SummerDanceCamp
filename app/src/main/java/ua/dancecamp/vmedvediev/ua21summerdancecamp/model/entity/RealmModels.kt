@@ -20,3 +20,9 @@ open class RealmSettings(
         var interfaceLanguage: String = "",
         var localeLanguage: String = ""
 ) : RealmObject()
+
+open class RealmCredentials(
+        @PrimaryKey var id: String = "",
+        var password: String = "",
+        var isFingerPrintAllowed: Boolean = false
+) : RealmObject()

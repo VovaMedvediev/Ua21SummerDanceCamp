@@ -8,6 +8,7 @@ import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_note.*
 import android.arch.lifecycle.Observer
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.R
+import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmCredentialsMapper
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmEventMapper
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmSettingsMapper
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.model.Event
@@ -26,13 +27,14 @@ class NoteActivity : AppCompatActivity() {
         val extras = intent.extras
         if (extras != null) {
             if (extras.containsKey(KEY_EVENT_ID_TO_NOTE_ACTIVITY)) {
-                eventId = extras.getString(KEY_EVENT_ID_TO_NOTE_ACTIVITY)
+                eventId = extras.getString(KEY_EVENT_ID_TO_NOTE_ACTIVITY)!!
             }
         }
         return@lazy eventId
     }
     private val notesViewModel by lazy {
-        ViewModelProviders.of(this, NotesViewModel(Repository(RealmEventMapper(), RealmSettingsMapper())).NotesViewModelFactory()).
+        ViewModelProviders.of(this, NotesViewModel(Repository(RealmEventMapper(),
+                RealmSettingsMapper(), RealmCredentialsMapper())).NotesViewModelFactory()).
                 get(NotesViewModel::class.java)
     }
     private val event: Event? by lazy {

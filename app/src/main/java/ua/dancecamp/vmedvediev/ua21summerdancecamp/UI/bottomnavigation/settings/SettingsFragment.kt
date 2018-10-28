@@ -12,6 +12,7 @@ import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmSettingsMapper
 import kotlinx.android.synthetic.main.fragment_settings.*
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.R
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.Router
+import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmCredentialsMapper
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmEventMapper
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.model.ApplicationSettings
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.repository.Repository
@@ -26,7 +27,8 @@ class SettingsFragment : Fragment() {
     }
 
     private val settingsViewModel by lazy {
-        ViewModelProviders.of(this, SettingsViewModel(Repository(RealmEventMapper(), RealmSettingsMapper())).SettingsViewModelFactory())
+        ViewModelProviders.of(this, SettingsViewModel(Repository(RealmEventMapper(),
+                RealmSettingsMapper(), RealmCredentialsMapper())).SettingsViewModelFactory())
                 .get(SettingsViewModel::class.java)
     }
     private var interfaceLanguage = ""
@@ -62,6 +64,7 @@ class SettingsFragment : Fragment() {
         notificationsSettingsButton.setOnClickListener {
             if (context != null) {
                 startActivity(Router.prepareApplicationSettingsIntent(context))
+                activity?.finish()
             }
         }
 
@@ -79,6 +82,7 @@ class SettingsFragment : Fragment() {
             }
             if (context != null) {
                 startActivity(Router.prepareSplashScreenIntent(context))
+                activity?.finish()
             }
         }
     }

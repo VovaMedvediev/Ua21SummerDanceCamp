@@ -1,4 +1,4 @@
-package ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.splash
+package ua.dancecamp.vmedvediev.ua21summerdancecamp.services
 
 import android.app.NotificationChannel
 import android.app.NotificationManager

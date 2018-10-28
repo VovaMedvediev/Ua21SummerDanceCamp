@@ -1,11 +1,12 @@
 package ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.notes
 
+import android.support.constraint.ConstraintLayout
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import android.widget.TextView
 import kotlinx.android.synthetic.main.note_item.view.*
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.R
-import ua.dancecamp.vmedvediev.ua21summerdancecamp.inflate
+import ua.dancecamp.vmedvediev.ua21summerdancecamp.services.inflate
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.model.Event
 
 class NotesAdapter(private val eventsList: ArrayList<Event>) :
@@ -49,9 +50,9 @@ class NotesAdapter(private val eventsList: ArrayList<Event>) :
         return eventsList[position]
     }
 
-    inner class NotesViewHolder(parent: ViewGroup?) : RecyclerView.ViewHolder(parent?.inflate(R.layout.note_item)) {
+    inner class NotesViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(parent.inflate(R.layout.note_item)) {
 
-        val noteConstraintLayout = itemView.noteConstraintLayout
+        val noteConstraintLayout: ConstraintLayout = itemView.noteConstraintLayout
         val noteTitle: TextView = itemView.noteTitleTextView
 
     }

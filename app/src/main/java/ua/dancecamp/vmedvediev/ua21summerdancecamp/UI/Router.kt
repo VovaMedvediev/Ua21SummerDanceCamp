@@ -8,6 +8,7 @@ import android.provider.Settings
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.MainActivity
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.notes.NoteActivity
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.notes.NoteActivity.Companion.KEY_EVENT_ID_TO_NOTE_ACTIVITY
+import ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.login.LoginActivity
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.splash.SplashActivity
 
 object Router {
@@ -18,6 +19,10 @@ object Router {
     private const val TELEGRAM_X_PACKAGE = "org.thunderdog.challegram"
     private const val TELEGRAM_PACKAGE = "org.telegram.messenger"
 
+    fun prepareSplashScreenIntent(context: Context) = Intent(context, SplashActivity::class.java)
+
+    fun prepareLoginActivityIntent(context: Context) = Intent(context, LoginActivity::class.java)
+
     fun prepareMainActivityIntent(context: Context) = Intent(context, MainActivity::class.java)
 
     fun prepareNoteActivityIntent(context: Context, eventId: String) : Intent {
@@ -25,8 +30,6 @@ object Router {
         intent.putExtra(KEY_EVENT_ID_TO_NOTE_ACTIVITY, eventId)
         return intent
     }
-
-    fun prepareSplashScreenIntent(context: Context) = Intent(context, SplashActivity::class.java)
 
     fun prepareInstagramProfileIntent(packageManager: PackageManager) : Intent {
         val intent = Intent(Intent.ACTION_VIEW)

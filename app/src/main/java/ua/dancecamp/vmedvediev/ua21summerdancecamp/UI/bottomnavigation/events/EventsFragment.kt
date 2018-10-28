@@ -13,10 +13,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_events.*
-import timber.log.Timber
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.MyApplication
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.R
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.Router
+import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmCredentialsMapper
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmEventMapper
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmSettingsMapper
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.model.EventsCache
@@ -40,14 +40,15 @@ class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
     private var tempDate: String = ""
     private lateinit var linearLayoutManager: LinearLayoutManager
     private val eventsViewModel by lazy {
-        ViewModelProviders.of(this, EventsViewModel(Repository(RealmEventMapper(), RealmSettingsMapper())).EventsViewModelFactory()).get(EventsViewModel::class.java)
+        ViewModelProviders.of(this, EventsViewModel(Repository(RealmEventMapper(),
+                RealmSettingsMapper(), RealmCredentialsMapper())).EventsViewModelFactory()).get(EventsViewModel::class.java)
     }
     private val eventsAdapter by lazy {
         EventsAdapter(activity as AppCompatActivity, ArrayList())
     }
     private val recyclerViewOnScrollListener by lazy {
         object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
 
                 val nextTab = eventsTabLayout.getTabAt(eventsTabLayout.selectedTabPosition + 1)
@@ -62,7 +63,7 @@ class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
                 }
             }
 
-            override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 shouldTabBeSelected = newState == RecyclerView.SCROLL_STATE_IDLE
             }
@@ -136,7 +137,6 @@ class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
         val currentDay = simpleDateFormat.format(calendar.time)
         for (i in INDEX_OF_FIRST_TAB..INDEX_OF_LAST_TAB) {
             val tabDate = (eventsTabLayout.getTabAt(i)?.customView as TabCustomView).getDate().substring(0, 2)
-            Timber.e("===============$currentDay CURENT +++ $tabDate TAB")
             if (currentDay == tabDate) {
                 Handler().postDelayed({ eventsTabLayout.getTabAt(i)?.let { it.select() } }, 1)
             }
