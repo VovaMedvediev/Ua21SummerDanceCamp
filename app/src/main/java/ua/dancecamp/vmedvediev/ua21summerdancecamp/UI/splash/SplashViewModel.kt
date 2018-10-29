@@ -3,7 +3,6 @@ package ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.splash
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
-import android.content.Context
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.model.ApplicationSettings
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.model.Credentials
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.model.Event

@@ -13,7 +13,6 @@ import android.view.inputmethod.EditorInfo
 import kotlinx.android.synthetic.main.dialog_fingerprint_backup.*
 import kotlinx.android.synthetic.main.dialog_fingerprint_container.*
 import kotlinx.android.synthetic.main.dialog_fingerprint_content.*
-import timber.log.Timber
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.R
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.services.SystemServices
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.services.showKeyboard

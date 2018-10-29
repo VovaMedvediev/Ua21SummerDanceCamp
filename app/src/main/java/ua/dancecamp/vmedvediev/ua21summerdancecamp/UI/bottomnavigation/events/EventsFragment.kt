@@ -1,5 +1,6 @@
 package ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.events
 
+import android.annotation.SuppressLint
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -131,6 +132,7 @@ class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
         }
     }
 
+    @SuppressLint("SimpleDateFormat")
     private fun setupCurrentDayTab() {
         val calendar = Calendar.getInstance()
         val simpleDateFormat = SimpleDateFormat("dd")

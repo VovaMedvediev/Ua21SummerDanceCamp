@@ -1,5 +1,6 @@
 package ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.notes
 
+import android.annotation.SuppressLint
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -105,6 +106,7 @@ class NoteActivity : AppCompatActivity() {
 
     private fun getNoteText() = noteEditText?.text.toString()
 
+    @SuppressLint("SimpleDateFormat")
     private fun prepareNoteDate() : String {
         val dateFormat = SimpleDateFormat("dd EEE HH:mm")
         val currentTime = Calendar.getInstance().time

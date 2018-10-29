@@ -3,18 +3,14 @@ package ua.dancecamp.vmedvediev.ua21summerdancecamp.authentication
 import android.annotation.TargetApi
 import android.content.Context
 import android.os.Build
-import android.security.KeyPairGeneratorSpec
 import android.security.keystore.KeyGenParameterSpec
 import android.security.keystore.KeyProperties
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
-import java.math.BigInteger
 import java.security.*
-import java.util.*
 import javax.crypto.KeyGenerator
 import javax.crypto.SecretKey
-import javax.security.auth.x500.X500Principal
 
 class KeyStoreWrapper(private val context: Context, defaultKeyStoreName: String) {
 
@@ -66,21 +62,6 @@ class KeyStoreWrapper(private val context: Context, defaultKeyStoreName: String)
         }
         keyGenerator.init(builder.build())
         return keyGenerator.generateKey()
-    }
-
-    private fun initGeneratorWithKeyPairGeneratorSpec(generator: KeyPairGenerator, alias: String) {
-        val startDate = Calendar.getInstance()
-        val endDate = Calendar.getInstance()
-        endDate.add(Calendar.YEAR, 20)
-
-        val builder = KeyPairGeneratorSpec.Builder(context)
-                .setAlias(alias)
-                .setSerialNumber(BigInteger.ONE)
-                .setSubject(X500Principal("CN=${alias} CA Certificate"))
-                .setStartDate(startDate.time)
-                .setEndDate(endDate.time)
-
-        generator.initialize(builder.build())
     }
 
     private fun createAndroidKeyStore(): KeyStore {

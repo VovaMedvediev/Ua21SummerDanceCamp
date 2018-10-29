@@ -48,22 +48,24 @@ class SplashActivity : AppCompatActivity() {
         if (systemServices.isDeviceSecure()) {
             splashViewModel.apply {
                 getCredentials()
-                credentials.observe(this@SplashActivity, Observer {
-                    if (it != null) {
-                        if (it.password.isNotEmpty()) {
+                credentials.observe(this@SplashActivity, Observer { credentials ->
+                    if (credentials != null) {
+                        if (credentials.password.isNotEmpty()) {
                             val dialog = AuthenticationDialog()
-                            if (it.isFingerPrintAllowed && systemServices.hasEnrolledFingerprints()) {
-                                dialog.cryptoObjectToAuthenticateWith = EncryptionServices(applicationContext).prepareFingerprintCryptoObject()
-                                dialog.fingerprintInvalidationListener = { onFingerprintInvalidation(it) }
-                                dialog.fingerprintAuthenticationSuccessListener = { validateKeyAuthentication(it) }
-                                if (dialog.cryptoObjectToAuthenticateWith == null) dialog.stage =
-                                        AuthenticationDialog.Stage.NEW_FINGERPRINT_ENROLLED else dialog.stage = AuthenticationDialog.Stage.FINGERPRINT
-                            } else {
-                                dialog.stage = AuthenticationDialog.Stage.PASSWORD
+                                dialog.apply {
+                                    if (credentials.isFingerPrintAllowed && systemServices.hasEnrolledFingerprints()) {
+                                    cryptoObjectToAuthenticateWith = EncryptionServices(applicationContext).prepareFingerprintCryptoObject()
+                                    fingerprintInvalidationListener = { onFingerprintInvalidation(it) }
+                                    fingerprintAuthenticationSuccessListener = { validateKeyAuthentication(it) }
+                                    if (this.cryptoObjectToAuthenticateWith == null) this.stage =
+                                            AuthenticationDialog.Stage.NEW_FINGERPRINT_ENROLLED else dialog.stage = AuthenticationDialog.Stage.FINGERPRINT
+                                } else {
+                                        this.stage = AuthenticationDialog.Stage.PASSWORD
+                                    }
+                                    authenticationSuccessListener = { checkSettings() }
+                                    passwordVerificationListener = { validatePassword(it) }
+                                    show(supportFragmentManager, "Authentication")
                             }
-                            dialog.authenticationSuccessListener = { checkSettings() }
-                            dialog.passwordVerificationListener = { validatePassword(it) }
-                            dialog.show(supportFragmentManager, "Authentication")
                         } else {
                             shouldLoginScreenBeOpened = true
                             checkSettings(shouldLoginScreenBeOpened)

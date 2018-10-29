@@ -1,10 +1,7 @@
 package ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.login
 
-import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
-import android.widget.Toast
-import timber.log.Timber
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.model.Credentials
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.repository.Repository
 

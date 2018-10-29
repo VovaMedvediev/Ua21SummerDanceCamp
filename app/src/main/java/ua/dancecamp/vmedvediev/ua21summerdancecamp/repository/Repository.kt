@@ -1,6 +1,5 @@
 package ua.dancecamp.vmedvediev.ua21summerdancecamp.repository
 
-import com.uphyca.stetho_realm.Database
 import io.realm.RealmResults
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmCredentialsMapper
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmEventMapper

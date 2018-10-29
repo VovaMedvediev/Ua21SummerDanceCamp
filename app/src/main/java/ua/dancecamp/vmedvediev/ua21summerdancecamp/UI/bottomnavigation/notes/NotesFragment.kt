@@ -45,11 +45,11 @@ class NotesFragment : Fragment() {
         super.onResume()
         notesViewModel.apply {
             getEvents()
-            events.observe(this@NotesFragment, Observer {
-                if (it != null) {
-                    showNoNotesMessage(it)
+            events.observe(this@NotesFragment, Observer { notes ->
+                if (notes != null) {
+                    showNoNotesMessage(notes)
                     notesAdapter.apply {
-                        clearAndAddAll(it.sortedByDescending { it.eventNoteDate })
+                        clearAndAddAll(notes.sortedByDescending { it.eventNoteDate })
                         notifyDataSetChanged()
                     }
                 }
