@@ -44,7 +44,7 @@
     <string name="hint_confirm_password">Пiдтвердiть пароль</string>
     <string name="label_next">Далi</string>
     <string name="label_cancel">Скасувати</string>
-    <string name="label_error_password">Пароль повинен мicnbnb не менш 8 символiв</string>
+    <string name="label_error_password">Пароль повинен мicтити не менш 8 символiв</string>
     <string name="label_error_passwords_dont_match">Паролі повинні співпадати.</string>
     <string name="lock_exit">Вихiд</string>
     <string name="lock_settings">Налаштування</string>
