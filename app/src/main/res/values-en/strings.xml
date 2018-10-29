@@ -56,9 +56,9 @@
     <string name="label_confirm_language">Change language</string>
     <string name="label_notifications_settings">In order to not receive reminders - turn off notifications for the application in the settings</string>
     <string name="label_open_settings">Open settings</string>
-    <string name="label_current_weather">Current weather</string>
+    <string name="label_current_weather">Weather</string>
     <string name="label_max_temp">Max. Temperature:</string>
     <string name="label_min_temp">Min. Temperature:</string>
-    <string name="label_m_s">m/s</string>
-    <string name="label_wind">Wind</string>
+    <string name="label_m_s">%1$s m/s</string>
+    <string name="label_wind">Wind:</string>
 </resources>

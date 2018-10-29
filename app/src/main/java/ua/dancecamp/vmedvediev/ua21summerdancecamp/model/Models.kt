@@ -62,16 +62,18 @@ data class Coord(
 )
 
 data class Main(
-        @Expose var temp: Int,
-        @Expose var pressure: Int,
-        @Expose var humidity: Int,
-        @SerializedName("temp_min") var minTemp: Int,
-        @SerializedName("temp_max") var maxTemp: Int
+        @Expose var temp: String,
+        @Expose var pressure: String,
+        @Expose var humidity: String,
+        @SerializedName("temp_min") var minTemp: String,
+        @SerializedName("temp_max") var maxTemp: String,
+        @SerializedName("sea_level") var seaLevel: String,
+        @SerializedName("grnd_level") var grndLevel: String
 )
 
 data class Wind(
         @Expose var speed: Double,
-        @Expose var deg: Int
+        @Expose var deg: String
 )
 
 data class Sys(

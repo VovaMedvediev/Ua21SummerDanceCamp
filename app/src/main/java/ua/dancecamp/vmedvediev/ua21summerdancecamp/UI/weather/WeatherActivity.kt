@@ -20,19 +20,27 @@ class WeatherActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_weather)
+        setSupportActionBar(toolbar)
 
         weatherViewModel.apply {
             getWeatherResponse()
             weatherResponse.observe(this@WeatherActivity, Observer {
                 if (it != null) {
-                    val maxTemp = it.list[0].main.maxTemp.toString() + R.string.label_degrees_celsius
-                    val minTemp = it.list[0].main.minTemp.toString() + R.string.label_degrees_celsius
-                    val wind = it.list[0].wind.speed.toString() + R.string.label_m_s
-                    maxTempTextView.text = maxTemp
-                    minTempTextView.text = minTemp
-                    windTextView.text = wind
+                    val maxTemp = it.list[0].main.maxTemp.substring(0, 2)
+                    val minTemp = it.list[0].main.minTemp.substring(0, 2)
+                    val wind = it.list[0].wind.speed.toString().substring(0, 3)
+                    maxTempTextView.text = getString(R.string.label_degrees_celsius, maxTemp)
+                    minTempTextView.text = getString(R.string.label_degrees_celsius, minTemp)
+                    windTextView.text = getString(R.string.label_m_s, wind)
                 }
             })
+        }
+
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowHomeEnabled(true)
+            setDisplayShowTitleEnabled(false)
+            toolbarTitleTextView.text = getString(R.string.label_current_weather)
         }
     }
 }

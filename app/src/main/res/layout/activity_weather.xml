@@ -3,7 +3,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="16dp">
+    android:background="@color/colorWhite">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/ToolbarStyle"
+            android:background="@drawable/ab_note_background"
+            android:minHeight="?attr/actionBarSize"
+            android:fitsSystemWindows="true"
+            app:contentInsetLeft="0dp"
+            app:contentInsetStart="0dp">
+
+            <TextView
+                android:id="@+id/toolbarTitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="28sp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:shadowColor="@color/colorBlack"
+                android:shadowRadius="16"
+                android:textColor="@color/colorWhite"/>
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
 
     <TextView
         android:id="@+id/labelMaxTempTextView"
@@ -13,13 +49,13 @@
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/appbar"
+        android:layout_marginTop="16dp"/>
 
     <TextView
         android:id="@+id/maxTempTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/label_10_c"
         android:textSize="48sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,7 +75,6 @@
         android:id="@+id/minTempTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/label_10_c"
         android:textSize="48sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,7 +94,6 @@
         android:id="@+id/windTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/label_4_6"
         android:textSize="48sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
