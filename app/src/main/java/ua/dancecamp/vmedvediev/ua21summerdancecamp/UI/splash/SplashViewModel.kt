@@ -26,7 +26,7 @@ class SplashViewModel(private val repository: Repository) : ViewModel() {
         repository.getApplicationSettings { applicationSettings: ApplicationSettings -> onApplicationSettingsLoaded(applicationSettings)}
     }
 
-    fun getCredentials() {
+    fun loadCredentials() {
         repository.getCredentials { credentials: Credentials -> onCredentialsLoaded(credentials)}
     }
 

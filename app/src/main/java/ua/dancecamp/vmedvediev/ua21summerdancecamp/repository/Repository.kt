@@ -9,7 +9,8 @@ import ua.dancecamp.vmedvediev.ua21summerdancecamp.model.entity.RealmEvent
 import kotlin.collections.ArrayList
 import kotlin.collections.LinkedHashSet
 
-class Repository(private val eventsMapper: RealmEventMapper, private val settingsMapper: RealmSettingsMapper,
+class Repository(private val eventsMapper: RealmEventMapper,
+                 private val settingsMapper: RealmSettingsMapper,
                  private val credentialsMapper: RealmCredentialsMapper) {
 
     fun getNotes(onEventsLoaded: (ArrayList<Event>) -> Unit) {

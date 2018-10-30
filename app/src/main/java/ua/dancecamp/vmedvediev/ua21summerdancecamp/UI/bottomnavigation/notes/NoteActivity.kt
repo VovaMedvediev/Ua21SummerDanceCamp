@@ -28,7 +28,7 @@ class NoteActivity : AppCompatActivity() {
         val extras = intent.extras
         if (extras != null) {
             if (extras.containsKey(KEY_EVENT_ID_TO_NOTE_ACTIVITY)) {
-                eventId = extras.getString(KEY_EVENT_ID_TO_NOTE_ACTIVITY)!!
+                eventId = extras.getString(KEY_EVENT_ID_TO_NOTE_ACTIVITY)
             }
         }
         return@lazy eventId

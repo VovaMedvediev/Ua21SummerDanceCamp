@@ -13,16 +13,6 @@ import android.view.inputmethod.InputMethodManager
 
 fun ViewGroup.inflate(layoutId: Int, attachToRoot: Boolean = false): View { return LayoutInflater.from(context).inflate(layoutId, this, attachToRoot) }
 
-fun Context.openLockScreenSettings() {
-    val intent = Intent(DevicePolicyManager.ACTION_SET_NEW_PASSWORD)
-    startActivity(intent)
-}
-
-fun Context.openSecuritySettings() {
-    val intent = Intent(Settings.ACTION_SECURITY_SETTINGS)
-    startActivity(intent)
-}
-
 fun Resources.getColorCompat(id: Int, theme: Resources.Theme? = null) = ResourcesCompat.getColor(this, id, theme)
 
 fun View.showKeyboard(delay: Long, flags: Int = 0) = postDelayed({ showKeyboard(flags) }, delay)

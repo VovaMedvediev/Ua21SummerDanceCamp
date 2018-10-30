@@ -35,7 +35,8 @@ data class Date(
 
 }
 
-data class Credentials(var id: String = "1", var password: String = "",
+data class Credentials(var id: String = "1",
+                       var password: String = "",
                        var isFingerPrintAllowed: Boolean = false)
 
 interface ListItem {

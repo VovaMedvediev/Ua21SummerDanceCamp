@@ -19,6 +19,7 @@ import ua.dancecamp.vmedvediev.ua21summerdancecamp.services.SystemServices
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmEventMapper
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmSettingsMapper
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.model.ApplicationSettings
+import ua.dancecamp.vmedvediev.ua21summerdancecamp.model.Credentials
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.model.Event
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.model.EventsCache
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.repository.Repository
@@ -47,29 +48,13 @@ class SplashActivity : AppCompatActivity() {
         super.onStart()
         if (systemServices.isDeviceSecure()) {
             splashViewModel.apply {
-                getCredentials()
+                loadCredentials()
                 credentials.observe(this@SplashActivity, Observer { credentials ->
-                    if (credentials != null) {
-                        if (credentials.password.isNotEmpty()) {
-                            val dialog = AuthenticationDialog()
-                                dialog.apply {
-                                    if (credentials.isFingerPrintAllowed && systemServices.hasEnrolledFingerprints()) {
-                                    cryptoObjectToAuthenticateWith = EncryptionServices(applicationContext).prepareFingerprintCryptoObject()
-                                    fingerprintInvalidationListener = { onFingerprintInvalidation(it) }
-                                    fingerprintAuthenticationSuccessListener = { validateKeyAuthentication(it) }
-                                    if (this.cryptoObjectToAuthenticateWith == null) this.stage =
-                                            AuthenticationDialog.Stage.NEW_FINGERPRINT_ENROLLED else dialog.stage = AuthenticationDialog.Stage.FINGERPRINT
-                                } else {
-                                        this.stage = AuthenticationDialog.Stage.PASSWORD
-                                    }
-                                    authenticationSuccessListener = { checkSettings() }
-                                    passwordVerificationListener = { validatePassword(it) }
-                                    show(supportFragmentManager, "Authentication")
-                            }
-                        } else {
-                            shouldLoginScreenBeOpened = true
-                            checkSettings(shouldLoginScreenBeOpened)
-                        }
+                    if (credentials != null && credentials.password.isNotEmpty()) {
+                        showAuthenticationDialog(credentials)
+                    } else {
+                        shouldLoginScreenBeOpened = true
+                        checkSettings()
                     }
                 })
             }
@@ -81,6 +66,30 @@ class SplashActivity : AppCompatActivity() {
     override fun onStop() {
         super.onStop()
         deviceSecurityAlert?.dismiss()
+    }
+
+    private fun showAuthenticationDialog(credentials: Credentials) {
+        val dialog = AuthenticationDialog()
+        dialog.apply {
+            if (credentials.isFingerPrintAllowed && systemServices.hasEnrolledFingerprints()) {
+                onFingerPrintAllowed(dialog)
+            } else {
+                this.stage = AuthenticationDialog.Stage.PASSWORD
+            }
+            authenticationSuccessListener = { checkSettings() }
+            passwordVerificationListener = { isPasswordValid(it) }
+            show(supportFragmentManager, "Authentication")
+        }
+    }
+
+    private fun onFingerPrintAllowed(dialog: AuthenticationDialog) {
+        dialog.apply {
+            cryptoObjectToAuthenticateWith = EncryptionServices(applicationContext).prepareFingerprintCryptoObject()
+            fingerprintInvalidationListener = { onFingerprintInvalidation(it) }
+            fingerprintAuthenticationSuccessListener = { validateKeyAuthentication(it) }
+            if (this.cryptoObjectToAuthenticateWith == null) this.stage =
+                    AuthenticationDialog.Stage.NEW_FINGERPRINT_ENROLLED else dialog.stage = AuthenticationDialog.Stage.FINGERPRINT
+        }
     }
 
     private fun onFingerprintInvalidation(useInFuture: Boolean) {
@@ -96,7 +105,7 @@ class SplashActivity : AppCompatActivity() {
         }
     }
 
-    private fun validatePassword(inputtedPassword: String): Boolean {
+    private fun isPasswordValid(inputtedPassword: String): Boolean {
         val savedPassword = splashViewModel.credentials.value?.password
         Timber.e("INPUT: $inputtedPassword +++ SAVED: $savedPassword")
         return if (savedPassword != null) {
@@ -106,15 +115,15 @@ class SplashActivity : AppCompatActivity() {
         }
     }
 
-    private fun checkSettings(shouldLoginScreenBeOpened: Boolean = false) {
+    private fun checkSettings() {
         splashViewModel.apply {
             getApplicationSettings()
             applicationSettings.observe(this@SplashActivity, Observer {
                 if (it != null) {
-                    val applicationLanguage  = checkApplicationLanguage(it)
+                    val applicationLanguage = checkApplicationLanguage(it)
                     val previousLocaleLanguage = checkPreviousLocaleLanguage(it)
 
-                    startMainActivity(previousLocaleLanguage, applicationLanguage, shouldLoginScreenBeOpened)
+                    startMainActivity(previousLocaleLanguage, applicationLanguage)
 
                     updateLocale(applicationLanguage)
                     splashViewModel.saveApplicationSettings(ApplicationSettings(it.id, applicationLanguage, applicationLanguage))
@@ -123,23 +132,22 @@ class SplashActivity : AppCompatActivity() {
         }
     }
 
-    private fun startMainActivity(previousLocaleLanguage: String, applicationLanguage: String,
-                                  shouldLoginScreenBeOpened: Boolean) {
+    private fun startMainActivity(previousLocaleLanguage: String, applicationLanguage: String) {
         when {
             EventsCache.eventsList.isNotEmpty() && (previousLocaleLanguage == applicationLanguage) -> {
-                navigateToNextScreen(shouldLoginScreenBeOpened)
+                navigateToNextScreen()
                 finish()
             }
             splashViewModel.getEvents().isNotEmpty() && (previousLocaleLanguage == applicationLanguage) -> {
                 splashViewModel.setupLocalStorage()
-                navigateToNextScreen(shouldLoginScreenBeOpened)
+                navigateToNextScreen()
                 finish()
             }
             else -> JsonParserAsyncTask(WeakReference(this@SplashActivity)).execute(applicationLanguage)
         }
     }
 
-    private fun navigateToNextScreen(shouldLoginScreenBeOpened: Boolean) {
+    private fun navigateToNextScreen() {
         if (!shouldLoginScreenBeOpened) {
             startActivity(Router.prepareMainActivityIntent(this@SplashActivity))
         } else {
@@ -147,7 +155,7 @@ class SplashActivity : AppCompatActivity() {
         }
     }
 
-    private fun checkApplicationLanguage(applicationSettings: ApplicationSettings) : String {
+    private fun checkApplicationLanguage(applicationSettings: ApplicationSettings): String {
         val localeLanguage = baseContext.resources.configuration.locale.language
         return if (applicationSettings.interfaceLanguage.isEmpty()) {
             localeLanguage
@@ -156,7 +164,7 @@ class SplashActivity : AppCompatActivity() {
         }
     }
 
-    private fun checkPreviousLocaleLanguage(applicationSettings: ApplicationSettings) : String {
+    private fun checkPreviousLocaleLanguage(applicationSettings: ApplicationSettings): String {
         val localeLanguage = baseContext.resources.configuration.locale.language
         return if (applicationSettings.localeLanguage.isEmpty()) {
             localeLanguage
@@ -185,7 +193,7 @@ class SplashActivity : AppCompatActivity() {
 
             override fun doInBackground(vararg params: String?): ArrayList<Event>? {
                 Thread.sleep(1000)
-                 return try {
+                return try {
                     val applicationInstance = MyApplication.instance
                     val applicationContext = applicationInstance.applicationContext
                     val applicationLanguage = params[0]
@@ -203,7 +211,7 @@ class SplashActivity : AppCompatActivity() {
                         close()
                     }
                     val json = String(buffer, Charset.defaultCharset())
-                    Gson().fromJson(json, object : TypeToken<ArrayList<Event>>(){}.type)
+                    Gson().fromJson(json, object : TypeToken<ArrayList<Event>>() {}.type)
                 } catch (e: IOException) {
                     e.printStackTrace()
                     ArrayList()
@@ -214,7 +222,7 @@ class SplashActivity : AppCompatActivity() {
                 super.onPostExecute(result)
                 splashActivity.get()?.apply {
                     result?.let { prepareEventsData(it) }
-                    navigateToNextScreen(shouldLoginScreenBeOpened)
+                    navigateToNextScreen()
                     finish()
                 }
             }

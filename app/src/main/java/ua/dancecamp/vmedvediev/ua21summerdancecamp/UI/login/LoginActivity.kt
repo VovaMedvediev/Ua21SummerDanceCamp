@@ -11,6 +11,7 @@ import android.view.inputmethod.EditorInfo
 import kotlinx.android.synthetic.main.activity_login.*
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.*
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.Router
+import ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.openSecuritySettings
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.authentication.EncryptionServices
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmCredentialsMapper
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.services.SystemServices
@@ -18,7 +19,6 @@ import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmEventMapper
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmSettingsMapper
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.model.Credentials
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.repository.Repository
-import ua.dancecamp.vmedvediev.ua21summerdancecamp.services.openSecuritySettings
 
 class LoginActivity : AppCompatActivity() {
 
@@ -38,9 +38,11 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         if (systemServices.isFingerprintHardwareAvailable()) {
-            allowFingerprintCheckBox.visibility = View.VISIBLE
+            allowFingerprintCheckBox.apply {
+                visibility = View.VISIBLE
+                setOnCheckedChangeListener { _, checked -> onAllowFingerprint(checked) }
+            }
         }
-        allowFingerprintCheckBox.setOnCheckedChangeListener { _, checked -> onAllowFingerprint(checked) }
 
         passwordTextInputEditText.apply {
             addTextChangedListener(object : TextWatcher {

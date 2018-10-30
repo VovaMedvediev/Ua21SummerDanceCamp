@@ -18,10 +18,22 @@ class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
+        timber()
+
+        realm()
+
+        stetho()
+
+        instance = this
+    }
+
+    private fun timber() {
         if (BuildConfig.DEBUG) {
             Timber.plant(DebugTree())
         }
+    }
 
+    private fun realm() {
         Realm.init(applicationContext)
         val realmConfiguration = RealmConfiguration.Builder()
                 .name(Realm.DEFAULT_REALM_NAME)
@@ -29,7 +41,9 @@ class MyApplication : Application() {
                 .deleteRealmIfMigrationNeeded()
                 .build()
         Realm.setDefaultConfiguration(realmConfiguration)
+    }
 
+    private fun stetho() {
         val realmInspector = RealmInspectorModulesProvider.builder(this)
                 .withDeleteIfMigrationNeeded(true)
                 .build()
@@ -38,7 +52,5 @@ class MyApplication : Application() {
                         .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
                         .enableWebKitInspector(realmInspector)
                         .build())
-
-        instance = this
     }
 }
