@@ -10,7 +10,7 @@ class WeatherViewModel(private val repository: Repository) : ViewModel()  {
 
     val weatherResponse: MutableLiveData<WeatherResponse> = MutableLiveData()
 
-    fun getWeatherResponse() {
+    fun loadWeatherResponse() {
         repository.getWeatherResponse { weatherResponse: WeatherResponse -> onWeatherResponseLoaded(weatherResponse) }
     }
 

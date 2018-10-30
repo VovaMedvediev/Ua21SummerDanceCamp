@@ -59,4 +59,5 @@
     <string name="label_min_temp">Miн. Температура:</string>
     <string name="label_m_s">%1$s м/с</string>
     <string name="label_wind">Вiтер:</string>
+    <string name="weather_forecast_isn_t_available">Прогноз погоди недоступний :(</string>
 </resources>

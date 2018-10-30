@@ -4,7 +4,6 @@ import io.realm.RealmResults
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import timber.log.Timber
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmEventMapper
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmSettingsMapper
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.model.*
@@ -13,6 +12,10 @@ import kotlin.collections.ArrayList
 import kotlin.collections.LinkedHashSet
 
 class Repository(private val eventsMapper: RealmEventMapper, private val settingsMapper: RealmSettingsMapper) {
+
+    companion object {
+        private const val ERROR_CODE = "400"
+    }
 
     fun getNotes(onEventsLoaded: (ArrayList<Event>) -> Unit) {
         val realmEventsList = DatabaseHelper.getEvents()
@@ -42,7 +45,7 @@ class Repository(private val eventsMapper: RealmEventMapper, private val setting
         val weatherResponse = weatherApi.getCurrentWeather()
         weatherResponse.enqueue(object : Callback<WeatherResponse> {
             override fun onFailure(call: Call<WeatherResponse>, t: Throwable) {
-                onWeatherResponseLoaded(WeatherResponse())
+                onWeatherResponseLoaded(WeatherResponse("", ERROR_CODE))
             }
 
             override fun onResponse(call: Call<WeatherResponse>, response: Response<WeatherResponse>) {

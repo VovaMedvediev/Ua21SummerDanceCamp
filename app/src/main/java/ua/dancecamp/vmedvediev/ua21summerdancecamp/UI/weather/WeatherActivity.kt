@@ -4,13 +4,20 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import kotlinx.android.synthetic.main.activity_weather.*
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.R
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmEventMapper
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmSettingsMapper
+import ua.dancecamp.vmedvediev.ua21summerdancecamp.model.WeatherResponse
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.repository.Repository
 
 class WeatherActivity : AppCompatActivity() {
+
+    companion object {
+        private const val ERROR_CODE = "400"
+        //TODO
+    }
 
     private val weatherViewModel by lazy {
         ViewModelProviders.of(this, WeatherViewModel(Repository(RealmEventMapper(),
@@ -23,15 +30,12 @@ class WeatherActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         weatherViewModel.apply {
-            getWeatherResponse()
+            loadWeatherResponse()
             weatherResponse.observe(this@WeatherActivity, Observer {
-                if (it != null) {
-                    val maxTemp = it.list[0].main.maxTemp.substring(0, 2)
-                    val minTemp = it.list[0].main.minTemp.substring(0, 2)
-                    val wind = it.list[0].wind.speed.toString().substring(0, 3)
-                    maxTempTextView.text = getString(R.string.label_degrees_celsius, maxTemp)
-                    minTempTextView.text = getString(R.string.label_degrees_celsius, minTemp)
-                    windTextView.text = getString(R.string.label_m_s, wind)
+                if (it != null && it.cod != ERROR_CODE) {
+                    showWeather(it)
+                } else {
+                    showWeatherNotAvailable()
                 }
             })
         }
@@ -42,5 +46,24 @@ class WeatherActivity : AppCompatActivity() {
             setDisplayShowTitleEnabled(false)
             toolbarTitleTextView.text = getString(R.string.label_current_weather)
         }
+    }
+
+    private fun showWeather(weatherResponse: WeatherResponse) {
+        val maxTemp = weatherResponse.list[0].main.maxTemp.substring(0, 2)
+        val minTemp = weatherResponse.list[0].main.minTemp.substring(0, 2)
+        val wind = weatherResponse.list[0].wind.speed.toString().substring(0, 3)
+        maxTempTextView.text = getString(R.string.label_degrees_celsius, maxTemp)
+        minTempTextView.text = getString(R.string.label_degrees_celsius, minTemp)
+        windTextView.text = getString(R.string.label_m_s, wind)
+    }
+
+    private fun showWeatherNotAvailable() {
+        maxTempTextView.visibility = View.GONE
+        minTempTextView.visibility = View.GONE
+        windTextView.visibility = View.GONE
+        labelMaxTempTextView.visibility = View.GONE
+        labelMinTempTextView.visibility = View.GONE
+        labelWindTextView.visibility = View.GONE
+        weatherNotAvailableTextView.visibility = View.VISIBLE
     }
 }
