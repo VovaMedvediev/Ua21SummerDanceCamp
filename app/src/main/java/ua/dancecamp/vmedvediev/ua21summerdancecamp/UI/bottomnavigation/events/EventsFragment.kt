@@ -136,7 +136,6 @@ class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
         val currentDay = simpleDateFormat.format(calendar.time)
         for (i in INDEX_OF_FIRST_TAB..INDEX_OF_LAST_TAB) {
             val tabDate = (eventsTabLayout.getTabAt(i)?.customView as TabCustomView).getDate().substring(0, 2)
-            Timber.e("===============$currentDay CURENT +++ $tabDate TAB")
             if (currentDay == tabDate) {
                 Handler().postDelayed({ eventsTabLayout.getTabAt(i)?.let { it.select() } }, 1)
             }
