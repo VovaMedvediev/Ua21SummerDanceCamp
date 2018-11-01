@@ -16,7 +16,8 @@ class WeatherActivity : AppCompatActivity() {
 
     companion object {
         private const val ERROR_CODE = "400"
-        //TODO
+        private const val TEMP_DEGREES_NUMBER = 2
+        private const val WIND_SPEED_NUMBER = 3
     }
 
     private val weatherViewModel by lazy {
@@ -49,9 +50,9 @@ class WeatherActivity : AppCompatActivity() {
     }
 
     private fun showWeather(weatherResponse: WeatherResponse) {
-        val maxTemp = weatherResponse.list[0].main.maxTemp.substring(0, 2)
-        val minTemp = weatherResponse.list[0].main.minTemp.substring(0, 2)
-        val wind = weatherResponse.list[0].wind.speed.toString().substring(0, 3)
+        val maxTemp = weatherResponse.list[0].main.maxTemp.substring(0, TEMP_DEGREES_NUMBER)
+        val minTemp = weatherResponse.list[0].main.minTemp.substring(0, TEMP_DEGREES_NUMBER)
+        val wind = weatherResponse.list[0].wind.speed.toString().substring(0, WIND_SPEED_NUMBER)
         maxTempTextView.text = getString(R.string.label_degrees_celsius, maxTemp)
         minTempTextView.text = getString(R.string.label_degrees_celsius, minTemp)
         windTextView.text = getString(R.string.label_m_s, wind)

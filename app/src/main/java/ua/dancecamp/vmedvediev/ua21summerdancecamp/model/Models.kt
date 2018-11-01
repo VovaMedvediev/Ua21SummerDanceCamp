@@ -1,7 +1,6 @@
 package ua.dancecamp.vmedvediev.ua21summerdancecamp.model
 
 import android.annotation.SuppressLint
-import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 data class ApplicationSettings(
@@ -36,35 +35,35 @@ data class Date(
 }
 
 data class WeatherResponse(
-        @Expose var message: String = "",
-        @Expose var cod: String = "",
-        @Expose var count: Int = 0,
-        @Expose var list: ArrayList<List> = ArrayList()
+        @SerializedName("message") var message: String = "",
+        @SerializedName("cod") var cod: String = "",
+        @SerializedName("count") var count: Int = 0,
+        @SerializedName("list") var list: ArrayList<List> = ArrayList()
 )
 
 data class List(
-        @Expose var id: Int,
-        @Expose var name: String,
-        @Expose var coord: Coord,
-        @Expose var main: Main,
-        @Expose var dt: Int,
-        @Expose var wind: Wind,
-        @Expose var sys: Sys,
-        @Expose var rain: Any,
-        @Expose var snow: Any,
-        @Expose var clouds: Clouds,
-        @Expose var weather: ArrayList<Weather>
+        @SerializedName("id") var id: Int,
+        @SerializedName("name") var name: String,
+        @SerializedName("coord") var coord: Coord,
+        @SerializedName("main") var main: Main,
+        @SerializedName("dt") var dt: Int,
+        @SerializedName("wind") var wind: Wind,
+        @SerializedName("sys") var sys: Sys,
+        @SerializedName("rain") var rain: Any,
+        @SerializedName("snow") var snow: Any,
+        @SerializedName("clouds") var clouds: Clouds,
+        @SerializedName("weather") var weather: ArrayList<Weather>
 )
 
 data class Coord(
-        @Expose var lat: Double,
-        @Expose var lon: Double
+        @SerializedName("lat") var lat: Double,
+        @SerializedName("lon") var lon: Double
 )
 
 data class Main(
-        @Expose var temp: String,
-        @Expose var pressure: String,
-        @Expose var humidity: String,
+        @SerializedName("temp") var temp: String,
+        @SerializedName("pressure") var pressure: String,
+        @SerializedName("humidity") var humidity: String,
         @SerializedName("temp_min") var minTemp: String,
         @SerializedName("temp_max") var maxTemp: String,
         @SerializedName("sea_level") var seaLevel: String,
@@ -72,23 +71,23 @@ data class Main(
 )
 
 data class Wind(
-        @Expose var speed: Double,
-        @Expose var deg: String
+        @SerializedName("speed") var speed: Double,
+        @SerializedName("deg") var deg: String
 )
 
 data class Sys(
-        @Expose var country: String
+        @SerializedName("country") var country: String
 )
 
 data class Clouds(
-        @Expose var all: Int
+        @SerializedName("all") var all: Int
 )
 
 data class Weather(
-        @Expose var id: Int,
-        @Expose var main: String,
-        @Expose var description: String,
-        @Expose var icon: String
+        @SerializedName("id") var id: Int,
+        @SerializedName("main") var main: String,
+        @SerializedName("description") var description: String,
+        @SerializedName("icon") var icon: String
 )
 
 interface ListItem {
