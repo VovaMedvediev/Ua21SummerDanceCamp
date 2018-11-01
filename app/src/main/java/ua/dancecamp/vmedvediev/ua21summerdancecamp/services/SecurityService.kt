@@ -13,7 +13,7 @@ import ua.dancecamp.vmedvediev.ua21summerdancecamp.R
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.openLockScreenSettings
 
 @TargetApi(Build.VERSION_CODES.M)
-class SystemServices(private val context: Context) {
+class SecurityService(context: Context) {
 
     companion object {
         fun hasMarshmallow() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
@@ -38,15 +38,5 @@ class SystemServices(private val context: Context) {
                                 cancellationSignal: CancellationSignal, flags: Int,
                                 callback: FingerprintManager.AuthenticationCallback, handler: Handler?) {
         fingerprintManager?.authenticate(cryptoObject, cancellationSignal, flags, callback, handler)
-    }
-
-    fun showDeviceSecurityAlert(): AlertDialog {
-        return AlertDialog.Builder(context)
-                .setTitle(R.string.lock_title)
-                .setMessage(R.string.lock_body)
-                .setPositiveButton(R.string.lock_settings) { _, _ -> context.openLockScreenSettings() }
-                .setNegativeButton(R.string.lock_exit) { _, _ -> System.exit(0) }
-                .setCancelable(BuildConfig.DEBUG)
-                .show()
     }
 }

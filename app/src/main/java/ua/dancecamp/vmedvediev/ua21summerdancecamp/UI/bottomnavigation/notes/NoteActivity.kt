@@ -24,14 +24,7 @@ class NoteActivity : AppCompatActivity() {
     }
 
     private val eventId: String by lazy {
-        var eventId = ""
-        val extras = intent.extras
-        if (extras != null) {
-            if (extras.containsKey(KEY_EVENT_ID_TO_NOTE_ACTIVITY)) {
-                eventId = extras.getString(KEY_EVENT_ID_TO_NOTE_ACTIVITY)
-            }
-        }
-        return@lazy eventId
+        return@lazy intent.extras?.getString(KEY_EVENT_ID_TO_NOTE_ACTIVITY, "") ?: ""
     }
     private val notesViewModel by lazy {
         ViewModelProviders.of(this, NotesViewModel(Repository(RealmEventMapper(),

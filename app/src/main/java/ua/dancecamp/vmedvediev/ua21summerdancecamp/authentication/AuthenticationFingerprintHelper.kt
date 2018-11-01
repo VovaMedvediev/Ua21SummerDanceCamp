@@ -3,12 +3,13 @@ package ua.dancecamp.vmedvediev.ua21summerdancecamp.authentication
 import android.content.res.Resources
 import android.widget.ImageView
 import android.widget.TextView
+import ua.dancecamp.vmedvediev.ua21summerdancecamp.MyApplication
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.R
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.services.getColorCompat
 
-class AuthenticationFingerprintView(private val icon: ImageView, private val errorTextView: TextView) {
+class AuthenticationFingerprintHelper(private val icon: ImageView, private val errorTextView: TextView) {
 
-    private val resources: Resources = icon.resources
+    private val resources: Resources = MyApplication.instance.resources
 
     fun showSuccessView() {
         icon.setImageResource(R.drawable.ic_fingerprint_success)

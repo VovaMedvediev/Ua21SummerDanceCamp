@@ -24,6 +24,9 @@ allprojects {
         maven {
             url 'https://github.com/WickeDev/stetho-realm/raw/master/maven-repo'
         }
+        maven {
+            url 'https://oss.sonatype.org/content/repositories/releases/'
+        }
     }
 }
 

@@ -5,6 +5,7 @@ import android.content.Context
 import android.os.Build
 import android.security.keystore.KeyGenParameterSpec
 import android.security.keystore.KeyProperties
+import ua.dancecamp.vmedvediev.ua21summerdancecamp.MyApplication
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
@@ -12,11 +13,13 @@ import java.security.*
 import javax.crypto.KeyGenerator
 import javax.crypto.SecretKey
 
-class KeyStoreWrapper(private val context: Context, defaultKeyStoreName: String) {
+object KeyStoreWrapper {
+
+    private const val DEFAULT_KEY_STORE_NAME = "default_keystore"
 
     private val keyStore: KeyStore = createAndroidKeyStore()
 
-    private val defaultKeyStoreFile = File(context.filesDir, defaultKeyStoreName)
+    private val defaultKeyStoreFile = File(MyApplication.instance.filesDir, DEFAULT_KEY_STORE_NAME)
     private val defaultKeyStore = createDefaultKeyStore()
 
     fun getAndroidKeyStoreSymmetricKey(alias: String): SecretKey? = keyStore.getKey(alias, null) as SecretKey?

@@ -11,14 +11,10 @@ class SettingsViewModel(private val repository: Repository) : ViewModel() {
     val applicationSettings: MutableLiveData<ApplicationSettings> = MutableLiveData()
 
     fun getApplicationSettings() {
-        repository.getApplicationSettings { applicationSettings: ApplicationSettings -> onApplicationSettingsLoaded(applicationSettings)}
+        repository.getApplicationSettings { settings: ApplicationSettings -> applicationSettings.value = settings}
     }
 
     fun saveApplicationSettings(applicationSettings: ApplicationSettings) = repository.saveApplicationSettings(applicationSettings)
-
-    private fun onApplicationSettingsLoaded(settings: ApplicationSettings) {
-        applicationSettings.value = settings
-    }
 
     inner class SettingsViewModelFactory : ViewModelProvider.NewInstanceFactory() {
 

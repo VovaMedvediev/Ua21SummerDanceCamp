@@ -23,19 +23,11 @@ class SplashViewModel(private val repository: Repository) : ViewModel() {
     fun saveApplicationSettings(applicationSettings: ApplicationSettings) { repository.saveApplicationSettings(applicationSettings)}
 
     fun getApplicationSettings() {
-        repository.getApplicationSettings { applicationSettings: ApplicationSettings -> onApplicationSettingsLoaded(applicationSettings)}
+        repository.getApplicationSettings { settings: ApplicationSettings -> applicationSettings.value = settings }
     }
 
     fun loadCredentials() {
-        repository.getCredentials { credentials: Credentials -> onCredentialsLoaded(credentials)}
-    }
-
-    private fun onCredentialsLoaded(creds: Credentials) {
-        credentials.value = creds
-    }
-
-    private fun onApplicationSettingsLoaded(settings: ApplicationSettings) {
-        applicationSettings.value = settings
+        repository.getCredentials { creds: Credentials -> credentials.value = creds }
     }
 
     inner class SplashViewModelFactory : ViewModelProvider.NewInstanceFactory() {

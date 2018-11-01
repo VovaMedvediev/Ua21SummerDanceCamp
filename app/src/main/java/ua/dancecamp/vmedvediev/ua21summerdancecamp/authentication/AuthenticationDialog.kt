@@ -4,7 +4,6 @@ import android.hardware.fingerprint.FingerprintManager
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.support.v7.app.AppCompatDialogFragment
-import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
@@ -13,11 +12,17 @@ import android.view.inputmethod.EditorInfo
 import kotlinx.android.synthetic.main.dialog_fingerprint_backup.*
 import kotlinx.android.synthetic.main.dialog_fingerprint_container.*
 import kotlinx.android.synthetic.main.dialog_fingerprint_content.*
+import timber.log.Timber
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.R
-import ua.dancecamp.vmedvediev.ua21summerdancecamp.services.SystemServices
+import ua.dancecamp.vmedvediev.ua21summerdancecamp.services.SecurityService
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.services.showKeyboard
 
-class AuthenticationDialog : AppCompatDialogFragment(), AuthenticationFingerprint.Callback {
+
+class AuthenticationDialog : AppCompatDialogFragment(), AuthenticationFingerprintListener.Callback {
+
+    companion object {
+        const val TAG = "Authentication"
+    }
 
     var passwordVerificationListener: ((password: String) -> Boolean)? = null
     var authenticationSuccessListener: ((password: String) -> Unit)? = null
@@ -29,7 +34,7 @@ class AuthenticationDialog : AppCompatDialogFragment(), AuthenticationFingerprin
 
     var cryptoObjectToAuthenticateWith: FingerprintManager.CryptoObject? = null
 
-    private var authenticationFingerprint: AuthenticationFingerprint? = null
+    private var authenticationFingerprint: AuthenticationFingerprintListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,10 +75,10 @@ class AuthenticationDialog : AppCompatDialogFragment(), AuthenticationFingerprin
         secondButtonView.setOnClickListener { if (stage == Stage.FINGERPRINT) goToBackup() else verifyPassword() }
         passwordView.setOnEditorActionListener { _, actionId, _ -> onEditorAction(actionId) }
 
-        if (SystemServices.hasMarshmallow()) {
-            authenticationFingerprint = AuthenticationFingerprint(
-                    SystemServices(context!!.applicationContext),
-                    AuthenticationFingerprintView(fingerprintIconView, fingerprintStatusView), this)
+        if (SecurityService.hasMarshmallow()) {
+            authenticationFingerprint = AuthenticationFingerprintListener(
+                    SecurityService(context!!.applicationContext),
+                    AuthenticationFingerprintHelper(fingerprintIconView, fingerprintStatusView), this)
         }
 
         updateStage()
@@ -100,7 +105,7 @@ class AuthenticationDialog : AppCompatDialogFragment(), AuthenticationFingerprin
     }
 
     private fun updateStage() {
-        Log.i("updateStage", stage.name)
+        Timber.e("updateStage${stage.name}")
         when (stage) {
             Stage.FINGERPRINT -> showFingerprintStage()
             Stage.NEW_FINGERPRINT_ENROLLED, Stage.PASSWORD -> showBackupStage()

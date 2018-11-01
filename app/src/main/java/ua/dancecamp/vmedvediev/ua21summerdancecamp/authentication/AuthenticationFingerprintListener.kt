@@ -3,14 +3,14 @@ package ua.dancecamp.vmedvediev.ua21summerdancecamp.authentication
 import android.annotation.TargetApi
 import android.hardware.fingerprint.FingerprintManager
 import android.os.CancellationSignal
-import android.os.Handler
 import android.os.Looper
+import com.badoo.mobile.util.WeakHandler
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.R
-import ua.dancecamp.vmedvediev.ua21summerdancecamp.services.SystemServices
+import ua.dancecamp.vmedvediev.ua21summerdancecamp.services.SecurityService
 
-class AuthenticationFingerprint(
-        private val systemServices: SystemServices,
-        private val view: AuthenticationFingerprintView,
+class AuthenticationFingerprintListener(
+        private val securityService: SecurityService,
+        private val view: AuthenticationFingerprintHelper,
         private val callback: Callback) {
 
     companion object {
@@ -18,27 +18,27 @@ class AuthenticationFingerprint(
         private const val SUCCESS_DELAY_MILLIS: Long = 1300
     }
 
-    private var mCancellationSignal: CancellationSignal? = null
+    private var cancellationSignal: CancellationSignal? = null
     private var selfCancelled: Boolean = false
-    private var handler: Handler = Handler(Looper.getMainLooper())
+    private var handler: WeakHandler = WeakHandler(Looper.getMainLooper())
 
     fun isFingerprintAuthAvailable(): Boolean {
-        return systemServices.isFingerprintHardwareAvailable() && systemServices.hasEnrolledFingerprints()
+        return securityService.isFingerprintHardwareAvailable() && securityService.hasEnrolledFingerprints()
     }
 
     fun startListening(cryptoObject: FingerprintManager.CryptoObject) {
         if (isFingerprintAuthAvailable()) {
-            mCancellationSignal = CancellationSignal()
+            cancellationSignal = CancellationSignal()
             selfCancelled = false
-            systemServices.authenticateFingerprint(cryptoObject, mCancellationSignal!!, 0, fingerprintCallback, null)
+            securityService.authenticateFingerprint(cryptoObject, cancellationSignal!!, 0, fingerprintCallback, null)
         }
     }
 
     fun stopListening() {
-        mCancellationSignal?.let {
+        cancellationSignal?.let {
             it.cancel()
             selfCancelled = true
-            mCancellationSignal = null
+            cancellationSignal = null
         }
     }
 

@@ -9,13 +9,13 @@ import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import timber.log.Timber
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.*
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.Router
+import ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.openLockScreenSettings
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.authentication.AuthenticationDialog
-import ua.dancecamp.vmedvediev.ua21summerdancecamp.authentication.EncryptionServices
+import ua.dancecamp.vmedvediev.ua21summerdancecamp.authentication.EncryptionService
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmCredentialsMapper
-import ua.dancecamp.vmedvediev.ua21summerdancecamp.services.SystemServices
+import ua.dancecamp.vmedvediev.ua21summerdancecamp.services.SecurityService
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmEventMapper
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmSettingsMapper
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.model.ApplicationSettings
@@ -35,7 +35,7 @@ class SplashActivity : AppCompatActivity() {
                 RealmSettingsMapper(), RealmCredentialsMapper())).SplashViewModelFactory())
                 .get(SplashViewModel::class.java)
     }
-    private val systemServices by lazy(LazyThreadSafetyMode.NONE) { SystemServices(this) }
+    private val securityService by lazy(LazyThreadSafetyMode.NONE) { SecurityService(this) }
     private var deviceSecurityAlert: AlertDialog? = null
     private var shouldLoginScreenBeOpened = false
 
@@ -46,7 +46,7 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        if (systemServices.isDeviceSecure()) {
+        if (securityService.isDeviceSecure()) {
             splashViewModel.apply {
                 loadCredentials()
                 credentials.observe(this@SplashActivity, Observer { credentials ->
@@ -59,7 +59,7 @@ class SplashActivity : AppCompatActivity() {
                 })
             }
         } else {
-            deviceSecurityAlert = systemServices.showDeviceSecurityAlert()
+            deviceSecurityAlert = showDeviceSecurityAlert()
         }
     }
 
@@ -68,23 +68,33 @@ class SplashActivity : AppCompatActivity() {
         deviceSecurityAlert?.dismiss()
     }
 
+    private fun showDeviceSecurityAlert(): AlertDialog {
+        return AlertDialog.Builder(this)
+                .setTitle(R.string.lock_title)
+                .setMessage(R.string.lock_body)
+                .setPositiveButton(R.string.lock_settings) { _, _ -> openLockScreenSettings() }
+                .setNegativeButton(R.string.lock_exit) { _, _ -> System.exit(0) }
+                .setCancelable(BuildConfig.DEBUG)
+                .show()
+    }
+
     private fun showAuthenticationDialog(credentials: Credentials) {
         val dialog = AuthenticationDialog()
         dialog.apply {
-            if (credentials.isFingerPrintAllowed && systemServices.hasEnrolledFingerprints()) {
+            if (credentials.isFingerPrintAllowed && securityService.hasEnrolledFingerprints()) {
                 onFingerPrintAllowed(dialog)
             } else {
                 this.stage = AuthenticationDialog.Stage.PASSWORD
             }
             authenticationSuccessListener = { checkSettings() }
             passwordVerificationListener = { isPasswordValid(it) }
-            show(supportFragmentManager, "Authentication")
+            show(supportFragmentManager, AuthenticationDialog.TAG)
         }
     }
 
     private fun onFingerPrintAllowed(dialog: AuthenticationDialog) {
         dialog.apply {
-            cryptoObjectToAuthenticateWith = EncryptionServices(applicationContext).prepareFingerprintCryptoObject()
+            cryptoObjectToAuthenticateWith = EncryptionService.prepareFingerprintCryptoObject()
             fingerprintInvalidationListener = { onFingerprintInvalidation(it) }
             fingerprintAuthenticationSuccessListener = { validateKeyAuthentication(it) }
             if (this.cryptoObjectToAuthenticateWith == null) this.stage =
@@ -95,21 +105,20 @@ class SplashActivity : AppCompatActivity() {
     private fun onFingerprintInvalidation(useInFuture: Boolean) {
         splashViewModel.credentials.value?.isFingerPrintAllowed = useInFuture
         if (useInFuture) {
-            EncryptionServices(applicationContext).createFingerprintKey()
+            EncryptionService.createFingerprintKey()
         }
     }
 
     private fun validateKeyAuthentication(cryptoObject: FingerprintManager.CryptoObject) {
-        if (EncryptionServices(applicationContext).validateFingerprintAuthentication(cryptoObject)) {
+        if (EncryptionService.validateFingerprintAuthentication(cryptoObject)) {
             checkSettings()
         }
     }
 
     private fun isPasswordValid(inputtedPassword: String): Boolean {
         val savedPassword = splashViewModel.credentials.value?.password
-        Timber.e("INPUT: $inputtedPassword +++ SAVED: $savedPassword")
         return if (savedPassword != null) {
-            EncryptionServices(applicationContext).decrypt(savedPassword, inputtedPassword) == inputtedPassword
+            EncryptionService.decrypt(savedPassword, inputtedPassword) == inputtedPassword
         } else {
             false
         }

@@ -12,6 +12,8 @@ import ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.notes.Not
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.login.LoginActivity
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.splash.SplashActivity
 
+//TODO: Router should startActivity
+
 object Router {
 
     private const val INSTAGRAM_ACCOUNT_URL = "https://www.instagram.com/dancecampua21/"
@@ -68,6 +70,7 @@ object Router {
             Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:${context.packageName}"))
 }
 
+//TODO: Implement as func
 fun Context.openLockScreenSettings() {
     val intent = Intent(DevicePolicyManager.ACTION_SET_NEW_PASSWORD)
     startActivity(intent)
