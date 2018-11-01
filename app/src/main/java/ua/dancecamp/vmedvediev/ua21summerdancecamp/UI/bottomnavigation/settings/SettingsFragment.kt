@@ -64,7 +64,6 @@ class SettingsFragment : Fragment() {
         notificationsSettingsButton.setOnClickListener {
             if (context != null) {
                 Router.routeToApplicationSettings(this)
-                activity?.finish()
             }
         }
 

@@ -2,7 +2,6 @@ package ua.dancecamp.vmedvediev.ua21summerdancecamp.UI
 
 import android.app.Activity
 import android.app.admin.DevicePolicyManager
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
