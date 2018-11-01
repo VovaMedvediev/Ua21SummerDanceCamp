@@ -7,10 +7,6 @@ import android.hardware.fingerprint.FingerprintManager
 import android.os.Build
 import android.os.CancellationSignal
 import android.os.Handler
-import android.support.v7.app.AlertDialog
-import ua.dancecamp.vmedvediev.ua21summerdancecamp.BuildConfig
-import ua.dancecamp.vmedvediev.ua21summerdancecamp.R
-import ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.openLockScreenSettings
 
 @TargetApi(Build.VERSION_CODES.M)
 class SecurityService(context: Context) {

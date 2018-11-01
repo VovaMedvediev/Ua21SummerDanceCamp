@@ -63,7 +63,7 @@ class SettingsFragment : Fragment() {
         val context = context
         notificationsSettingsButton.setOnClickListener {
             if (context != null) {
-                startActivity(Router.prepareApplicationSettingsIntent(context))
+                Router.routeToApplicationSettings(this)
                 activity?.finish()
             }
         }
@@ -81,7 +81,7 @@ class SettingsFragment : Fragment() {
                 settingsViewModel.saveApplicationSettings(ApplicationSettings(APPLICATION_SETTINGS_ID, interfaceLanguage, localeLanguage))
             }
             if (context != null) {
-                startActivity(Router.prepareSplashScreenIntent(context))
+                Router.startSplashScreen(this)
                 activity?.finish()
             }
         }

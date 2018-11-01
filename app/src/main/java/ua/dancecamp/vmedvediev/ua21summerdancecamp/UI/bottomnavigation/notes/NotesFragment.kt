@@ -77,7 +77,7 @@ class NotesFragment : Fragment() {
     }
 
     private fun onNoteClicked(eventId: String) {
-        startActivity(Router.prepareNoteActivityIntent(activity as AppCompatActivity, eventId))
+        Router.startNoteActivity(this, eventId)
     }
 
     private fun showNoNotesMessage(notes: ArrayList<Event>) {

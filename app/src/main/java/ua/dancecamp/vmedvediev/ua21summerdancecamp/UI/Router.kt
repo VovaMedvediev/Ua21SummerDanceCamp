@@ -1,18 +1,18 @@
 package ua.dancecamp.vmedvediev.ua21summerdancecamp.UI
 
+import android.app.Activity
 import android.app.admin.DevicePolicyManager
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.provider.Settings
+import android.support.v4.app.Fragment
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.MainActivity
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.notes.NoteActivity
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.notes.NoteActivity.Companion.KEY_EVENT_ID_TO_NOTE_ACTIVITY
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.login.LoginActivity
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.splash.SplashActivity
-
-//TODO: Router should startActivity
 
 object Router {
 
@@ -22,19 +22,20 @@ object Router {
     private const val TELEGRAM_X_PACKAGE = "org.thunderdog.challegram"
     private const val TELEGRAM_PACKAGE = "org.telegram.messenger"
 
-    fun prepareSplashScreenIntent(context: Context) = Intent(context, SplashActivity::class.java)
+    fun startSplashScreen(fragment: Fragment) = fragment.startActivity(Intent(fragment.activity, SplashActivity::class.java))
 
-    fun prepareLoginActivityIntent(context: Context) = Intent(context, LoginActivity::class.java)
+    fun startLoginActivity(activity: Activity) = activity.startActivity(Intent(activity, LoginActivity::class.java))
 
-    fun prepareMainActivityIntent(context: Context) = Intent(context, MainActivity::class.java)
+    fun startMainActivity(activity: Activity) = activity.startActivity(Intent(activity, MainActivity::class.java))
 
-    fun prepareNoteActivityIntent(context: Context, eventId: String) : Intent {
-        val intent = Intent(context, NoteActivity::class.java)
+    fun startNoteActivity(fragment: Fragment, eventId: String) : Intent {
+        val intent = Intent(fragment.activity, NoteActivity::class.java)
         intent.putExtra(KEY_EVENT_ID_TO_NOTE_ACTIVITY, eventId)
+        fragment.startActivity(intent)
         return intent
     }
 
-    fun prepareInstagramProfileIntent(packageManager: PackageManager) : Intent {
+    fun routeToInstagramProfile(activity: Activity, packageManager: PackageManager) : Intent {
         val intent = Intent(Intent.ACTION_VIEW)
         var accountUrl = INSTAGRAM_ACCOUNT_URL
         try {
@@ -51,32 +52,27 @@ object Router {
             e.printStackTrace()
         }
         intent.data = Uri.parse(accountUrl)
+        activity.startActivity(intent)
         return intent
     }
 
-    fun prepareTelegramProfileIntent(context: Context) : Intent {
-        return try {
-            if (context.packageManager.getPackageInfo(TELEGRAM_X_PACKAGE, 0) != null ||
-                    context.packageManager.getPackageInfo(TELEGRAM_PACKAGE, 0) != null) {
-                Intent(Intent.ACTION_VIEW, Uri.parse(TELEGRAM_ACCOUNT_URL ))
-            } else Intent(context, MainActivity::class.java)
+    fun routeToTelegramProfile(activity: Activity) {
+        try {
+            if (activity.packageManager.getPackageInfo(TELEGRAM_X_PACKAGE, 0) != null ||
+                    activity.packageManager.getPackageInfo(TELEGRAM_PACKAGE, 0) != null) {
+                activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(TELEGRAM_ACCOUNT_URL)))
+            } else startMainActivity(activity)
         } catch (e: PackageManager.NameNotFoundException) {
             e.printStackTrace()
-            Intent(context, MainActivity::class.java)
+            startMainActivity(activity)
         }
     }
 
-    fun prepareApplicationSettingsIntent(context: Context) =
-            Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:${context.packageName}"))
-}
+    fun routeToApplicationSettings(fragment: Fragment) =
+            fragment.startActivity(Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                    Uri.parse("package:${fragment.activity?.packageName}")))
 
-//TODO: Implement as func
-fun Context.openLockScreenSettings() {
-    val intent = Intent(DevicePolicyManager.ACTION_SET_NEW_PASSWORD)
-    startActivity(intent)
-}
+    fun openLockScreenSettings(activity: Activity) = activity.startActivity(Intent(DevicePolicyManager.ACTION_SET_NEW_PASSWORD))
 
-fun Context.openSecuritySettings() {
-    val intent = Intent(Settings.ACTION_SECURITY_SETTINGS)
-    startActivity(intent)
+    fun openSecuritySettings(activity: Activity) = activity.startActivity(Intent(Settings.ACTION_SECURITY_SETTINGS))
 }

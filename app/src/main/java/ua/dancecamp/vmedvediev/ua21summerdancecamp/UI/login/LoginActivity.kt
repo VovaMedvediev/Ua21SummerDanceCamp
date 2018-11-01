@@ -11,7 +11,6 @@ import android.view.inputmethod.EditorInfo
 import kotlinx.android.synthetic.main.activity_login.*
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.*
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.Router
-import ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.openSecuritySettings
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.authentication.EncryptionService
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmCredentialsMapper
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.services.SecurityService
@@ -96,13 +95,17 @@ class LoginActivity : AppCompatActivity() {
                 else -> signUp()
             }
         }
+
+        cancelButton.setOnClickListener {
+            finish()
+        }
     }
 
     private fun onAllowFingerprint(checked: Boolean) {
         if (checked && !securityServices.hasEnrolledFingerprints()) {
             allowFingerprintCheckBox.isChecked = false
             Snackbar.make(loginScrollView, R.string.sign_up_snack_message, Snackbar.LENGTH_LONG)
-                    .setAction(R.string.sign_up_snack_action) { openSecuritySettings() }
+                    .setAction(R.string.sign_up_snack_action) { Router.openSecuritySettings(this) }
                     .show()
         }
     }
@@ -114,7 +117,7 @@ class LoginActivity : AppCompatActivity() {
 
         loginViewModel.saveCredentials(Credentials(CREDENTIALS_ID, encryptedPassword, allowFingerprintCheckBox.isChecked))
 
-        startActivity(Router.prepareMainActivityIntent(this))
+        Router.startMainActivity(this)
         finish()
     }
 

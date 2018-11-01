@@ -11,7 +11,6 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.*
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.Router
-import ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.openLockScreenSettings
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.authentication.AuthenticationDialog
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.authentication.EncryptionService
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmCredentialsMapper
@@ -72,7 +71,7 @@ class SplashActivity : AppCompatActivity() {
         return AlertDialog.Builder(this)
                 .setTitle(R.string.lock_title)
                 .setMessage(R.string.lock_body)
-                .setPositiveButton(R.string.lock_settings) { _, _ -> openLockScreenSettings() }
+                .setPositiveButton(R.string.lock_settings) { _, _ -> Router.openLockScreenSettings(this) }
                 .setNegativeButton(R.string.lock_exit) { _, _ -> System.exit(0) }
                 .setCancelable(BuildConfig.DEBUG)
                 .show()
@@ -158,9 +157,9 @@ class SplashActivity : AppCompatActivity() {
 
     private fun navigateToNextScreen() {
         if (!shouldLoginScreenBeOpened) {
-            startActivity(Router.prepareMainActivityIntent(this@SplashActivity))
+            Router.startMainActivity(this)
         } else {
-            startActivity(Router.prepareLoginActivityIntent(this))
+            Router.startLoginActivity(this)
         }
     }
 
