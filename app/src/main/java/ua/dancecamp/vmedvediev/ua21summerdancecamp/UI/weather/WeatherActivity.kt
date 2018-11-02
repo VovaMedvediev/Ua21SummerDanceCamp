@@ -16,8 +16,8 @@ class WeatherActivity : AppCompatActivity() {
 
     companion object {
         private const val ERROR_CODE = "400"
-        private const val TEMP_DEGREES_NUMBER = 2
-        private const val WIND_SPEED_NUMBER = 3
+        private const val TEMP_DEGREES_INDEX = 2
+        private const val WIND_SPEED_INDEX = 3
     }
 
     private val weatherViewModel by lazy {
@@ -33,7 +33,7 @@ class WeatherActivity : AppCompatActivity() {
         weatherViewModel.apply {
             loadWeatherResponse()
             weatherResponse.observe(this@WeatherActivity, Observer {
-                if (it != null && it.cod != ERROR_CODE) {
+                if (it != null && it.code != ERROR_CODE) {
                     showWeather(it)
                 } else {
                     showWeatherNotAvailable()
@@ -50,9 +50,9 @@ class WeatherActivity : AppCompatActivity() {
     }
 
     private fun showWeather(weatherResponse: WeatherResponse) {
-        val maxTemp = weatherResponse.list[0].main.maxTemp.substring(0, TEMP_DEGREES_NUMBER)
-        val minTemp = weatherResponse.list[0].main.minTemp.substring(0, TEMP_DEGREES_NUMBER)
-        val wind = weatherResponse.list[0].wind.speed.toString().substring(0, WIND_SPEED_NUMBER)
+        val maxTemp = weatherResponse.list[0].main.maxTemp.substring(0, TEMP_DEGREES_INDEX)
+        val minTemp = weatherResponse.list[0].main.minTemp.substring(0, TEMP_DEGREES_INDEX)
+        val wind = weatherResponse.list[0].wind.speed.toString().substring(0, WIND_SPEED_INDEX)
         maxTempTextView.text = getString(R.string.label_degrees_celsius, maxTemp)
         minTempTextView.text = getString(R.string.label_degrees_celsius, minTemp)
         windTextView.text = getString(R.string.label_m_s, wind)

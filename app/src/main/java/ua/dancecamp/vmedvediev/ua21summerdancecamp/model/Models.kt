@@ -36,7 +36,7 @@ data class Date(
 
 data class WeatherResponse(
         @SerializedName("message") var message: String = "",
-        @SerializedName("cod") var cod: String = "",
+        @SerializedName("cod") var code: String = "",
         @SerializedName("count") var count: Int = 0,
         @SerializedName("list") var list: ArrayList<List> = ArrayList()
 )
