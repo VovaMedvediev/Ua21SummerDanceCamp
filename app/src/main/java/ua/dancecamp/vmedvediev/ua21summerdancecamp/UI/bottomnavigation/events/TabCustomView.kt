@@ -10,16 +10,22 @@ class TabCustomView constructor(context: Context,
                                 nameOfTheDay: String,
                                 numberOfTheDay: String) : ConstraintLayout(context) {
 
-    private var name: String = ""
-    private var number: String = ""
+    constructor(context: Context) : this(context, "", "")
+
+    private var tabName: String = ""
+    private var tabNumber: String = ""
 
     init {
         LayoutInflater.from(context).inflate(R.layout.custom_tab, this, true)
-        name = nameOfTheDay
-        number = numberOfTheDay
-        nameOfTheDayTextView?.text = name
-        numbersOfTheDayTextView?.text = number
+        updateValues(numberOfTheDay, nameOfTheDay)
     }
 
-    fun getDate() = "$number $name"
+    fun getDate() = "$tabNumber $tabName"
+
+    fun updateValues(number: String, name: String) {
+        tabName = name
+        tabNumber = number
+        numbersOfTheDayTextView?.text = tabNumber
+        nameOfTheDayTextView?.text = tabName
+    }
 }

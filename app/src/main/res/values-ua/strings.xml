@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="numbersOfDaysArray">
+        <item>28/8</item>
+        <item>29/8</item>
+        <item>30/8</item>
+        <item>31/8</item>
+        <item>01/9</item>
+        <item>02/9</item>
+        <item>03/9</item>
+        <item>04/9</item>
+    </string-array>
+
+    <string-array name="namesOfDaysArray">
+        <item>Вівторок</item>
+        <item>Середа</item>
+        <item>Четверг</item>
+        <item>Пятниця</item>
+        <item>Субота</item>
+        <item>Неділя</item>
+        <item>Понеділок</item>
+        <item>Вівторок</item>
+    </string-array>
+    <string name="title_workshop">Майстер-класи</string>
+    <string name="title_notes">Нотатки</string>
+    <string name="title_settings">Налаштування</string>
+    <string name="hint_note">Напиші що-небудь цікаве :)</string>
+    <string name="label_name_of_day">пон</string>
+    <string name="label_fullname_of_day">ПОНЕДІЛОК</string>
+    <string name="label_list_of_notes_is_empty">В тебе ще немає нотаток :(</string>
+    <string name="time_notification_label">Через 30 хвилин</string>
+    <string name="label_language">Мова інтерфейсу:</string>
+    <string name="label_ua">Українська мова</string>
+    <string name="label_ru">Російська мова</string>
+    <string name="label_en">Англійська мова</string>
+    <string name="label_theme">Тема:</string>
+    <string name="label_light">Свiтла</string>
+    <string name="label_dark">Темна</string>
+    <string name="label_confirm_theme">Змiнити тему</string>
+    <string name="label_confirm_language">Змiнити мову</string>
+    <string name="label_notifications_settings">Щоб не отримувати нагадування - вимкнiть оповіщення для додатка у налаштуваннях</string>
+    <string name="label_open_settings">Відкрити налаштування</string>
+    <string name="hint_enter_password">Введiть пароль</string>
+    <string name="hint_confirm_password">Пiдтвердiть пароль</string>
+    <string name="label_next">Далi</string>
+    <string name="label_cancel">Скасувати</string>
+    <string name="label_error_password">Пароль повинен мicтити не менш 8 символiв</string>
+    <string name="label_error_passwords_dont_match">Паролі повинні співпадати.</string>
+    <string name="lock_exit">Вихiд</string>
+    <string name="lock_settings">Налаштування</string>
+    <string name="lock_title">Екран блокування</string>
+    <string name="lock_body">"         Безпечний екран блокування не налаштований. Щоб продовжити роботу з цим додатком, перейдіть в «Налаштування» і встановіть метод блокування екрану."</string>
+    <string name="sign_up_snack_message">Зареєструйте хоча б один відбиток.</string>
+    <string name="sign_up_snack_action">НАЛАШТУВАННЯ</string>
+    <string name="sign_up_allow_fingerprint">Дозволити відбитки для подальшого використання</string>
+    <string name="authentication_fingerprint_success">Відбиток розпізнано</string>
+    <string name="authentication_fingerprint_hint">Сенсорний датчик</string>
+    <string name="authentication_fingerprint_not_recognized">Відбиток не розпізнано. Спробуйте ще раз</string>
+    <string name="authentication_fingerprint_description">Підтвердіть відбиток для продовження</string>
+    <string name="authentication_fingerprint_icon_description">Iконка відбитка</string>
+    <string name="authentication_password_description">Введіть пароль для продовження</string>
+    <string name="authentication_fingerprint_new_enrollment_description">До цього пристрою був доданий новий відбиток пальця, тому потрібно ваш пароль.</string>
+    <string name="authentication_password">Пароль</string>
+    <string name="authentication_fingerprint_use_in_future">Використовувати відбитки в майбутньому</string>
+    <string name="authentication_title">Аутентифікація</string>
+    <string name="authentication_cancel">Скасувати</string>
+    <string name="authentication_use_password">Використовувати пароль</string>
+    <string name="authentication_error_incorrect_password">Пароль неправильний</string>
+    <string name="label_current_weather">Погода</string>
+    <string name="label_max_temp">Макс. Температура:</string>
+    <string name="label_min_temp">Miн. Температура:</string>
+    <string name="label_m_s">%1$s м/с</string>
+    <string name="label_wind">Вiтер:</string>
+    <string name="weather_forecast_isn_t_available">Прогноз погоди недоступний :(</string>
+</resources>

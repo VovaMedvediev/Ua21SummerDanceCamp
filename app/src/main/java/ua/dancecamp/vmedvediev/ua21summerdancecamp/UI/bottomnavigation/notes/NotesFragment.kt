@@ -15,7 +15,9 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_notes.*
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.R
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.Router
+import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmCredentialsMapper
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmEventMapper
+import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmSettingsMapper
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.model.Event
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.repository.Repository
 
@@ -25,7 +27,8 @@ class NotesFragment : Fragment() {
         NotesAdapter(ArrayList())
     }
     private val notesViewModel by lazy {
-        ViewModelProviders.of(this, NotesViewModel(Repository(RealmEventMapper())).NotesViewModelFactory())
+        ViewModelProviders.of(this, NotesViewModel(Repository(RealmEventMapper(),
+                RealmSettingsMapper(), RealmCredentialsMapper())).NotesViewModelFactory())
                 .get(NotesViewModel::class.java)
     }
 
@@ -36,18 +39,17 @@ class NotesFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setupRecycler()
-
     }
 
     override fun onResume() {
         super.onResume()
         notesViewModel.apply {
             getEvents()
-            events.observe(this@NotesFragment, Observer {
-                if (it != null) {
-                    showNoNotesMessage(it)
+            events.observe(this@NotesFragment, Observer { notes ->
+                if (notes != null) {
+                    showNoNotesMessage(notes)
                     notesAdapter.apply {
-                        clearAndAddAll(it.sortedByDescending { it.eventNoteDate })
+                        clearAndAddAll(notes.sortedByDescending { it.eventNoteDate })
                         notifyDataSetChanged()
                     }
                 }
@@ -63,12 +65,11 @@ class NotesFragment : Fragment() {
             adapter = notesAdapter
         }
         val swipeHandler = object : SwipeToDeleteCallBack(activity as AppCompatActivity) {
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder?, direction: Int) {
-                val adapterPosition = viewHolder?.adapterPosition
-                if (adapterPosition != null) {
+            override fun onSwiped(p0: RecyclerView.ViewHolder, p1: Int) {
+                val viewHolder = p0
+                val adapterPosition = viewHolder.adapterPosition
                     notesViewModel.deleteNoteFromDatabase(notesAdapter.getItem(adapterPosition))
                     notesAdapter.removeAt(adapterPosition)
-                }
             }
         }
         val itemTouchHelper = ItemTouchHelper(swipeHandler)
@@ -76,7 +77,7 @@ class NotesFragment : Fragment() {
     }
 
     private fun onNoteClicked(eventId: String) {
-        startActivity(Router.prepareNoteActivityIntent(activity as AppCompatActivity, eventId))
+        Router.startNoteActivity(this.activity, eventId)
     }
 
     private fun showNoNotesMessage(notes: ArrayList<Event>) {

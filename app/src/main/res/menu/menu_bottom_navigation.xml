@@ -2,13 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
 <item
-    android:id="@+id/navigation_events"
-    android:icon="@drawable/ic_home_black_24dp"
+    android:id="@+id/navigationEventsMenuItem"
+    android:icon="@drawable/ic_workshops"
     android:title="@string/title_workshop" />
 
 <item
-    android:id="@+id/navigation_notes"
+    android:id="@+id/navigationNotesMenuItem"
     android:icon="@drawable/ic_edit_note"
     android:title="@string/title_notes" />
+
+<item
+    android:id="@+id/navigationSettingsMenuItem"
+    android:icon="@drawable/ic_settings"
+    android:title="@string/title_settings" />
 
 </menu>

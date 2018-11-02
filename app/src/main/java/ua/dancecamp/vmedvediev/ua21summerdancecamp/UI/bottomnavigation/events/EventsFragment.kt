@@ -1,5 +1,6 @@
 package ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.events
 
+import android.annotation.SuppressLint
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -16,17 +17,20 @@ import kotlinx.android.synthetic.main.fragment_events.*
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.MyApplication
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.R
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.Router
+import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmCredentialsMapper
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmEventMapper
+import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmSettingsMapper
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.model.EventsCache
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.repository.Repository
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
     companion object {
         private val numberOfDaysArray=
                 MyApplication.instance.resources.getStringArray(R.array.numbersOfDaysArray)
-        private val namesOfDaysArray =
+        private var namesOfDaysArray =
                 MyApplication.instance.resources.getStringArray(R.array.namesOfDaysArray)
         private const val INDEX_OF_FIRST_TAB = 0
         // We should decrement value because of indexing starts from 0
@@ -35,16 +39,17 @@ class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
     private var listOfLastItemPositions: ArrayList<Int> = setupListOfLastItemPositions()
     private var shouldTabBeSelected = true
     private var tempDate: String = ""
-    private val linearLayoutManager = LinearLayoutManager(activity)
+    private lateinit var linearLayoutManager: LinearLayoutManager
     private val eventsViewModel by lazy {
-        ViewModelProviders.of(this, EventsViewModel(Repository(RealmEventMapper())).EventsViewModelFactory()).get(EventsViewModel::class.java)
+        ViewModelProviders.of(this, EventsViewModel(Repository(RealmEventMapper(),
+                RealmSettingsMapper(), RealmCredentialsMapper())).EventsViewModelFactory()).get(EventsViewModel::class.java)
     }
     private val eventsAdapter by lazy {
         EventsAdapter(activity as AppCompatActivity, ArrayList())
     }
     private val recyclerViewOnScrollListener by lazy {
         object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
 
                 val nextTab = eventsTabLayout.getTabAt(eventsTabLayout.selectedTabPosition + 1)
@@ -59,7 +64,7 @@ class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
                 }
             }
 
-            override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 shouldTabBeSelected = newState == RecyclerView.SCROLL_STATE_IDLE
             }
@@ -85,6 +90,11 @@ class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        setupCurrentDayTab()
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_events, container, false)
     }
@@ -93,11 +103,11 @@ class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
         super.onActivityCreated(savedInstanceState)
         activity?.actionBar?.setBackgroundDrawable(resources.getDrawable(R.drawable.ab_main_background))
         setupTabs()
-        Handler().postDelayed({ onTabSelected(eventsTabLayout.getTabAt(0)) }, 1)
-        setupCurrentDayTab()
+        updateTabsLanguage()
+        linearLayoutManager = LinearLayoutManager(activity)
+        setupRecycler()
 
         eventsTabLayout.addOnTabSelectedListener(this)
-        setupRecycler()
 
         eventsViewModel.events.observe(this, Observer {
             eventsRecyclerView.post {
@@ -122,6 +132,7 @@ class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
         }
     }
 
+    @SuppressLint("SimpleDateFormat")
     private fun setupCurrentDayTab() {
         val calendar = Calendar.getInstance()
         val simpleDateFormat = SimpleDateFormat("dd")
@@ -135,7 +146,7 @@ class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
     }
 
     private fun onEventClicked(eventId: String) {
-        startActivity(Router.prepareNoteActivityIntent(activity as AppCompatActivity, eventId))
+        Router.startNoteActivity(this.activity, eventId)
     }
 
     private fun getEventsByClickingOnTab(tab: TabLayout.Tab?) {
@@ -164,10 +175,21 @@ class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
     }
 
     private fun setupTabs() {
+        eventsTabLayout.removeAllTabs()
         for (i in INDEX_OF_FIRST_TAB..INDEX_OF_LAST_TAB) {
             eventsTabLayout.apply {
                 addTab(this.newTab())
                 getTabAt(i)?.customView = TabCustomView(activity as AppCompatActivity, namesOfDaysArray[i], numberOfDaysArray[i])
+            }
+        }
+    }
+
+    private fun updateTabsLanguage() {
+        namesOfDaysArray = emptyArray()
+        namesOfDaysArray = context?.resources?.getStringArray(R.array.namesOfDaysArray)
+        for (i in INDEX_OF_FIRST_TAB..INDEX_OF_LAST_TAB) {
+            eventsTabLayout.apply {
+                (getTabAt(i)?.customView as TabCustomView).updateValues(numberOfDaysArray[i], namesOfDaysArray[i])
             }
         }
     }

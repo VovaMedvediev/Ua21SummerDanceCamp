@@ -1,9 +1,5 @@
 <resources>
-    <string name="app_name">UA21 Camp</string>
-    <string name="title_activity_tab">TabActivity</string>
-    <string name="action_settings">Settings</string>
     <string-array name="numbersOfDaysArray">
-        <item>27/8</item>
         <item>28/8</item>
         <item>29/8</item>
         <item>30/8</item>
@@ -11,10 +7,10 @@
         <item>01/9</item>
         <item>02/9</item>
         <item>03/9</item>
+        <item>04/9</item>
     </string-array>
 
     <string-array name="namesOfDaysArray">
-        <item>Monday</item>
         <item>Tuesday</item>
         <item>Wednesday</item>
         <item>Thursday</item>
@@ -22,23 +18,57 @@
         <item>Saturday</item>
         <item>Sunday</item>
         <item>Monday</item>
+        <item>Tuesday</item>
     </string-array>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="title_workshop">Workshop</string>
+    <string name="title_workshop">Workshops</string>
     <string name="title_notes">Notes</string>
+    <string name="title_settings">Settings</string>
     <string name="hint_note">Write something intresting :)</string>
-    <string name="label_number_of_day">28/8</string>
     <string name="label_name_of_day">mon</string>
     <string name="label_fullname_of_day">MONDAY</string>
-    <string name="label_name_of_event">Darina Maltseva</string>
-    <string name="label_confirm_note">Confirm note</string>
-    <string name="list_of_events_json">ListOfEvents.json</string>
-    <string name="list_of_events_en_json">listOfEventsEn.json</string>
-    <string name="label_note">This is a note</string>
     <string name="label_list_of_notes_is_empty">You do not have any notes yet :(</string>
-    <string name="label_event_time">10.00</string>
-    <string name="label_instagram">Instagram</string>
-    <string name="label_telegram">Telegram</string>
-    <string name="label_english">English</string>
     <string name="time_notification_label">In 30 minutes</string>
+    <string name="label_language">Interface language:</string>
+    <string name="label_ua">Ukrainian language</string>
+    <string name="label_ru">Russian language</string>
+    <string name="label_en">English language</string>
+    <string name="label_theme">Theme:</string>
+    <string name="label_light">Light</string>
+    <string name="label_dark">Dark</string>
+    <string name="label_confirm_theme">Change theme</string>
+    <string name="label_confirm_language">Change language</string>
+    <string name="label_notifications_settings">In order to not receive reminders - turn off notifications for the application in the settings</string>
+    <string name="label_open_settings">Open settings</string>
+    <string name="hint_enter_password">Enter password</string>
+    <string name="hint_confirm_password">Confirm password</string>
+    <string name="label_next">Next</string>
+    <string name="label_cancel">Cancel</string>
+    <string name="label_error_password">Password must contain at least 8 characters.</string>
+    <string name="label_error_passwords_dont_match">Passwords should be the same.</string>
+    <string name="lock_exit">Exit</string>
+    <string name="lock_settings">Settings</string>
+    <string name="lock_title">Lock Screen</string>
+    <string name="sign_up_allow_fingerprint">Allow Fingerprint for later use</string>
+    <string name="lock_body">"         Secure lock screen hasn't set up. To continue working with this app,         please got to Settings and set a lock screen method.     "</string>
+    <string name="sign_up_snack_message">Register at least one fingerprint.</string>
+    <string name="sign_up_snack_action">SETTINGS</string>
+    <string name="authentication_fingerprint_success">Fingerprint recognized</string>
+    <string name="authentication_fingerprint_hint">Touch sensor</string>
+    <string name="authentication_fingerprint_not_recognized">Fingerprint not recognized. Try again</string>
+    <string name="authentication_fingerprint_description">Confirm fingerprint to continue</string>
+    <string name="authentication_fingerprint_icon_description">Fingerprint icon</string>
+    <string name="authentication_password_description">Enter your password to continue</string>
+    <string name="authentication_fingerprint_new_enrollment_description">"         A new fingerprint was added to this device, so your password is required.     "</string>
+    <string name="authentication_password">Password</string>
+    <string name="authentication_fingerprint_use_in_future">Use fingerprint in the future</string>
+    <string name="authentication_title">Authenticate</string>
+    <string name="authentication_cancel">Cancel</string>
+    <string name="authentication_use_password">Use password</string>
+    <string name="authentication_error_incorrect_password">Password is incorrect</string>
+    <string name="label_current_weather">Weather</string>
+    <string name="label_max_temp">Max. Temperature:</string>
+    <string name="label_min_temp">Min. Temperature:</string>
+    <string name="label_m_s">%1$s m/s</string>
+    <string name="label_wind">Wind:</string>
+    <string name="weather_forecast_isn_t_available">Weather forecast isn\'t available :(</string>
 </resources>

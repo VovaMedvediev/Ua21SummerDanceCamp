@@ -1,5 +1,6 @@
 package ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.notes
 
+import android.annotation.SuppressLint
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -8,7 +9,9 @@ import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_note.*
 import android.arch.lifecycle.Observer
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.R
+import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmCredentialsMapper
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmEventMapper
+import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmSettingsMapper
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.model.Event
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.repository.Repository
 import java.text.SimpleDateFormat
@@ -21,17 +24,11 @@ class NoteActivity : AppCompatActivity() {
     }
 
     private val eventId: String by lazy {
-        var eventId = ""
-        val extras = intent.extras
-        if (extras != null) {
-            if (extras.containsKey(KEY_EVENT_ID_TO_NOTE_ACTIVITY)) {
-                eventId = extras.getString(KEY_EVENT_ID_TO_NOTE_ACTIVITY)
-            }
-        }
-        return@lazy eventId
+        return@lazy intent.extras?.getString(KEY_EVENT_ID_TO_NOTE_ACTIVITY, "") ?: ""
     }
     private val notesViewModel by lazy {
-        ViewModelProviders.of(this, NotesViewModel(Repository(RealmEventMapper())).NotesViewModelFactory()).
+        ViewModelProviders.of(this, NotesViewModel(Repository(RealmEventMapper(),
+                RealmSettingsMapper(), RealmCredentialsMapper())).NotesViewModelFactory()).
                 get(NotesViewModel::class.java)
     }
     private val event: Event? by lazy {
@@ -102,6 +99,7 @@ class NoteActivity : AppCompatActivity() {
 
     private fun getNoteText() = noteEditText?.text.toString()
 
+    @SuppressLint("SimpleDateFormat")
     private fun prepareNoteDate() : String {
         val dateFormat = SimpleDateFormat("dd EEE HH:mm")
         val currentTime = Calendar.getInstance().time

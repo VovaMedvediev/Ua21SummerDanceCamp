@@ -12,11 +12,11 @@ class NotesViewModel(private val repository: Repository) : ViewModel() {
     val event: MutableLiveData<Event> = MutableLiveData()
 
     fun getEvents() {
-        repository.getNotes { notesList: ArrayList<Event> -> onEventsLoaded(notesList)}
+        repository.getNotes { notesList: ArrayList<Event> -> if (notesList.isNotEmpty()) events.value = notesList}
     }
 
     fun getEvent(eventId: String) {
-        repository.getEvent(eventId) { event: Event -> onEventLoaded(event)}
+        repository.getEvent(eventId) { loadedEvent: Event? -> if (loadedEvent != null) event.value = loadedEvent }
     }
 
     fun deleteNoteFromDatabase(event: Event) {
@@ -25,18 +25,6 @@ class NotesViewModel(private val repository: Repository) : ViewModel() {
 
     fun saveNoteToDatabase(event: Event) {
         repository.saveNoteToDatabase(event)
-    }
-
-    private fun onEventsLoaded(notesList: ArrayList<Event>) {
-        if (notesList.isNotEmpty()) {
-            events.value = notesList
-        }
-    }
-
-    private fun onEventLoaded(loadedEvent: Event?) {
-        if (loadedEvent != null) {
-            event.value = loadedEvent
-        }
     }
 
     inner class NotesViewModelFactory : ViewModelProvider.NewInstanceFactory() {

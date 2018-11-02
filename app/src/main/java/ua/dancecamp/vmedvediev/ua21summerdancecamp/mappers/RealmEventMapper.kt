@@ -1,7 +1,7 @@
 package ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers
 
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.model.Event
-import ua.dancecamp.vmedvediev.ua21summerdancecamp.model.RealmEvent
+import ua.dancecamp.vmedvediev.ua21summerdancecamp.model.entity.RealmEvent
 
 class RealmEventMapper : Mapper<RealmEvent, Event> {
 

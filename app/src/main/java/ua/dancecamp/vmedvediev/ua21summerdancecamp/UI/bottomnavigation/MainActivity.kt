@@ -7,8 +7,10 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.app.AppCompatDelegate
 import android.view.Menu
 import android.view.MenuItem
+import ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.settings.SettingsFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.R
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.Router
@@ -22,7 +24,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
         navigation.setOnNavigationItemSelectedListener(this)
 
         setupViewPager()
@@ -30,11 +32,14 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.navigation_events -> {
+            R.id.navigationEventsMenuItem -> {
                 bottomNavigationViewPager.currentItem = 0
             }
-            R.id.navigation_notes -> {
+            R.id.navigationNotesMenuItem -> {
                 bottomNavigationViewPager.currentItem = 1
+            }
+            R.id.navigationSettingsMenuItem -> {
+                bottomNavigationViewPager.currentItem = 2
             }
         }
         return false
@@ -61,7 +66,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                 prevMenuItem = navigation.menu.getItem(position)
             }
         })
-        val adapter = MyFragmentPagerAdapter(supportFragmentManager, arrayOf(EventsFragment(), NotesFragment()))
+        val adapter = MyFragmentPagerAdapter(supportFragmentManager, arrayOf(EventsFragment(), NotesFragment(), SettingsFragment()))
         bottomNavigationViewPager.adapter = adapter
     }
 
@@ -82,10 +87,13 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.navigation_instagram -> {
-                startActivity(Router.prepareInstagramProfileIntent(packageManager))
+                Router.routeToInstagramProfile(this)
             }
             R.id.navigation_telegram -> {
-                startActivity(Router.prepareTelegramProfileIntent(this))
+                Router.routeToTelegramProfile(this)
+            }
+            R.id.navigation_weather -> {
+                Router.prepareWeatherActivityIntent(this)
             }
         }
         return super.onOptionsItemSelected(item)
