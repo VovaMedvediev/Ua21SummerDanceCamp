@@ -2,6 +2,9 @@ package ua.dancecamp.vmedvediev.ua21summerdancecamp.repository
 
 import io.realm.RealmResults
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmCredentialsMapper
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmEventMapper
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmSettingsMapper
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.model.*
@@ -12,6 +15,10 @@ import kotlin.collections.LinkedHashSet
 class Repository(private val eventsMapper: RealmEventMapper,
                  private val settingsMapper: RealmSettingsMapper,
                  private val credentialsMapper: RealmCredentialsMapper) {
+
+    companion object {
+        private const val ERROR_CODE = "400"
+    }
 
     fun getNotes(onEventsLoaded: (ArrayList<Event>) -> Unit) {
         val realmEventsList = DatabaseHelper.getEvents()
@@ -43,6 +50,23 @@ class Repository(private val eventsMapper: RealmEventMapper,
         } else {
             onCredentialsLoaded(Credentials())
         }
+    }
+        fun getWeatherResponse(onWeatherResponseLoaded: (WeatherResponse) -> Unit) {
+        val weatherApi = NetworkManager.initRetrofit()
+        val weatherResponse = weatherApi.getCurrentWeather()
+        weatherResponse.enqueue(object : Callback<WeatherResponse> {
+            override fun onFailure(call: Call<WeatherResponse>, t: Throwable) {
+                onWeatherResponseLoaded(WeatherResponse("", ERROR_CODE))
+            }
+
+            override fun onResponse(call: Call<WeatherResponse>, response: Response<WeatherResponse>) {
+                val body = response.body()
+                if (body != null) {
+                    onWeatherResponseLoaded(body)
+                }
+            }
+
+        })
     }
 
     fun deleteNoteFromDatabase(event: Event) {

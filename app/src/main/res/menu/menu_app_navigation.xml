@@ -9,4 +9,7 @@
         android:id="@+id/navigation_telegram"
         android:title="@string/label_telegram" />
 
+    <item android:id="@+id/navigation_weather"
+        android:title="@string/label_current_weather"/>
+
 </menu>

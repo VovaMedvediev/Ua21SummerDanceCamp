@@ -91,4 +91,14 @@
     <string name="lock_body">"         Безопасный экран блокировки не настроен. Чтобы продолжить работу с этим приложением, перейдите в «Настройки» и установите метод блокировки экрана."</string>
     <string name="sign_up_allow_fingerprint">Разрешить отпечатки для дальнейшего использования</string>
     <string name="authentication_fingerprint_hint">Сенсорный датчик</string>
+    <string name="label_current_weather">Погода</string>
+    <string name="label_max_temp">Макс. Температура:</string>
+    <string name="label_10_c" translatable="false">10 ℃</string>
+    <string name="label_degrees_celsius" translatable="false">%1$s℃</string>
+    <string name="label_min_temp">Мин. Температура:</string>
+    <string name="label_wind">Ветер:</string>
+    <string name="label_4_6" translatable="false">4.6 m/s</string>
+    <string name="label_m_s">%1$s м/с</string>
+    <string name="weather_forecast_isn_t_available">Прогноз погоды недоступен :(</string>
+>>>>>>> feature/weather_screen
 </resources>

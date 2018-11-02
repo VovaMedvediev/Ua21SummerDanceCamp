@@ -65,4 +65,10 @@
     <string name="authentication_cancel">Cancel</string>
     <string name="authentication_use_password">Use password</string>
     <string name="authentication_error_incorrect_password">Password is incorrect</string>
+    <string name="label_current_weather">Weather</string>
+    <string name="label_max_temp">Max. Temperature:</string>
+    <string name="label_min_temp">Min. Temperature:</string>
+    <string name="label_m_s">%1$s m/s</string>
+    <string name="label_wind">Wind:</string>
+    <string name="weather_forecast_isn_t_available">Weather forecast isn\'t available :(</string>
 </resources>

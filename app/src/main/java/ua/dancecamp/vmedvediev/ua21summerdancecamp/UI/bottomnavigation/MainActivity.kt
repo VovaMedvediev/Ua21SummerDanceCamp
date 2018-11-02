@@ -87,10 +87,13 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.navigation_instagram -> {
-                Router.routeToInstagramProfile(this, packageManager)
+                Router.routeToInstagramProfile(this)
             }
             R.id.navigation_telegram -> {
                 Router.routeToTelegramProfile(this)
+            }
+            R.id.navigation_weather -> {
+                Router.prepareWeatherActivityIntent(this)
             }
         }
         return super.onOptionsItemSelected(item)

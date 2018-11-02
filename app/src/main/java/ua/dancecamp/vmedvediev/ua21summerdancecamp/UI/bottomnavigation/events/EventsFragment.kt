@@ -146,7 +146,7 @@ class EventsFragment : Fragment(), TabLayout.OnTabSelectedListener {
     }
 
     private fun onEventClicked(eventId: String) {
-        Router.startNoteActivity(this, eventId)
+        Router.startNoteActivity(this.activity, eventId)
     }
 
     private fun getEventsByClickingOnTab(tab: TabLayout.Tab?) {

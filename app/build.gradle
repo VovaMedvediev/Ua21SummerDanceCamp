@@ -80,6 +80,11 @@ dependencies {
     testImplementation "org.mockito:mockito-core:2.+"
 
     implementation 'com.badoo.mobile:android-weak-handler:1.1'
+
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+
+    testImplementation 'org.mockito:mockito-core:2.23.0'
 }
 
 configurations.all {

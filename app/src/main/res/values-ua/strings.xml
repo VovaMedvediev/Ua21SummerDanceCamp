@@ -66,4 +66,10 @@
     <string name="authentication_cancel">Скасувати</string>
     <string name="authentication_use_password">Використовувати пароль</string>
     <string name="authentication_error_incorrect_password">Пароль неправильний</string>
+    <string name="label_current_weather">Погода</string>
+    <string name="label_max_temp">Макс. Температура:</string>
+    <string name="label_min_temp">Miн. Температура:</string>
+    <string name="label_m_s">%1$s м/с</string>
+    <string name="label_wind">Вiтер:</string>
+    <string name="weather_forecast_isn_t_available">Прогноз погоди недоступний :(</string>
 </resources>
