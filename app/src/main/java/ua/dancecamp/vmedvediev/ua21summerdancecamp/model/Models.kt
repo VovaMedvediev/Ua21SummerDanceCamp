@@ -2,8 +2,6 @@ package ua.dancecamp.vmedvediev.ua21summerdancecamp.model
 
 import android.annotation.SuppressLint
 import com.google.gson.annotations.SerializedName
-import io.realm.RealmObject
-import io.realm.annotations.PrimaryKey
 
 data class ApplicationSettings(
         var id: String = "1",
@@ -36,6 +34,10 @@ data class Date(
     override fun getDateOfEvent() = name
 
 }
+
+data class Credentials(var id: String = "1",
+                       var password: String = "",
+                       var isFingerPrintAllowed: Boolean = false)
 
 interface ListItem {
 

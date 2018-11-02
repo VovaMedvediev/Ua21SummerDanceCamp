@@ -9,7 +9,7 @@ import android.widget.TextView
 import kotlinx.android.synthetic.main.day_item.view.*
 import kotlinx.android.synthetic.main.event_item.view.*
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.R
-import ua.dancecamp.vmedvediev.ua21summerdancecamp.inflate
+import ua.dancecamp.vmedvediev.ua21summerdancecamp.services.inflate
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.model.Date
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.model.Event
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.model.ListItem
@@ -80,7 +80,7 @@ class EventsAdapter(private val context: Context, private val eventsList: Mutabl
 
     fun getItem(position: Int) = eventsList[ if (position != -1) position else 1]
 
-    inner class EventViewHolder(parent: ViewGroup?) : RecyclerView.ViewHolder(parent?.inflate(R.layout.event_item)) {
+    inner class EventViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(parent.inflate(R.layout.event_item)) {
 
         val name: TextView = itemView.eventNameTextView
         val time: TextView = itemView.eventTimeTextView
@@ -89,7 +89,7 @@ class EventsAdapter(private val context: Context, private val eventsList: Mutabl
 
     }
 
-    inner class DayViewHolder(parent: ViewGroup?) : RecyclerView.ViewHolder(parent?.inflate(R.layout.day_item)) {
+    inner class DayViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(parent.inflate(R.layout.day_item)) {
 
         val day: TextView = itemView.dayTextView
 

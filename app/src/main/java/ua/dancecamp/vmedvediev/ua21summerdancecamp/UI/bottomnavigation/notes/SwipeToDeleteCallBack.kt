@@ -17,19 +17,11 @@ abstract class SwipeToDeleteCallBack(context: Context) : ItemTouchHelper.SimpleC
     private val backgroundColor = Color.parseColor("#f44336")
     private val clearPaint = Paint().apply { xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR) }
 
-    override fun getMovementFlags(recyclerView: RecyclerView?, viewHolder: RecyclerView.ViewHolder?): Int {
-        return super.getMovementFlags(recyclerView, viewHolder)
-    }
-
-    override fun onMove(recyclerView: RecyclerView?, viewHolder: RecyclerView.ViewHolder?, target: RecyclerView.ViewHolder?): Boolean {
+    override fun onMove(p0: RecyclerView, p1: RecyclerView.ViewHolder, p2: RecyclerView.ViewHolder): Boolean {
         return false
     }
 
-    override fun onChildDraw(
-            c: Canvas?, recyclerView: RecyclerView?, viewHolder: RecyclerView.ViewHolder,
-            dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean
-    ) {
-
+    override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean) {
         val itemView = viewHolder.itemView
         val itemHeight = itemView.bottom - itemView.top
         val isCanceled = dX == 0f && !isCurrentlyActive

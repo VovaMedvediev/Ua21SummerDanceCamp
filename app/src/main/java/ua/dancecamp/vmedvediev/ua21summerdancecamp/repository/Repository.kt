@@ -1,7 +1,7 @@
 package ua.dancecamp.vmedvediev.ua21summerdancecamp.repository
 
 import io.realm.RealmResults
-import timber.log.Timber
+import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmCredentialsMapper
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmEventMapper
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.mappers.RealmSettingsMapper
 import ua.dancecamp.vmedvediev.ua21summerdancecamp.model.*
@@ -9,7 +9,9 @@ import ua.dancecamp.vmedvediev.ua21summerdancecamp.model.entity.RealmEvent
 import kotlin.collections.ArrayList
 import kotlin.collections.LinkedHashSet
 
-class Repository(private val eventsMapper: RealmEventMapper, private val settingsMapper: RealmSettingsMapper) {
+class Repository(private val eventsMapper: RealmEventMapper,
+                 private val settingsMapper: RealmSettingsMapper,
+                 private val credentialsMapper: RealmCredentialsMapper) {
 
     fun getNotes(onEventsLoaded: (ArrayList<Event>) -> Unit) {
         val realmEventsList = DatabaseHelper.getEvents()
@@ -31,6 +33,15 @@ class Repository(private val eventsMapper: RealmEventMapper, private val setting
             onApplicationSettingsLoaded(settingsMapper.from(realmSettings))
         } else {
             onApplicationSettingsLoaded(ApplicationSettings())
+        }
+    }
+
+    fun getCredentials(onCredentialsLoaded: (Credentials) -> Unit) {
+        val realmCredentials = DatabaseHelper.getCredentials()
+        return if (realmCredentials != null) {
+            onCredentialsLoaded(credentialsMapper.from(realmCredentials))
+        } else {
+            onCredentialsLoaded(Credentials())
         }
     }
 
@@ -73,6 +84,11 @@ class Repository(private val eventsMapper: RealmEventMapper, private val setting
     fun saveApplicationSettings(applicationSettings: ApplicationSettings) {
         val realmSettings = settingsMapper.to(applicationSettings)
         DatabaseHelper.saveApplicationSettings(realmSettings)
+    }
+
+    fun saveCredentials(credentials: Credentials) {
+        val realmCredentials = credentialsMapper.to(credentials)
+        DatabaseHelper.saveCredentials(realmCredentials)
     }
 
     private fun getEventsFromLocalStorage(dateOfDay: String): LinkedHashSet<ListItem> {

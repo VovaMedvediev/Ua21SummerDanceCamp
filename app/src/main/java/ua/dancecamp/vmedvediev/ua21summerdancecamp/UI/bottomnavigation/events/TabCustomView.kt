@@ -10,6 +10,8 @@ class TabCustomView constructor(context: Context,
                                 nameOfTheDay: String,
                                 numberOfTheDay: String) : ConstraintLayout(context) {
 
+    constructor(context: Context) : this(context, "", "")
+
     private var tabName: String = ""
     private var tabNumber: String = ""
 

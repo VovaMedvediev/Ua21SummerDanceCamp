@@ -21,27 +21,13 @@
         <item>Понеділок</item>
         <item>Вівторок</item>
     </string-array>
-    <string name="title_activity_main">MainActivity</string>
     <string name="title_workshop">Майстер-класи</string>
     <string name="title_notes">Нотатки</string>
     <string name="title_settings">Налаштування</string>
     <string name="hint_note">Напиші що-небудь цікаве :)</string>
-    <string name="label_number_of_day">28/8</string>
     <string name="label_name_of_day">пон</string>
     <string name="label_fullname_of_day">ПОНЕДІЛОК</string>
-    <string name="label_name_of_event">Darina Maltseva</string>
-    <string name="label_confirm_note">Confirm note</string>
-    <string name="list_of_events_json">ListOfEvents.json</string>
-    <string name="list_of_events_en_json">listOfEventsEn.json</string>
-    <string name="list_of_events_ua_json">ListOfEventsUa.json</string>
-    <string name="label_note">This is a note</string>
     <string name="label_list_of_notes_is_empty">В тебе ще немає нотаток :(</string>
-    <string name="label_event_time">10.00</string>
-    <string name="label_instagram">Instagram</string>
-    <string name="label_telegram">Telegram</string>
-    <string name="label_english">en</string>
-    <string name="label_russian">ru</string>
-    <string name="label_ukranian">ua</string>
     <string name="time_notification_label">Через 30 хвилин</string>
     <string name="label_language">Мова інтерфейсу:</string>
     <string name="label_ua">Українська мова</string>
@@ -52,6 +38,32 @@
     <string name="label_dark">Темна</string>
     <string name="label_confirm_theme">Змiнити тему</string>
     <string name="label_confirm_language">Змiнити мову</string>
-    <string name="label_notifications_settings">Щоб не отримувати нагадування - відключіть оповіщення для додатка у налаштуваннях</string>
+    <string name="label_notifications_settings">Щоб не отримувати нагадування - вимкнiть оповіщення для додатка у налаштуваннях</string>
     <string name="label_open_settings">Відкрити налаштування</string>
+    <string name="hint_enter_password">Введiть пароль</string>
+    <string name="hint_confirm_password">Пiдтвердiть пароль</string>
+    <string name="label_next">Далi</string>
+    <string name="label_cancel">Скасувати</string>
+    <string name="label_error_password">Пароль повинен мicтити не менш 8 символiв</string>
+    <string name="label_error_passwords_dont_match">Паролі повинні співпадати.</string>
+    <string name="lock_exit">Вихiд</string>
+    <string name="lock_settings">Налаштування</string>
+    <string name="lock_title">Екран блокування</string>
+    <string name="lock_body">"         Безпечний екран блокування не налаштований. Щоб продовжити роботу з цим додатком, перейдіть в «Налаштування» і встановіть метод блокування екрану."</string>
+    <string name="sign_up_snack_message">Зареєструйте хоча б один відбиток.</string>
+    <string name="sign_up_snack_action">НАЛАШТУВАННЯ</string>
+    <string name="sign_up_allow_fingerprint">Дозволити відбитки для подальшого використання</string>
+    <string name="authentication_fingerprint_success">Відбиток розпізнано</string>
+    <string name="authentication_fingerprint_hint">Сенсорний датчик</string>
+    <string name="authentication_fingerprint_not_recognized">Відбиток не розпізнано. Спробуйте ще раз</string>
+    <string name="authentication_fingerprint_description">Підтвердіть відбиток для продовження</string>
+    <string name="authentication_fingerprint_icon_description">Iконка відбитка</string>
+    <string name="authentication_password_description">Введіть пароль для продовження</string>
+    <string name="authentication_fingerprint_new_enrollment_description">До цього пристрою був доданий новий відбиток пальця, тому потрібно ваш пароль.</string>
+    <string name="authentication_password">Пароль</string>
+    <string name="authentication_fingerprint_use_in_future">Використовувати відбитки в майбутньому</string>
+    <string name="authentication_title">Аутентифікація</string>
+    <string name="authentication_cancel">Скасувати</string>
+    <string name="authentication_use_password">Використовувати пароль</string>
+    <string name="authentication_error_incorrect_password">Пароль неправильний</string>
 </resources>
