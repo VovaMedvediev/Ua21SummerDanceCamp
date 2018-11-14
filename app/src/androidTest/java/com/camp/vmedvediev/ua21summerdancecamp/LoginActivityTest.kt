@@ -11,9 +11,9 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import ua.dancecamp.vmedvediev.ua21summerdancecamp.R
-import ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.MainActivity
-import ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.login.LoginActivity
+import ua.dancecamp.vmedvediev.ua21camp.R
+import ua.dancecamp.vmedvediev.ua21camp.UI.bottomnavigation.MainActivity
+import ua.dancecamp.vmedvediev.ua21camp.UI.login.LoginActivity
 
 @RunWith(AndroidJUnit4::class)
 class LoginActivityTest {

@@ -1,7 +1,7 @@
 package com.camp.vmedvediev.ua21summerdancecamp
 
 import org.junit.Test
-import ua.dancecamp.vmedvediev.ua21summerdancecamp.model.NetworkManager
+import ua.dancecamp.vmedvediev.ua21camp.model.NetworkManager
 
 class RepositoryTest {
 
