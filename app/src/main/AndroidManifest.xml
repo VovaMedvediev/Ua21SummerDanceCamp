@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ua.dancecamp.vmedvediev.ua21summerdancecamp">
+    package="ua.dancecamp.vmedvediev.ua21camp">
 
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY"/>
     <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
@@ -8,7 +8,7 @@
         android:required="true"/>
 
     <application
-        android:name="ua.dancecamp.vmedvediev.ua21summerdancecamp.MyApplication"
+        android:name="ua.dancecamp.vmedvediev.ua21camp.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.splash.SplashActivity"
+            android:name="ua.dancecamp.vmedvediev.ua21camp.UI.splash.SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,16 +24,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.notes.NoteActivity"
+        <activity android:name="ua.dancecamp.vmedvediev.ua21camp.UI.bottomnavigation.notes.NoteActivity"
             android:screenOrientation="portrait" />
-        <activity android:name="ua.dancecamp.vmedvediev.ua21summerdancecamp.UI.bottomnavigation.MainActivity"
+        <activity android:name="ua.dancecamp.vmedvediev.ua21camp.UI.bottomnavigation.MainActivity"
                   android:screenOrientation="portrait"/>
-        <activity android:name=".UI.login.LoginActivity"
+        <activity android:name="ua.dancecamp.vmedvediev.ua21camp.UI.login.LoginActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".UI.weather.WeatherActivity"
+        <activity android:name="ua.dancecamp.vmedvediev.ua21camp.UI.weather.WeatherActivity"
                   android:screenOrientation="portrait"
-            android:parentActivityName=".UI.bottomnavigation.MainActivity"/>
-        <service android:name="ua.dancecamp.vmedvediev.ua21summerdancecamp.services.FirebaseNotificationsService">
+            android:parentActivityName="ua.dancecamp.vmedvediev.ua21camp.UI.bottomnavigation.MainActivity"/>
+        <service android:name="ua.dancecamp.vmedvediev.ua21camp.services.FirebaseNotificationsService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>
